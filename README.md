@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/kamdibus/PIK.svg?branch=master)](https://travis-ci.org/kamdibus/PIK)
