@@ -5,7 +5,7 @@
 
     <groupId>org.springframework</groupId>
     <artifactId>gs-spring-boot</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.0-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -38,6 +38,11 @@
     </properties>
 
     <distributionManagement>
+        <repository>
+            <id>nexus-pik</id>
+            <url>http://localhost:8081/repository/PIK/</url>
+        </repository>
+
         <snapshotRepository>
             <id>nexus-pik</id>
             <url>http://localhost:8081/repository/PIK/</url>
