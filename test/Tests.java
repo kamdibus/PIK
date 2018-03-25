@@ -11,5 +11,6 @@ class Tests {
         MyClass tester = new MyClass();
 
         assertEquals(4, tester.multiply(2, 2), "2 plus 2 is 4");
+        assertEquals(6, tester.multiply(2, 3), "2 times 3 is 6");
     }
 }
