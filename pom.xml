@@ -26,9 +26,9 @@
         <!-- end::actuator[] -->
         <!-- tag::tests[] -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
         </dependency>
         <!-- end::tests[] -->
     </dependencies>
@@ -79,7 +79,6 @@
                     <check/>
                 </configuration>
             </plugin>
-
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
