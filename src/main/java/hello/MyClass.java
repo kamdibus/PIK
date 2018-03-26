@@ -4,7 +4,7 @@ package hello;
 public class MyClass {
 
     public int multiply(int x, int y) {
-      return x*y;
+      x*y;
     }
 
 }
