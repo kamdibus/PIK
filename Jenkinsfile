@@ -27,7 +27,7 @@ pipeline {
          }
 
          stage('Deploy') {
-            when { branch 'master'}
+            when { anyOf { branch 'master' ; branch 'deploy_test' } }
             steps {
                 sh 'mvn -Dmaven.test.skip=true deploy'
              }
