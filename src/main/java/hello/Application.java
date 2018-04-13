@@ -20,7 +20,6 @@ public class Application {
             System.out.println(beanName);
         }
 
-        // Only testing
         // H2 In Memory DB is in development
     }
 
