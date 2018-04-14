@@ -1,4 +1,4 @@
-package hello.devices.dto;
+package pik.devices.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,5 +10,6 @@ import lombok.Getter;
 @EqualsAndHashCode
 @AllArgsConstructor
 public class DeviceDTO {
+    private Long id;
     private String name;
 }

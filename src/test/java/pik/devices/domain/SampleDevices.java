@@ -8,8 +8,8 @@ import pik.devices.dto.VariableDTO;
 public interface SampleDevices {
     DeviceDTO kettle = createDeviceDTO((long) 1,"Czajnik");
     DeviceDTO washer = createDeviceDTO((long) 2, "Pralka");
-    VariableDTO temperature = VariableDTO.builder().id((long) 3).name("Temperatura").deviceDTO(kettle).build();
-    VariableDTO current = VariableDTO.builder().id((long) 4).name("Prąd").deviceDTO(kettle).build();
+    VariableDTO temperature = createVariableDTO((long) 3, "Temperatura", kettle);
+    VariableDTO current = createVariableDTO((long) 4, "Prąd", kettle);
 
     static DeviceDTO createDeviceDTO(Long id, String name){
         return DeviceDTO.builder()
