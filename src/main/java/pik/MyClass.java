@@ -1,4 +1,4 @@
-package hello;
+package pik;
 
 public class MyClass {
 
