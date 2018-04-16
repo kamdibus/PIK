@@ -1,0 +1,2 @@
+INSERT INTO DEVICES VALUES(1, 'Czajnik');
+INSERT INTO VARIABLES VALUES(1, 'Temperatura wody', 1);
