@@ -37,6 +37,10 @@ class Value {
         this.id = id;
     }
 
+    public long getId() {
+        return id;
+    }
+
     long getVariableId() {
         return variableId;
     }

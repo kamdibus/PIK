@@ -29,4 +29,23 @@ public class ValueUnitTest {
         assertThat(newValue.getVariableId()).isEqualTo(value.getVariableId());
         assertThat(newValue.getTimestamp()).isEqualTo(value.getTimestamp());
     }
+
+    @Test
+    public void allValuesAreGoneWhenVarDeleted() {
+        //given
+        long var1 = 1;
+        long var2 = 2;
+        valueFacade.add(new ValueDto(var1, Timestamp.valueOf(LocalDateTime.now()), 123.4));
+        valueFacade.add(new ValueDto(var2, Timestamp.valueOf(LocalDateTime.now()), 12));
+        valueFacade.add(new ValueDto(var2, Timestamp.valueOf(LocalDateTime.now()), 1423));
+        valueFacade.add(new ValueDto(var1, Timestamp.valueOf(LocalDateTime.now()), 5432));
+
+        //when
+        valueFacade.dropValues(var1);
+
+        //then
+
+        assertThat(valueFacade.getByVariable(var1)).isEmpty();
+        assertThat(valueFacade.getByVariable(var2)).isNotEmpty();
+    }
 }

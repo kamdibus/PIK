@@ -12,4 +12,6 @@ interface ValueRepository extends Repository<Value, Long> {
 
     List<Value> findAllByVariableId(long id);
 
+    void deleteByVariableId(long variableId);
+
 }

@@ -24,4 +24,8 @@ public class ValueFacade {
     public List<ValueDto> getByVariable(long id) {
         return valueRepository.findAllByVariableId(id).stream().map(a -> a.getDto()).collect(Collectors.toList());
     }
+
+    public void dropValues(long variableId) {
+        valueRepository.deleteByVariableId(variableId);
+    }
 }

@@ -32,4 +32,11 @@ class InMemoryValueRepository implements ValueRepository {
     public List<Value> findAllByVariableId(long id) {
         return map.values().stream().filter(a -> a.getVariableId() == id).collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteByVariableId(long variableId) {
+        List<Value> list = findAllByVariableId(variableId);
+        for (Value v : list)
+            map.remove(v.getId());
+    }
 }
