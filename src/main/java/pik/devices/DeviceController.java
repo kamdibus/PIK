@@ -10,20 +10,20 @@ import pik.devices.dto.VariableDTO;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/devices")
+@CrossOrigin(origins = "http://localhost:8000")
 public class DeviceController {
     private DeviceFacade deviceFacade;
 
-    @GetMapping("/all")
+    @GetMapping("device/all")
     Page<DeviceDTO> getDevices(Pageable pageable) { return deviceFacade.findAllDevices(pageable); }
 
-    @GetMapping("/{id}")
+    @GetMapping("device/{id}")
     DeviceDTO getDevice(@PathVariable final Long id) { return deviceFacade.showDevice(id); }
 
-    @GetMapping("/variables/all")
+    @GetMapping("variable/all")
     Page<VariableDTO> getVariables(Pageable pageable){ return deviceFacade.findAllVariables(pageable); }
 
-    @GetMapping("/variables/{id}")
+    @GetMapping("variable/{id}")
     VariableDTO getVariable(@PathVariable final Long id) { return deviceFacade.showVariable(id); }
 
     /*
