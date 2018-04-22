@@ -27,16 +27,16 @@ public class DeviceController {
     VariableDTO getVariable(@PathVariable final Long id) { return deviceFacade.showVariable(id); }
 
     /*
-    @PostMapping("device/add")
+    @PostMapping
     DeviceDTO addDevice(@RequestBody final DeviceDTO deviceDTO) { return deviceFacade.add(deviceDTO); }
 
-    @PostMapping("variable/add")
+    @PostMapping
     VariableDTO addVariable(@RequestBody final VariableDTO variableDTO) { return deviceFacade.add(variableDTO); }
 
-    @DeleteMapping("device/{id}/remove")
+    @DeleteMapping
     void deleteDevices(@PathVariable final Long id) { deviceFacade.deleteDevice(id); }
 
-    @DeleteMapping("variable/{id}/remove")
+    @DeleteMapping
     void deleteVariables(@PathVariable final Long id) { deviceFacade.deleteVariable(id); }
     */
 }

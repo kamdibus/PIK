@@ -1,6 +1,7 @@
 package pik.devices.domain
 
 import org.junit.After
+import org.junit.Test
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import pik.devices.dto.DeviceDTO
@@ -18,6 +19,7 @@ class DeviceFacadeTest extends Specification implements SampleDevices {
         facade.deleteDevice(washer.getId())
     }
 
+    @Test
     def "Add device"() {
         when: "We add a device"
             facade.add(kettle)
@@ -26,6 +28,7 @@ class DeviceFacadeTest extends Specification implements SampleDevices {
             facade.showDevice(kettle.getId()) == kettle
     }
 
+    @Test
     def "Add variable"() {
         given: "We have a device"
             facade.add(kettle)
@@ -38,6 +41,7 @@ class DeviceFacadeTest extends Specification implements SampleDevices {
             facade.showVariable(temp.getId()) == temp
     }
 
+    @Test
     def "ShowDevice"() {
         given: "We have a device"
             facade.add(kettle)
@@ -49,6 +53,7 @@ class DeviceFacadeTest extends Specification implements SampleDevices {
             temp1.getId() == kettle.getId()
     }
 
+    @Test
     def "ShowVariable"() {
         given: "We have a device and his variable"
             facade.add(kettle)
@@ -61,6 +66,7 @@ class DeviceFacadeTest extends Specification implements SampleDevices {
             temp1.getId() == temperature.getId()
     }
 
+    @Test
     def "DeleteDevice"() {
         given: "We have a device with variables"
             facade.add(kettle)
@@ -78,6 +84,7 @@ class DeviceFacadeTest extends Specification implements SampleDevices {
             //thrown(VariableNotFoundException)
     }
 
+    @Test
     def "DeleteVariable"() {
         given: "We have a device with variables"
             facade.add(kettle)
@@ -92,6 +99,7 @@ class DeviceFacadeTest extends Specification implements SampleDevices {
             thrown(VariableNotFoundException)
     }
 
+    @Test
     def "FindAllDevices"() {
         given: "we have two devices in system"
             facade.add(kettle)
@@ -99,13 +107,15 @@ class DeviceFacadeTest extends Specification implements SampleDevices {
 
         when: "We list all the devices"
             Page<DeviceDTO> page = facade.findAllDevices(new PageRequest(0, 10))
+            List<DeviceDTO> devices = page.getContent()
 
         then: "We get this two devices"
-            page.contains(kettle)
-            page.contains(washer)
+            devices.contains(kettle)
+            devices.contains(washer)
 
     }
 
+    @Test
     def "FindAllVariables"() {
         given: "We have a device with two variables"
             facade.add(kettle)
@@ -114,9 +124,10 @@ class DeviceFacadeTest extends Specification implements SampleDevices {
 
         when: "We list all the variables that this device contains"
             Page<VariableDTO> page = facade.findAllVariables(new PageRequest(0,10))
+            List<VariableDTO> variables = page.getContent()
 
         then: "We got that two variables we added"
-            page.contains(temperature)
-            page.contains(current)
+            variables.contains(temperature)
+            variables.contains(current)
     }
 }

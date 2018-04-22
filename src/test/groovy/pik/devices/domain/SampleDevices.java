@@ -1,10 +1,8 @@
 package pik.devices.domain;
 
-import groovy.transform.CompileStatic;
 import pik.devices.dto.DeviceDTO;
 import pik.devices.dto.VariableDTO;
 
-@CompileStatic
 public interface SampleDevices {
     DeviceDTO kettle = createDeviceDTO((long) 1,"Czajnik");
     DeviceDTO washer = createDeviceDTO((long) 2, "Pralka");
