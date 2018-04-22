@@ -1,17 +1,31 @@
 package pik.values;
 
-import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import pik.values.dto.ValueDTO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import pik.values.domain.ValueFacade;
+import pik.values.dto.ValueDto;
 
-@AllArgsConstructor
+import java.util.List;
+
 @RestController
 @RequestMapping("/values")
 public class ValueController {
 
+    private ValueFacade valueFacade;
+
+    public ValueController(ValueFacade valueFacade) {
+        this.valueFacade = valueFacade;
+    }
+
+    @GetMapping("/{variableId}")
+    public ResponseEntity<List<ValueDto>> getVariableValues(@PathVariable long variableId) {
+        return new ResponseEntity<>(valueFacade.getByVariable(variableId), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> addValue(@RequestBody ValueDto dto) {
+        ValueDto d = valueFacade.add(dto);
+        return new ResponseEntity<>(d, HttpStatus.OK);
+    }
 }
