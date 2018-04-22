@@ -1,4 +1,4 @@
-package kafka;
+package pik.values;
 
 import com.google.common.io.Resources;
 import org.apache.kafka.clients.producer.KafkaProducer;
