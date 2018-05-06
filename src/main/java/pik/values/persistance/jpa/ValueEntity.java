@@ -2,11 +2,13 @@ package pik.values.persistance.jpa;
 
 import pik.values.domain.Value;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.sql.Timestamp;
 
-class ValueEntity {
+@Entity
+public class ValueEntity {
 
     @GeneratedValue
     @Id
