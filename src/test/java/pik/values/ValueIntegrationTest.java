@@ -13,7 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import pik.values.domain.ValueFacade;
+import pik.values.domain.ValueFacadeImpl;
 import pik.values.dto.ValueDto;
 
 import java.sql.Timestamp;
@@ -32,7 +32,7 @@ public class ValueIntegrationTest {
     private ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
-    ValueFacade valueFacade;
+    ValueFacadeImpl valueFacade;
 
     @Autowired
     MockMvc mockMvc;

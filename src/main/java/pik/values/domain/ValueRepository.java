@@ -4,7 +4,7 @@ import org.springframework.data.repository.Repository;
 
 import java.util.List;
 
-interface ValueRepository extends Repository<Value, Long> {
+public interface ValueRepository {
 
     Value save(Value value);
 

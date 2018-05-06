@@ -1,10 +1,14 @@
-package pik.values.domain;
+package pik.values.persistance.inmemory;
+
+import pik.values.domain.Value;
+import pik.values.domain.ValueNotFoundException;
+import pik.values.domain.ValueRepository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class InMemoryValueRepository implements ValueRepository {
+public class InMemoryValueRepository implements ValueRepository {
 
     private HashMap<Long, Value> map;
     private long nextId;

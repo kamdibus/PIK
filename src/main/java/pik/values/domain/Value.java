@@ -1,23 +1,16 @@
 package pik.values.domain;
 
 import pik.values.dto.ValueDto;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
-@Entity
-class Value {
-    @GeneratedValue
-    @Id
+public class Value {
+
     private long id;
     private long variableId;
     private Timestamp timestamp;
     private double value;
 
-    Value(long id, long variableId, Timestamp timestamp, double value) {
+    public Value(long id, long variableId, Timestamp timestamp, double value) {
         this.id = id;
         this.variableId = variableId;
         this.timestamp = timestamp;
@@ -30,19 +23,39 @@ class Value {
         this.value = dto.getValue();
     }
 
-    Value() {
-    }
-
-    void setId(long id) {
-        this.id = id;
+    public Value() {
     }
 
     public long getId() {
         return id;
     }
 
-    long getVariableId() {
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getVariableId() {
         return variableId;
+    }
+
+    public void setVariableId(long variableId) {
+        this.variableId = variableId;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
     }
 
     ValueDto getDto() {
