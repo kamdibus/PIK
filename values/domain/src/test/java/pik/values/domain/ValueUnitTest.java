@@ -3,7 +3,7 @@ package pik.values.domain;
 import org.junit.Test;
 
 import pik.values.dto.ValueDto;
-import pik.values.persistance.inmemory.InMemoryValueRepository;
+import pik.values.domain.InMemoryValueRepository;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
