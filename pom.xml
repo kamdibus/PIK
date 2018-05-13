@@ -9,6 +9,7 @@
     <modules>
         <module>app</module>
         <module>values</module>
+        <module>devices</module>
     </modules>
 
     <parent>
@@ -19,30 +20,12 @@
 
     <dependencies>
 
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>1.8.7</version>
-        </dependency>
 
-
-        <dependency>
-            <groupId>org.hdrhistogram</groupId>
-            <artifactId>HdrHistogram</artifactId>
-            <version>2.1.10</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>r05</version>
-        </dependency>
     </dependencies>
 
     <properties>
@@ -60,6 +43,26 @@
             <url>http://localhost:8081/repository/PIK/</url>
         </snapshotRepository>
     </distributionManagement>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <formats>
+                        <format>html</format>
+                        <format>xml</format>
+                    </formats>
+                    <aggregate>true</aggregate>
+                    <check/>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 
 
 </project>

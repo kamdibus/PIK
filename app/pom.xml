@@ -16,50 +16,47 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>pl.edu.pw.ii</groupId>
-            <artifactId>rest</artifactId>
+            <artifactId>values-domain</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <groupId>pl.edu.pw.ii</groupId>
+            <artifactId>values-rest</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>pl.edu.pw.ii</groupId>
+            <artifactId>values-persistance-jpa</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>pl.edu.pw.ii</groupId>
+            <artifactId>devices-domain</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>pl.edu.pw.ii</groupId>
+            <artifactId>devices-rest</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <groupId>pl.edu.pw.ii</groupId>
+            <artifactId>devices-persistence-jpa</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>1.8.7</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.spockframework</groupId>
-            <artifactId>spock-core</artifactId>
-            <version>0.6-groovy-1.8</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
 
     </dependencies>
 
@@ -73,30 +70,12 @@
     <build>
         <plugins>
 
-            <plugin>
-                <groupId>org.codehaus.gmaven</groupId>
-                <artifactId>gmaven-plugin</artifactId>
-                <version>1.5</version>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <providerSelection>1.8</providerSelection>
-                        </configuration>
-                        <goals>
-                            <goal>generateStubs</goal>
-                            <goal>compile</goal>
-                            <goal>generateTestStubs</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <executions>
@@ -109,18 +88,6 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <formats>
-                        <format>html</format>
-                        <format>xml</format>
-                    </formats>
-                    <check/>
-                </configuration>
-            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

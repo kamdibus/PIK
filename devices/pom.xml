@@ -9,14 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>values</artifactId>
+    <artifactId>devices</artifactId>
     <packaging>pom</packaging>
-
     <modules>
-        <module>values-domain</module>
-        <module>values-persistence-jpa</module>
-        <module>values-rest</module>
+        <module>devices-domain</module>
+        <module>devices-rest</module>
+        <module>devices-persistence-jpa</module>
     </modules>
-
 
 </project>
