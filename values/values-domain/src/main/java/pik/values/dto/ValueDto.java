@@ -24,6 +24,7 @@ public class ValueDto {
     }
 
     public ValueDto() {
+
     }
 
     public long getId() {
