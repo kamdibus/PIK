@@ -28,7 +28,11 @@ public class ValueController {
 
     @PostMapping
     public ResponseEntity<?> addValue(@RequestBody ValueDto dto) {
-        ValueDto d = valueFacade.add(dto);
-        return new ResponseEntity<>(d, HttpStatus.OK);
+        try {
+            valueProducer.put(dto);
+        } catch(Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -25,10 +25,10 @@ public class Producer {
 
     public void put(ValueDto value) {
         try {
-            producer.send(new ProducerRecord<Long, ValueDto>(
+            producer.send(new ProducerRecord<>(
                     "values", 1, value.getId(), value));
         } catch (Throwable throwable) {
-            System.out.printf("%s", throwable.getStackTrace());
+            throw new RuntimeException("Internal server exception?");
         } finally {
             producer.close();
         }
