@@ -1,9 +1,9 @@
 package pik.values.rest;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pik.values.domain.Producer;
 import pik.values.domain.ValueFacade;
 import pik.values.dto.ValueDto;
 
@@ -14,9 +14,11 @@ import java.util.List;
 public class ValueController {
 
     private ValueFacade valueFacade;
+    private Producer valueProducer;
 
-    public ValueController(ValueFacade valueFacade) {
+    public ValueController(ValueFacade valueFacade, Producer valueProducer) {
         this.valueFacade = valueFacade;
+        this.valueProducer = valueProducer;
     }
 
     @GetMapping("/{variableId}")
