@@ -11,8 +11,4 @@ public class ValuesConfiguration {
         return new ValueFacadeImpl(valueRepository);
     }
 
-    @Bean
-    Producer valueProducer() {
-        return new Producer();
-    }
 }
