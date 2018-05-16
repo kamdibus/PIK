@@ -3,6 +3,7 @@ package pik;
 import com.google.common.io.Resources;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import pik.values.domain.ValueProducerFacade;
 import pik.values.dto.ValueDto;
 
 import java.io.IOException;
@@ -12,10 +13,10 @@ import java.util.Properties;
 /**
  *
  */
-public class Producer {
+public class ValueProducerImpl implements ValueProducerFacade {
     private KafkaProducer<Long, ValueDto> producer;
 
-    public Producer() throws IOException {
+    public ValueProducerImpl() throws IOException {
         try (InputStream props = Resources.getResource("pik/producer.props").openStream()) {
             Properties properties = new Properties();
             properties.load(props);

@@ -11,4 +11,5 @@ public class ValuesConfiguration {
         return new ValueFacadeImpl(valueRepository);
     }
 
+
 }

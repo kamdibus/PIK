@@ -1,23 +1,23 @@
-package pik.values.rest;
+package pik;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pik.Producer;
 
 import java.io.IOException;
 
 @Configuration
-public class RestConfiguration {
+public class ValueProducerConfiguration {
 
     @Bean
-    Producer valueProducer() {
+    ValueProducerImpl valueProducer() {
 
-        Producer producer = null;
+        ValueProducerImpl producer = null;
         try {
-            producer = new Producer();
+            producer = new ValueProducerImpl();
         } catch (IOException e) {
-            System.err.println("Error with creating BEAN PRODUCER");
+            System.err.println("Error with creating BEAN producer");
         }
         return producer;
     }
+
 }

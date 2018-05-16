@@ -11,6 +11,7 @@
         <module>values</module>
         <module>devices</module>
         <module>producer</module>
+        <module>consumer</module>
     </modules>
 
     <parent>
