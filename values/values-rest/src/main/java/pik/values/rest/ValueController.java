@@ -3,6 +3,7 @@ package pik.values.rest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pik.values.domain.ValueProducerFacade;
 import pik.values.domain.ValueFacade;
 import pik.values.domain.dto.ValueDto;
 
@@ -13,9 +14,11 @@ import java.util.List;
 public class ValueController {
 
     private ValueFacade valueFacade;
+    private ValueProducerFacade valueProducer;
 
-    public ValueController(ValueFacade valueFacade) {
+    public ValueController(ValueFacade valueFacade, ValueProducerFacade valueProducer) {
         this.valueFacade = valueFacade;
+        this.valueProducer = valueProducer;
     }
 
     @GetMapping("/{variableId}")
@@ -25,7 +28,11 @@ public class ValueController {
 
     @PostMapping
     public ResponseEntity<?> addValue(@RequestBody ValueDto dto) {
-        ValueDto d = valueFacade.add(dto);
-        return new ResponseEntity<>(d, HttpStatus.OK);
+        try {
+            valueProducer.put(dto);
+        } catch(Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

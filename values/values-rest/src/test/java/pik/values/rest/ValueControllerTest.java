@@ -26,6 +26,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import pik.values.domain.ValueFacade;
 
+
+import pik.values.domain.ValueProducerFacade;
 import pik.values.domain.dto.ValueDto;
 
 import java.sql.Timestamp;
@@ -46,6 +48,9 @@ public class ValueControllerTest {
     @MockBean
     ValueFacade valueFacadeMock;
 
+    @MockBean
+    ValueProducerFacade valueProducerMock;
+
     @Autowired
     MockMvc mockMvc;
 
@@ -55,7 +60,7 @@ public class ValueControllerTest {
         ValueDto value = new ValueDto(123123, Timestamp.valueOf(LocalDateTime.of(2018, 10, 3, 12, 45)), 1251.32);
         String json = mapper.writeValueAsString(value);
 
-        when(valueFacadeMock.add(any())).thenAnswer(i -> i.getArguments()[0]);
+        when(valueProducerMock.put(any())).thenAnswer(i -> i.getArguments()[0]);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/values")
                 .contentType(MediaType.APPLICATION_JSON)
