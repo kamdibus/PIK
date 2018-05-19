@@ -3,7 +3,7 @@ package pik.values.persistance.jpa;
 import org.springframework.stereotype.Repository;
 import pik.values.domain.Value;
 import pik.values.domain.ValueRepository;
-import pik.values.domain.ValueNotFoundException;
+import pik.values.domain.dto.ValueNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;

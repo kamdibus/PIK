@@ -1,6 +1,6 @@
 package pik.values.domain;
 
-import pik.values.dto.ValueDto;
+import pik.values.domain.dto.ValueDto;
 
 import java.util.List;
 
