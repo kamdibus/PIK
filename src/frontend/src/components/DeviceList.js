@@ -32,7 +32,7 @@ class DeviceList extends React.Component {
 class Device extends React.Component{
  constructor(props) {
     super(props);
-    this.state = {variables:  [{"name" : "dupa", "id" : "1"},{"name" : "chuj", "id" : "2"}], show: false};
+    this.state = {variables:  [], show: false};
   }
 
   handleDelete() {
@@ -41,6 +41,11 @@ class Device extends React.Component{
 
   showModal = () => {
     this.setState({ show: true });
+      		 fetch('http://localhost:8080/variable/all')
+      		.then(resp => resp.json())
+      		.then(resp => {
+      			this.setState({variables: resp.content});
+      		})
   }
 
   hideModal = () => {
