@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AddDeviceFormular extends React.Component {
+class AddVariableForm extends React.Component {
   constructor(props) {
     super(props);
 		this.state = {value: ''};
@@ -22,7 +22,7 @@ class AddDeviceFormular extends React.Component {
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<label>
-					Device:
+					Variable:
 					 <input type="text" value={this.state.value} onChange={this.handleChange} />
 				</label>
 			<input type="submit" value="Add" />
@@ -32,5 +32,5 @@ class AddDeviceFormular extends React.Component {
 }
 
 
-export default AddDeviceFormular;
+export default AddVariableForm;
 

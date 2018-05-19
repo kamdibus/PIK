@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AddVariableFormular from './AddVariableFormular';
+import AddVariableForm from './AddVariableForm';
 import Modal from './Modal';
 
 class VariableList extends React.Component {
@@ -35,7 +35,7 @@ class VariableList extends React.Component {
         </table>
 
                 <Modal show={this.state.show} handleClose={this.hideModal} >
-                <AddVariableFormular />
+                <AddVariableForm />
                 </Modal>
                 <button type='button' onClick={this.showModal}>Add variable</button>
 

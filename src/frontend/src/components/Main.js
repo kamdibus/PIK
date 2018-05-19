@@ -2,7 +2,7 @@ require('normalize.css/normalize.css');
 require('styles/App.css');
 
 import React from 'react';
-import AddDeviceFormular from './AddDeviceFormular';
+import AddDeviceForm from './AddDeviceForm';
 import DeviceList from './DeviceList';
 import Modal from './Modal';
 
@@ -34,7 +34,7 @@ class AppComponent extends React.Component {
       <main>
         <DeviceList devices={this.state.devices} />
         <Modal show={this.state.show} handleClose={this.hideModal} >
-        <AddDeviceFormular />
+        <AddDeviceForm />
         </Modal>
         <button type='button' onClick={this.showModal}>Add device</button>
       </main>
