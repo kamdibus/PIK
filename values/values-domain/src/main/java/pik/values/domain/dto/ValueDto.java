@@ -1,4 +1,4 @@
-package pik.values.dto;
+package pik.values.domain.dto;
 
 import java.sql.Timestamp;
 

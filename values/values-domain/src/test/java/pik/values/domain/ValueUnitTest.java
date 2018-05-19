@@ -2,7 +2,7 @@ package pik.values.domain;
 
 import org.junit.Test;
 
-import pik.values.dto.ValueDto;
+import pik.values.domain.dto.ValueDto;
 import pik.values.domain.inMemImpl.InMemoryValueRepository;
 
 import java.sql.Timestamp;
