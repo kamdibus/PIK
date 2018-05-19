@@ -27,7 +27,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import pik.values.domain.ValueFacade;
 
 import pik.values.domain.ValueProducerFacade;
-import pik.values.dto.ValueDto;
+import pik.values.domain.dto.ValueDto;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

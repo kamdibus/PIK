@@ -1,7 +1,7 @@
 package pik.values.domain.inMemImpl;
 
 import pik.values.domain.Value;
-import pik.values.domain.ValueNotFoundException;
+import pik.values.domain.dto.ValueNotFoundException;
 import pik.values.domain.ValueRepository;
 
 import java.util.HashMap;

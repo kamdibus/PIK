@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pik.values.domain.ValueProducerFacade;
 import pik.values.domain.ValueFacade;
-import pik.values.dto.ValueDto;
+import pik.values.domain.dto.ValueDto;
 
 import java.util.List;
 

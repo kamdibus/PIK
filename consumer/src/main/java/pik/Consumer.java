@@ -3,9 +3,8 @@ package pik;
 import com.google.common.io.Resources;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.springframework.stereotype.Component;
 import pik.values.domain.ValueFacade;
-import pik.values.dto.ValueDto;
+import pik.values.domain.dto.ValueDto;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +15,6 @@ import java.util.Random;
 /**
  *
  */
-@Component
 public class Consumer {
     private KafkaConsumer<Long, ValueDto> consumer;
     private ValueFacade valueFacade;
@@ -31,7 +29,7 @@ public class Consumer {
             }
             consumer = new KafkaConsumer<>(properties);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error creating kafka KafkaConsumer", e);
         }
         consumer.subscribe(Arrays.asList("values"));
 
@@ -42,7 +40,7 @@ public class Consumer {
 
         records.forEach(record -> {
             valueFacade.add(record.value());
-            System.out.println(record.value());
+            System.out.println(record.value().getVariableId());
         });
     }
 }

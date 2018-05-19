@@ -4,7 +4,7 @@ import com.google.common.io.Resources;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import pik.values.domain.ValueProducerFacade;
-import pik.values.dto.ValueDto;
+import pik.values.domain.dto.ValueDto;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,7 +21,9 @@ public class ValueProducerImpl implements ValueProducerFacade {
             Properties properties = new Properties();
             properties.load(props);
             producer = new KafkaProducer<>(properties);
-        }
+        } catch (IOException e) {
+        throw new RuntimeException("Error creating kafka KafkaProducer", e);
+    }
     }
 
     public ValueDto put(ValueDto value) {

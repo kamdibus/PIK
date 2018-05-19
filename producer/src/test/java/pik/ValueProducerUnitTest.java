@@ -2,7 +2,7 @@ package pik;
 
 import org.junit.Test;
 import pik.values.domain.ValueProducerFacade;
-import pik.values.dto.ValueDto;
+import pik.values.domain.dto.ValueDto;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
