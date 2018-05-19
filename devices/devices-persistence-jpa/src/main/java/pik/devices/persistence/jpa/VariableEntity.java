@@ -26,6 +26,8 @@ public class VariableEntity {
     @JoinColumn(name = "DEVICE_ID")
     private DeviceEntity device;
 
+    public VariableEntity() {}
+
     public VariableEntity(String name, DeviceEntity deviceEntity) {
         this.name = name;
         this.device = deviceEntity;
