@@ -4,29 +4,42 @@ require('styles/App.css');
 import React from 'react';
 import AddDeviceFormular from './AddDeviceFormular';
 import DeviceList from './DeviceList';
+import Modal from './Modal';
 
 class AppComponent extends React.Component {
 	constructor() {
 		super();
-    	this.state = {devices: []};
-	}
+    this.state = {devices: [], show: false};
+  }
 
- 	 componentDidMount() {
-		 fetch('http://localhost:8080/device/all')
-		.then(resp => resp.json())
-		.then(resp => {
-			this.setState({devices: resp.content});
-		})
-	}
+  componentDidMount() {
+  		 fetch('http://localhost:8080/device/all')
+  		.then(resp => resp.json())
+  		.then(resp => {
+  			this.setState({devices: resp.content});
+  		})
+  }
 
-	render() {
-		return (
-      		<div className="main">
-        	<DeviceList devices={this.state.devices} />
-        	<AddDeviceFormular />
-			</div>
-		);
-	}
+
+  showModal = () => {
+    this.setState({ show: true });
+  }
+
+  hideModal = () => {
+    this.setState({ show: false });
+  }
+
+  render() {
+    return (
+      <main>
+        <DeviceList devices={this.state.devices} />
+        <Modal show={this.state.show} handleClose={this.hideModal} >
+        <AddDeviceFormular />
+        </Modal>
+        <button type='button' onClick={this.showModal}>Open</button>
+      </main>
+    )
+  }
 }
 
 export default AppComponent;
