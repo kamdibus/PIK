@@ -14,16 +14,16 @@ class AddDeviceForm extends React.Component {
   }
 
 	handleSubmit(event) {
-fetch('http://localhost:8080/devices', {
-  method: 'post',
-  headers: {
-    'Accept': 'application/json, text/plain, */*',
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'http://localhost:8080'
-  },
-  body: JSON.stringify({id: 7, name: `${this.state.value}`})
-}).then(res=>res.json())
-  .then(res => console.log(res));
+    fetch('http://localhost:8080/devices', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:8080'
+      },
+      body: JSON.stringify({id: 7, name: `${this.state.value}`})
+    }).then(res=>res.json())
+      .then(res => console.log(res));
 	}
 
 	render() {

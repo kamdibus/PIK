@@ -14,7 +14,17 @@ class AddVariableForm extends React.Component {
   }
 
 	handleSubmit(event) {
-	  alert(this.state.value);
+	  fetch('http://localhost:8080/variables', {
+          method: 'post',
+          headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:8080'
+          },
+          body: JSON.stringify({id: 7, name: `${this.state.value}`})
+        }).then(res=>res.json())
+          .then(res => console.log(res));
+
     event.preventDefault();
 	}
 
