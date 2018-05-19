@@ -13,4 +13,6 @@ public class VariableDTO {
     private Long id;
     private String name;
     private DeviceDTO deviceDTO;
+
+    public VariableDTO() {}
 }

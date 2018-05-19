@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import pik.devices.domain.Device;
 
 @Builder
 @Getter
@@ -12,4 +13,6 @@ import lombok.Getter;
 public class DeviceDTO {
     private Long id;
     private String name;
+
+    public DeviceDTO() {}
 }
