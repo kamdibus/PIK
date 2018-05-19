@@ -41,7 +41,7 @@ class Device extends React.Component{
 
   showModal = () => {
     this.setState({ show: true });
-      		 fetch('http://localhost:8080/variable/all')
+      		 fetch('http://localhost:8080/devices')
       		.then(resp => resp.json())
       		.then(resp => {
       			this.setState({variables: resp.content});

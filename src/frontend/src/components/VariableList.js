@@ -34,10 +34,10 @@ class VariableList extends React.Component {
             </tbody>
         </table>
 
-                <Modal show={this.state.show} handleClose={this.hideModal} >
+        <Modal show={this.state.show} handleClose={this.hideModal} >
                 <AddVariableForm />
-                </Modal>
-                <button type='button' onClick={this.showModal}>Add variable</button>
+        </Modal>
+        <button type='button' onClick={this.showModal}>Add variable</button>
 
         </ul>
     );

@@ -14,27 +14,27 @@ import pik.devices.domain.dto.VariableDTO;
 public class DeviceController {
     private DeviceFacade deviceFacade;
 
-    @GetMapping("device/all")
+    @GetMapping("devices")
     Page<DeviceDTO> getDevices(Pageable pageable) { return deviceFacade.findAllDevices(pageable); }
 
-    @GetMapping("device/{id}")
+    @GetMapping("devices/{id}")
     DeviceDTO getDevice(@PathVariable final Long id) { return deviceFacade.showDevice(id); }
 
-    @GetMapping("variable/all")
+    @GetMapping("variables")
     Page<VariableDTO> getVariables(Pageable pageable){ return deviceFacade.findAllVariables(pageable); }
 
-    @GetMapping("variable/{id}")
+    @GetMapping("variables/{id}")
     VariableDTO getVariable(@PathVariable final Long id) { return deviceFacade.showVariable(id); }
 
-    @PostMapping("addDevice")
+    @PostMapping("devices")
     DeviceDTO addDevice(@RequestBody final DeviceDTO deviceDTO) { return deviceFacade.add(deviceDTO); }
 
-    @PostMapping("addVariable")
+    @PostMapping("variables")
     VariableDTO addVariable(@RequestBody final VariableDTO variableDTO) { return deviceFacade.add(variableDTO); }
 
-    //@DeleteMapping
-    //void deleteDevices(@PathVariable final Long id) { deviceFacade.deleteDevice(id); }
+    @DeleteMapping("devices/{id}")
+    void deleteDevices(@PathVariable final Long id) { deviceFacade.deleteDevice(id); }
 
-    //@DeleteMapping
-    //void deleteVariables(@PathVariable final Long id) { deviceFacade.deleteVariable(id); }
+    @DeleteMapping("variables/{id}")
+    void deleteVariables(@PathVariable final Long id) { deviceFacade.deleteVariable(id); }
 }

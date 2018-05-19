@@ -13,7 +13,7 @@ class AppComponent extends React.Component {
   }
 
   componentDidMount() {
-  		 fetch('http://localhost:8080/device/all')
+  		 fetch('http://localhost:8080/devices')
   		.then(resp => resp.json())
   		.then(resp => {
   			this.setState({devices: resp.content});
