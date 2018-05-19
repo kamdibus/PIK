@@ -1,6 +1,7 @@
 import React from 'react';
 
 import VariableList from './VariableList';
+import Modal from './Modal';
 
 class DeviceList extends React.Component {
   constructor(props) {
@@ -31,15 +32,19 @@ class DeviceList extends React.Component {
 class Device extends React.Component{
  constructor(props) {
     super(props);
-    this.state = {variables:  [{"name" : "dupa", "id" : "1"},{"name" : "chuj", "id" : "2"}]};
+    this.state = {variables:  [{"name" : "dupa", "id" : "1"},{"name" : "chuj", "id" : "2"}], show: false};
   }
 
   handleDelete() {
 
   }
 
-  handleShowVariables() {
-    alert("Dupa");
+  showModal = () => {
+    this.setState({ show: true });
+  }
+
+  hideModal = () => {
+    this.setState({ show: false });
   }
 
 	render() {
@@ -47,9 +52,13 @@ class Device extends React.Component{
 			<tr>
 				<td>{this.props.id}</td>
 				<td>{this.props.name}</td>
-				<td><button onClick={this.handleShowVariables}>Show variables</button></td>
+				<td><button onClick={this.showModal}>Show variables</button></td>
 				<td><button onClick={this.handleDelete}>Delete</button></td>
-				<VariableList variables={this.state.variables}  />
+
+        <Modal show={this.state.show} handleClose={this.hideModal} >
+        <h1>Device {this.props.id}: {this.props.name}</h1>
+        <VariableList variables={this.state.variables}  />
+        </Modal>
 			</tr>
 		)
 	}

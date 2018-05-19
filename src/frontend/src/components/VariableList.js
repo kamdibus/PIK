@@ -36,6 +36,8 @@ class Variable extends React.Component{
 			<tr>
 				<td>{this.props.id}</td>
 				<td>{this.props.name}</td>
+				<td><button>Show chart</button></td>
+				<td><button>Delete</button></td>
 			</tr>
 		)
 	}
