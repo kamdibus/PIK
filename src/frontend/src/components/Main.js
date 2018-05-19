@@ -36,7 +36,7 @@ class AppComponent extends React.Component {
         <Modal show={this.state.show} handleClose={this.hideModal} >
         <AddDeviceFormular />
         </Modal>
-        <button type='button' onClick={this.showModal}>Open</button>
+        <button type='button' onClick={this.showModal}>Add device</button>
       </main>
     )
   }

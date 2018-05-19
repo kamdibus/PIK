@@ -36,6 +36,8 @@ class Device extends React.Component{
 			<tr>
 				<td>{this.props.id}</td>
 				<td>{this.props.name}</td>
+				<td><button>Show variables</button></td>
+				<td><button>Delete</button></td>
 			</tr>
 		)
 	}
