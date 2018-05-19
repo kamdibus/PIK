@@ -10,7 +10,7 @@ class AppComponent extends React.Component {
 		super();
     	this.state = {devices: []};
 	}
-	
+
  	 componentDidMount() {
 		 fetch('http://localhost:8080/device/all')
 		.then(resp => resp.json())

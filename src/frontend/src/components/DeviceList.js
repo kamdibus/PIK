@@ -1,20 +1,45 @@
 import React from 'react';
 
-function ListItem(props) {
-    return <li>{props.value}</li>;
-}
+class DeviceList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-function DeviceList(props) {
-    const devices = props.devices;
-    const listItems = devices.map((device) =>
-    <ListItem key={device.id}
-              value={device.name} />
+  render() {
+    const deviceList = this.props.devices.map((device) =>
+    <Device id={device.id}
+              name={device.name} />
     );
     return (
         <ul>
-        {listItems}
+        <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <th>Device name</th>
+            </tr>
+            {deviceList}
+            </tbody>
+        </table>
         </ul>
     );
+    }
+}
+
+class Device extends React.Component{
+ constructor(props) {
+    super(props);
+  }
+
+	render() {
+		return (
+			<tr>
+				<td>{this.props.id}</td>
+				<td>{this.props.name}</td>
+			</tr>
+		)
+	}
 }
 
 export default DeviceList;
+
