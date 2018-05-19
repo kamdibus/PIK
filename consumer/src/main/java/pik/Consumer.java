@@ -23,7 +23,7 @@ public class Consumer {
 
     public Consumer(ValueFacade valueFacade) {
         this.valueFacade = valueFacade;
-        try (InputStream props = Resources.getResource("pik/consumer.props").openStream()) {
+        try (InputStream props = Resources.getResource("consumer.props").openStream()) {
             Properties properties = new Properties();
             properties.load(props);
             if (properties.getProperty("group.id") == null) {

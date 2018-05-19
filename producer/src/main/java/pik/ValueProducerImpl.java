@@ -17,7 +17,7 @@ public class ValueProducerImpl implements ValueProducerFacade {
     private KafkaProducer<Long, ValueDto> producer;
 
     public ValueProducerImpl() throws IOException {
-        try (InputStream props = Resources.getResource("pik/producer.props").openStream()) {
+        try (InputStream props = Resources.getResource("producer.props").openStream()) {
             Properties properties = new Properties();
             properties.load(props);
             producer = new KafkaProducer<>(properties);
@@ -27,9 +27,9 @@ public class ValueProducerImpl implements ValueProducerFacade {
     public ValueDto put(ValueDto value) {
         try {
             producer.send(new ProducerRecord<>(
-                    "values", 1, value.getId(), value));
-        } catch (Throwable throwable) {
-            throw new RuntimeException("Internal server exception?");
+                    "values", value.getId(), value));
+        } catch (Exception e) {
+            throw new RuntimeException("Problem with accessing kafka broker.", e);
         } finally {
             producer.close();
         }
