@@ -1,8 +1,20 @@
 import React from 'react';
 
+import AddVariableFormular from './AddVariableFormular';
+import Modal from './Modal';
+
 class VariableList extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {show: false};
+  }
+
+  showModal = () => {
+    this.setState({ show: true });
+  }
+
+  hideModal = () => {
+    this.setState({ show: false });
   }
 
   render() {
@@ -21,6 +33,12 @@ class VariableList extends React.Component {
             {variableList}
             </tbody>
         </table>
+
+                <Modal show={this.state.show} handleClose={this.hideModal} >
+                <AddVariableFormular />
+                </Modal>
+                <button type='button' onClick={this.showModal}>Add variable</button>
+
         </ul>
     );
     }

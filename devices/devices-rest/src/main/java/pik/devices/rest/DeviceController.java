@@ -26,6 +26,9 @@ public class DeviceController {
     @GetMapping("variable/{id}")
     VariableDTO getVariable(@PathVariable final Long id) { return deviceFacade.showVariable(id); }
 
+    //@GetMapping("variables/{id}")
+    //Page<VariableDTO> abc(@PathVariable final Long id) { return dev }
+
     /*
     @PostMapping
     DeviceDTO addDevice(@RequestBody final DeviceDTO deviceDTO) { return deviceFacade.add(deviceDTO); }
