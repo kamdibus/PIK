@@ -11,14 +11,6 @@ import pik.values.persistance.jpa.ValueRepositoryJpa;
 @Configuration
 public class ConsumerConfiguration {
 
-    @Bean
-    ValueRepository valueRepository(ValueRepositoryJpa valueRepositoryJpa) { return new ValueRepositoryImpl(valueRepositoryJpa); };
-
-    @Bean
-    ValueFacadeImpl valueFacade(ValueRepository valueRepository) {
-        return new ValueFacadeImpl(valueRepository);
-    }
-
     @Bean(name = "consumer")
     Consumer consumer(ValueFacade valueFacade) { return new Consumer(valueFacade); }
 
