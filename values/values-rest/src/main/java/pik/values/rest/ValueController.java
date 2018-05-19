@@ -1,11 +1,10 @@
 package pik.values.rest;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pik.values.domain.ValueFacade;
-import pik.values.dto.ValueDto;
+import pik.values.domain.dto.ValueDto;
 
 import java.util.List;
 

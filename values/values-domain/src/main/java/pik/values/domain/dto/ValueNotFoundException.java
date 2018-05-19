@@ -1,4 +1,4 @@
-package pik.values.domain;
+package pik.values.domain.dto;
 
 public class ValueNotFoundException extends RuntimeException {
 
