@@ -5,6 +5,10 @@ pipeline {
         jdk 'jdk8'
 
     }
+    
+   environment {
+        HEROKU_API_KEY = credentials('heroku_api_key')
+    }
     stages {
 
         stage('Build') {
