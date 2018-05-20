@@ -9,6 +9,10 @@ class VariableList extends React.Component {
     this.state = {show: false};
   }
 
+  onDelete = (variableId) => {
+    alert(variableId);
+  }
+
   showModal = () => {
     this.setState({ show: true });
   }
@@ -26,7 +30,7 @@ class VariableList extends React.Component {
     });
 
     const variableList = variables.map((variable) =>
-    <Variable id={variable.id} name={variable.name}  />
+    <Variable id={variable.id} name={variable.name}  onDelete={this.onDelete} />
     );
 
     return (
@@ -56,13 +60,17 @@ class Variable extends React.Component{
     super(props);
   }
 
+  handleDelete = () => {
+      this.props.onDelete(this.props.id);
+  }
+
   render() {
     return (
       <tr>
         <td>{this.props.id}</td>
         <td>{this.props.name}</td>
         <td><button>Show chart</button></td>
-        <td><button>Delete</button></td>
+        <td><button onClick={this.handleDelete}>Delete</button></td>
       </tr>
     )
   }

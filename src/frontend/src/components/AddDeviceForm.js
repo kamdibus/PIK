@@ -39,6 +39,5 @@ class AddDeviceForm extends React.Component {
 	}
 }
 
-
 export default AddDeviceForm;
 
