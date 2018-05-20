@@ -18,7 +18,13 @@ class VariableList extends React.Component {
   }
 
   render() {
-    const variableList = this.props.variables.map((variable) =>
+  const deviceId = this.props.deviceId;
+    //Szukam zmiennych przypisanych do danego urządzenia
+  var variables = this.props.variables.filter(function (variable) {
+    return variable.deviceDTO.id == deviceId;
+  });
+
+    const variableList = variables.map((variable) =>
     <Variable id={variable.id}
                 name={variable.name}  />
      );
@@ -35,7 +41,7 @@ class VariableList extends React.Component {
         </table>
 
         <Modal show={this.state.show} handleClose={this.hideModal} >
-                <AddVariableForm />
+                <AddVariableForm deviceId={this.props.deviceId} deviceName={this.props.deviceName}/>
         </Modal>
         <button type='button' onClick={this.showModal}>Add variable</button>
 

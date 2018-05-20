@@ -31,7 +31,7 @@ public class DeviceController {
 
     @PostMapping("variables")
     VariableDTO addVariable(@RequestBody final VariableDTO variableDTO) { return deviceFacade.add(variableDTO); }
-
+    
     @DeleteMapping("devices/{id}")
     void deleteDevices(@PathVariable final Long id) { deviceFacade.deleteDevice(id); }
 

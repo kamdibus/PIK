@@ -62,7 +62,7 @@ class Device extends React.Component{
 
         <Modal show={this.state.show} handleClose={this.hideModal} >
         <h1>Device {this.props.id}: {this.props.name}</h1>
-        <VariableList variables={this.state.variables}  />
+        <VariableList variables={this.state.variables} deviceId={this.props.id} deviceName={this.props.name} />
         </Modal>
 			</tr>
 		)

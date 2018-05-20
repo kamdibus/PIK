@@ -21,7 +21,7 @@ class AddVariableForm extends React.Component {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': 'http://localhost:8080'
           },
-          body: JSON.stringify({id: 7, name: `${this.state.value}`})
+          body: JSON.stringify({id: 1, name: `${this.state.value}`, deviceDTO: {id: `${this.props.deviceId}`, name: `${this.props.deviceName}`}})
         }).then(res=>res.json())
           .then(res => console.log(res));
 
