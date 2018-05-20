@@ -31,7 +31,10 @@ class DeviceList extends React.Component {
   }
 
   onDelete = (deviceId) => {
-    alert(deviceId);
+   fetch('http://localhost:8080/devices/' + deviceId, {
+        method: 'delete'
+      })
+      .then(response => response.json());
   }
 
   onCreate = (deviceName) => {
@@ -42,11 +45,9 @@ class DeviceList extends React.Component {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': 'http://localhost:8080'
      },
-     body: JSON.stringify({id: 7, name: `${deviceName}`})
+     body: JSON.stringify({id: 10000, name: `${deviceName}`})
      }).then(res=>res.json())
-     .then(res => console.log(res));
-
-     this.loadContent();
+     .then();
   }
 
   render() {
@@ -85,13 +86,17 @@ class Device extends React.Component{
       this.props.onDelete(this.props.id);
   }
 
+  loadContent = () => {
+       this.setState({ show: true });
+          		 fetch('http://localhost:8080/variables')
+          		.then(resp => resp.json())
+          		.then(resp => {
+          			this.setState({variables: resp.content});
+          		})
+  }
+
   showModal = () => {
-    this.setState({ show: true });
-      		 fetch('http://localhost:8080/variables')
-      		.then(resp => resp.json())
-      		.then(resp => {
-      			this.setState({variables: resp.content});
-      		})
+      this.loadContent();
   }
 
   hideModal = () => {
@@ -108,7 +113,8 @@ class Device extends React.Component{
 
         <Modal show={this.state.show} handleClose={this.hideModal} >
         <h1>Device {this.props.id}: {this.props.name}</h1>
-        <VariableList variables={this.state.variables} deviceId={this.props.id} deviceName={this.props.name} />
+        <VariableList variables={this.state.variables} deviceId={this.props.id} deviceName={this.props.name}
+        loadContent =  {this.loadContent}/>
         </Modal>
 			</tr>
 		)

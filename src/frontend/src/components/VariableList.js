@@ -10,7 +10,23 @@ class VariableList extends React.Component {
   }
 
   onDelete = (variableId) => {
-    alert(variableId);
+    fetch('http://localhost:8080/devices/' + variableId, {
+    method: 'delete'
+    })
+    .then(response => response.json());
+  }
+
+  onCreate = (variableName) => {
+    	  fetch('http://localhost:8080/variables', {
+              method: 'post',
+              headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'http://localhost:8080'
+              },
+              body: JSON.stringify({id: 1, name: `${variableName}`, deviceDTO: {id: `${this.props.deviceId}`, name: `${this.props.deviceName}`}})
+            }).then(res=>res.json())
+              .then();
   }
 
   showModal = () => {
@@ -46,7 +62,7 @@ class VariableList extends React.Component {
       </table>
 
       <Modal show={this.state.show} handleClose={this.hideModal} >
-        <AddVariableForm deviceId={this.props.deviceId} deviceName={this.props.deviceName}/>
+        <AddVariableForm onCreate={this.onCreate}/>
       </Modal>
       <button type='button' onClick={this.showModal}>Add variable</button>
 
