@@ -31,9 +31,10 @@ public class ValueProducerImpl implements ValueProducerFacade {
             producer.send(new ProducerRecord<>(
                     "values", value.getId(), value));
         } catch (Exception e) {
+            producer.close();
             throw new RuntimeException("Problem with accessing kafka broker.", e);
         } finally {
-            producer.close();
+
         }
         return value;
     }
