@@ -24,8 +24,7 @@ class AddVariableForm extends React.Component {
           body: JSON.stringify({id: 1, name: `${this.state.value}`, deviceDTO: {id: `${this.props.deviceId}`, name: `${this.props.deviceName}`}})
         }).then(res=>res.json())
           .then(res => console.log(res));
-
-    event.preventDefault();
+          window.location.reload();
 	}
 
 	render() {

@@ -51,20 +51,20 @@ class VariableList extends React.Component {
 }
 
 class Variable extends React.Component{
- constructor(props) {
+  constructor(props) {
     super(props);
   }
 
-	render() {
-		return (
-			<tr>
-				<td>{this.props.id}</td>
-				<td>{this.props.name}</td>
-				<td><button>Show chart</button></td>
-				<td><button>Delete</button></td>
-			</tr>
-		)
-	}
+  render() {
+    return (
+      <tr>
+        <td>{this.props.id}</td>
+        <td>{this.props.name}</td>
+        <td><button>Show chart</button></td>
+        <td><button>Delete</button></td>
+      </tr>
+    )
+  }
 }
 
 export default VariableList;
