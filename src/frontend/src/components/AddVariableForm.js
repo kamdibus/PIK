@@ -9,11 +9,11 @@ class AddVariableForm extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleChange(event) {
+	handleChange = (event) => {
     this.setState({value: event.target.value});
   }
 
-	handleSubmit(event) {
+	handleSubmit = (event) => {
 	  fetch('http://localhost:8080/variables', {
           method: 'post',
           headers: {

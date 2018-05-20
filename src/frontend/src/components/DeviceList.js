@@ -8,10 +8,15 @@ class DeviceList extends React.Component {
     super(props);
   }
 
+  onDelete = () => {
+    alert("dupa");
+  }
+
   render() {
     const deviceList = this.props.devices.map((device) =>
     <Device id={device.id}
-              name={device.name}  />
+              name={device.name}
+              onDelete = {this.onDelete} />
     );
     return (
         <ul>
@@ -35,8 +40,8 @@ class Device extends React.Component{
     this.state = {variables:  [], show: false};
   }
 
-  handleDelete() {
-
+  handleDelete = () => {
+      this.props.onDelete();
   }
 
   showModal = () => {
