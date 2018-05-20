@@ -1,4 +1,4 @@
-package pik.values.persistance.jpa;
+package pik.values.persistence.jpa;
 
 import pik.values.domain.Value;
 

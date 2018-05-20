@@ -33,12 +33,12 @@ pipeline {
              }
           }
     }
-/*
+
     post {
         success {
-            sh 'curl -s https://codecov.io/bash | bash -s - -t token'
+            sh 'curl -s https://codecov.io/bash | bash -s - -t 53635fef-7a13-4dca-960c-87d10788bfcf'
         }
 
     }
-*/
+
 }
