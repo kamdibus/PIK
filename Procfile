@@ -1,0 +1,1 @@
+web: java -jar myapp.jar --spring.profiles.active=heroku

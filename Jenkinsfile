@@ -5,6 +5,9 @@ pipeline {
         jdk 'jdk8'
 
     }
+    environment {
+            HEROKU_API_KEY = credentials('heroku_api_key')
+     }
     stages {
 
         stage('Build') {
@@ -29,7 +32,8 @@ pipeline {
          stage('Deploy') {
             when { anyOf { branch 'master' ; branch 'development' } }
             steps {
-                sh 'mvn -Dmaven.test.skip=true deploy'
+                sh 'mvn -Dmaven.test.skip=true package'
+                sh 'heroku deploy:jar app/target/'
              }
           }
     }
