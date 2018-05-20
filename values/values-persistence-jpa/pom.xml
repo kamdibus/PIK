@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
 
-    <artifactId>values-persistance-jpa</artifactId>
+    <artifactId>values-persistence-jpa</artifactId>
 
 
     <dependencies>

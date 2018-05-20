@@ -29,7 +29,7 @@
 
         <dependency>
             <groupId>pl.edu.pw.ii</groupId>
-            <artifactId>values-persistance-jpa</artifactId>
+            <artifactId>values-persistence-jpa</artifactId>
             <version>${project.version}</version>
         </dependency>
 

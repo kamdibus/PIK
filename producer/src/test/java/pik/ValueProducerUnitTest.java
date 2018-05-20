@@ -17,10 +17,13 @@ public class ValueProducerUnitTest {
     public void whenValueIsPutSuccessfullyItIsReturned() {
 
         ValueDto value = new ValueDto(1, Timestamp.valueOf(LocalDateTime.now()), 32);
+        ValueDto value2 = new ValueDto(2, Timestamp.valueOf(LocalDateTime.now()), 52);
 
 
         ValueDto valueReturned = valueProducerFacade.put(value);
+        ValueDto valueReturned2 = valueProducerFacade.put(value2);
 
         assertThat(value).isEqualTo(valueReturned);
+        assertThat(value2).isEqualTo(valueReturned2);
     }
 }

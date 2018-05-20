@@ -35,12 +35,13 @@ public class Consumer {
 
     }
 
-    public void consume() {
+    public ConsumerRecords<Long, ValueDto> consume() {
         ConsumerRecords<Long, ValueDto> records = consumer.poll(0);
 
         records.forEach(record -> {
             valueFacade.add(record.value());
-            System.out.println(record.value().getVariableId());
+//            System.out.println(record.value().getVariableId());
         });
+        return records;
     }
 }
