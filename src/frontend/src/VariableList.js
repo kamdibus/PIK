@@ -13,10 +13,13 @@ class VariableList extends React.Component {
   }
 
   onDelete = (variableId) => {
-    fetch('http://localhost:8080/devices/' + variableId, {
+    fetch('http://localhost:8080/variables/' + variableId, {
     method: 'delete'
     })
-    .then(response => response.json());
+    .then(response => response.json())
+         .then(() => {
+          this.loadContent();
+          });
   }
 
   onCreate = (variableName) => {

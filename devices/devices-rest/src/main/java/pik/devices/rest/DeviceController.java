@@ -10,7 +10,7 @@ import pik.devices.domain.dto.VariableDTO;
 
 @AllArgsConstructor
 @RestController
-@CrossOrigin(origins = "http://localhost:8000")
+@CrossOrigin(origins = "http://localhost:3000")
 public class DeviceController {
     private DeviceFacade deviceFacade;
 

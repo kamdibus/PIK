@@ -37,7 +37,10 @@ class DeviceList extends React.Component {
    fetch('http://localhost:8080/devices/' + deviceId, {
         method: 'delete'
       })
-      .then(response => response.json());
+      .then(response => response.json())
+      .then(() => {
+      this.loadContent();
+      });
   }
 
   onCreate = (deviceName) => {
