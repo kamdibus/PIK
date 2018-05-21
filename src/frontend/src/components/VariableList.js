@@ -7,6 +7,9 @@ class VariableList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {show: false};
+
+    this.hideModal = this.hideModal.bind(this);
+    this.loadContent = this.loadContent.bind(this);
   }
 
   onDelete = (variableId) => {
@@ -26,7 +29,14 @@ class VariableList extends React.Component {
               },
               body: JSON.stringify({id: 1, name: `${variableName}`, deviceDTO: {id: `${this.props.deviceId}`, name: `${this.props.deviceName}`}})
             }).then(res=>res.json())
-              .then();
+              .then(() => {
+              this.hideModal();
+              this.loadContent();
+              });
+  }
+
+  loadContent = () => {
+    this.props.loadContent();
   }
 
   showModal = () => {

@@ -14,7 +14,7 @@ class AppComponent extends React.Component {
   render() {
     return (
       <main>
-        <DeviceList devices={this.state.devices} />
+        <DeviceList  />
       </main>
     )
   }

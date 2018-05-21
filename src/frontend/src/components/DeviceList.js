@@ -8,6 +8,9 @@ class DeviceList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {devices: []};
+
+    this.hideModal = this.hideModal.bind(this);
+    this.loadContent = this.loadContent.bind(this);
   }
 
   loadContent() {
@@ -47,7 +50,9 @@ class DeviceList extends React.Component {
      },
      body: JSON.stringify({id: 10000, name: `${deviceName}`})
      }).then(res=>res.json())
-     .then();
+     .then(() => {this.hideModal();
+     this.loadContent();
+     });
   }
 
   render() {
@@ -87,7 +92,6 @@ class Device extends React.Component{
   }
 
   loadContent = () => {
-       this.setState({ show: true });
           		 fetch('http://localhost:8080/variables')
           		.then(resp => resp.json())
           		.then(resp => {
@@ -96,6 +100,7 @@ class Device extends React.Component{
   }
 
   showModal = () => {
+      this.setState({ show: true });
       this.loadContent();
   }
 
