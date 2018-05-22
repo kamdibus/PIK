@@ -9,7 +9,7 @@ pipeline {
             HEROKU_API_KEY = credentials('heroku_api_key')
      }
     stages {
-
+        /*
         stage('Build') {
             steps {
                 sh 'mvn clean compile'
@@ -28,7 +28,7 @@ pipeline {
                 sh 'mvn cobertura:cobertura'
              }
          }
-
+        */
          stage('Package') {
              steps {
                 sh 'mvn -Pheroku package'
@@ -39,7 +39,7 @@ pipeline {
             when { anyOf { branch 'master' ; branch 'heroku' } }
             steps {
                 sh 'chmod u+x dplbcnd.sh'
-                sh './dplfrnt.sh'
+                sh './dplbcnd.sh'
              }
           }
             /*
