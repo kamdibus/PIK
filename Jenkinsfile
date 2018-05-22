@@ -15,7 +15,8 @@ pipeline {
          stage('Deploy frontend') {
             when { anyOf { branch 'master' ; branch 'frontend' } }
             steps {
-                sh 'chmod u+x dplfrnt.sh && ./dplfrnt.sh'
+                sh 'chmod u+x dplfrnt.sh'
+                sh dplfrnt.sh
              }
           }
     }
