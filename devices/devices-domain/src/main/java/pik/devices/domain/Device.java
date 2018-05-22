@@ -7,6 +7,7 @@ import pik.devices.domain.dto.DeviceDTO;
 
 @Builder
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Device {
