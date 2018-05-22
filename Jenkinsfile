@@ -16,7 +16,7 @@ pipeline {
             when { anyOf { branch 'master' ; branch 'frontend' } }
             steps {
                 sh 'chmod u+x dplfrnt.sh'
-                sh dplfrnt.sh
+                sh ' sh dplfrnt.sh'
              }
           }
     }
