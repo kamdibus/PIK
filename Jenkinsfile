@@ -12,13 +12,30 @@ pipeline {
 
     stages {
 
-         stage('Deploy frontend') {
-            when { anyOf { branch 'master' ; branch 'frontend' } }
+         stage('Build') {
             steps {
-                sh 'chmod u+x dplfrnt.sh'
-                sh ' sh dplfrnt.sh'
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+
+                sh 'mvn clean test'
              }
-          }
+         }
+
+        stage('Test Coverage') {
+            steps {
+                sh 'mvn cobertura:cobertura'
+             }
+         }
+
+         stage('Package') {
+             steps {
+                sh 'mvn -Pheroku package'
+             }
+         }
     }
 /*
     post {
