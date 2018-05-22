@@ -40,7 +40,7 @@ pipeline {
             steps {
                 sh 'chmod u+x dplbcnd.sh'
                 sh 'pwd'
-                sh 'dplbcnd.sh'
+                sh -x dplbcnd.sh
              }
           }
             /*
