@@ -29,13 +29,25 @@ pipeline {
              }
          }
 
-         stage('Deploy') {
-            when { anyOf { branch 'master' ; branch 'development' } }
+         stage('Package') {
+         steps {
+            mvn -Pheroku package
+         }
+         }
+
+         stage('Deploy Backend') {
+            when { anyOf { branch 'master' ; branch 'heroku' } }
             steps {
-                sh 'mvn -Dmaven.test.skip=true package'
-                sh 'heroku deploy:jar app/target/'
+                sh dplbcnd.sh
              }
           }
+
+          stage('Deploy Frontend') {
+                      when { anyOf { branch 'master' ; branch 'frontend' } }
+                      steps {
+                        sh dplfrnt.sh
+                       }
+                    }
     }
 /*
     post {
