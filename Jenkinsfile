@@ -6,10 +6,16 @@ pipeline {
 
     }
 
+    environment {
+            HEROKU_API_KEY = credentials('heroku_api_key')
+    }
+
+    stages {
+
          stage('Deploy frontend') {
             when { anyOf { branch 'master' ; branch 'frontend' } }
             steps {
-                sh './dplfrnt.sh'
+                sh 'chmod u+x dplfrnt.sh && ./dplfrnt.sh'
              }
           }
     }
