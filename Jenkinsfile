@@ -30,24 +30,25 @@ pipeline {
          }
 
          stage('Package') {
-         steps {
-            mvn -Pheroku package
-         }
+             steps {
+                sh 'mvn -Pheroku package'
+             }
          }
 
          stage('Deploy Backend') {
             when { anyOf { branch 'master' ; branch 'heroku' } }
             steps {
-                sh dplbcnd.sh
+                sh './dplbcnd.sh'
              }
           }
-
+            /*
           stage('Deploy Frontend') {
                       when { anyOf { branch 'master' ; branch 'frontend' } }
                       steps {
-                        sh dplfrnt.sh
+                        sh ' ./dplfrnt.sh'
                        }
-                    }
+           }
+           */
     }
 /*
     post {
