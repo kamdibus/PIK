@@ -5,6 +5,9 @@ pipeline {
         jdk 'jdk8'
 
     }
+    environment {
+            HEROKU_API_KEY = credentials('heroku_api_key')
+     }
     stages {
 
         stage('Build') {
@@ -26,12 +29,28 @@ pipeline {
              }
          }
 
-         stage('Deploy') {
-            when { anyOf { branch 'master' ; branch 'deploy_test' } }
+         stage('Package') {
+             steps {
+                sh 'mvn -Pheroku package'
+             }
+         }
+
+         stage('Deploy Backend') {
+            when { anyOf { branch 'master' ; branch 'heroku' } }
             steps {
-                sh 'mvn -Dmaven.test.skip=true deploy'
+                sh 'chmod u+x dplbcnd.sh'
+                sh 'sh dplbcnd.sh'
              }
           }
+
+          stage('Deploy Frontend') {
+                      when { anyOf { branch 'master' ; branch 'frontend' } }
+                      steps {
+                        sh 'chmod u+x dplfrnt.sh'
+                        sh 'sh dplfrnt.sh'
+                       }
+           }
+
     }
 /*
     post {
