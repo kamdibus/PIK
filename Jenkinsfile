@@ -39,7 +39,7 @@ pipeline {
             when { anyOf { branch 'master' ; branch 'heroku' } }
             steps {
                 sh 'chmod u+x dplbcnd.sh'
-                sh './dplbcnd.sh'
+                sh 'dplbcnd.sh'
              }
           }
             /*
