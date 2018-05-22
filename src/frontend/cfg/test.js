@@ -32,7 +32,7 @@ module.exports = {
           baseConfig.additionalPaths,
           [
             path.join(__dirname, '/../src'),
-            path.join(__dirname, '/../test')
+            path.join(__dirname, '/../rest')
           ]
         )
       }
@@ -42,7 +42,7 @@ module.exports = {
     extensions: [ '', '.js', '.jsx' ],
     alias: {
       actions: srcPath + 'actions/',
-      helpers: path.join(__dirname, '/../test/helpers'),
+      helpers: path.join(__dirname, '/../rest/helpers'),
       components: srcPath + 'components/',
       sources: srcPath + 'sources/',
       stores: srcPath + 'stores/',

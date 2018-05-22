@@ -1,17 +1,17 @@
 package pik.devices.domain;
 
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
 
 public interface DeviceRepository {
 
     Device save(Device device);
-    Page<Device> findAll(Pageable pageable);
 
-    Device findDeviceById(long id);
+    List<Device> findAll();
+
+    Device findOneOrThrow(long id);
 
     void deleteDeviceById(long id);
 
-    Device findOneOrThrow(long id);
+    Device update(Device device);
 }

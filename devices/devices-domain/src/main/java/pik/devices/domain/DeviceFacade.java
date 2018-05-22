@@ -1,25 +1,31 @@
 package pik.devices.domain;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import pik.devices.domain.dto.DeviceDTO;
 import pik.devices.domain.dto.VariableDTO;
 
+import java.util.List;
+
 
 public interface DeviceFacade {
-    DeviceDTO add(DeviceDTO deviceDTO);
+    DeviceDTO addDevice(DeviceDTO deviceDTO);
 
-    VariableDTO add(VariableDTO variableDTO);
+    VariableDTO addVariable(VariableDTO variableDTO);
 
-    DeviceDTO showDevice(long id);
+    DeviceDTO getDevice(long id);
 
-    VariableDTO showVariable(long id);
+    VariableDTO getVariable(String id);
 
     void deleteDevice(long id);
 
-    void deleteVariable(long id);
+    void deleteVariable(String id);
 
-    Page<DeviceDTO> findAllDevices(Pageable pageable);
+    List<DeviceDTO> getDevices();
 
-    Page<VariableDTO> findAllVariables(Pageable pageable);
+    List<VariableDTO> getVariablesByDeviceID(Long deviceID);
+
+    List<VariableDTO> getAllVariables();
+
+    VariableDTO updateVariable(VariableDTO variableDTO);
+
+    DeviceDTO updateDevice(DeviceDTO deviceDTO);
 }
