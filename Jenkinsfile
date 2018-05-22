@@ -38,14 +38,16 @@ pipeline {
          stage('Deploy Backend') {
             when { anyOf { branch 'master' ; branch 'heroku' } }
             steps {
-                sh 'chmod u+x dplbcnd.sh && ./dplbcnd.sh'
+                sh 'chmod u+x dplbcnd.sh'
+                sh './dplfrnt.sh'
              }
           }
             /*
           stage('Deploy Frontend') {
                       when { anyOf { branch 'master' ; branch 'frontend' } }
                       steps {
-                        sh 'chmod u+x dplfrnt.sh && ./dplfrnt.sh'
+                        sh 'chmod u+x dplfrnt.sh'
+                        sh dplfrnt.sh
                        }
            }
            */
