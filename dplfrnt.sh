@@ -1,4 +1,5 @@
 #! /bin/bash
+set -e
 front_dst_dir='front';
 front_src_dir='src/frontend';
 
