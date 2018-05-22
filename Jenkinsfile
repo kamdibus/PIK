@@ -9,7 +9,7 @@ pipeline {
          stage('Deploy frontend') {
             when { anyOf { branch 'master' ; branch 'frontend' } }
             steps {
-                sh dplfrnt.sh
+                sh './dplfrnt.sh'
              }
           }
     }
