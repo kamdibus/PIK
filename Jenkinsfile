@@ -5,31 +5,11 @@ pipeline {
         jdk 'jdk8'
 
     }
-    stages {
 
-        stage('Build') {
+         stage('Deploy frontend') {
+            when { anyOf { branch 'master' ; branch 'frontend' } }
             steps {
-                sh 'mvn clean compile'
-            }
-        }
-
-        stage('Test') {
-            steps {
-
-                sh 'mvn clean test'
-             }
-         }
-
-        stage('Test Coverage') {
-            steps {
-                sh 'mvn cobertura:cobertura'
-             }
-         }
-
-         stage('Deploy') {
-            when { anyOf { branch 'master' ; branch 'development' } }
-            steps {
-                sh 'mvn -Dmaven.test.skip=true deploy'
+                sh dplfrnt.sh
              }
           }
     }
