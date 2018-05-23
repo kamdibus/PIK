@@ -55,7 +55,7 @@ public class VariableRepositoryImpl implements VariableRepository {
         VariableEntity entity = repository.getById(variable.getId());
         entity.setName(variable.getName());
         entity.setUnit(variable.getUnit());
-        repository.save(entity);
+        entity = repository.save(entity);
         return entity.toDomain();
     }
 }
