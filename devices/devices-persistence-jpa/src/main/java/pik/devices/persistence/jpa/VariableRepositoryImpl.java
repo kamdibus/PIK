@@ -1,11 +1,12 @@
 package pik.devices.persistence.jpa;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import pik.devices.domain.Variable;
 import pik.devices.domain.VariableRepository;
 import pik.devices.domain.dto.VariableNotFoundException;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class VariableRepositoryImpl implements VariableRepository {
@@ -22,32 +23,39 @@ public class VariableRepositoryImpl implements VariableRepository {
     }
 
     @Override
-    public Page<Variable> findAll(Pageable pageable) {
-        return repository.findAll(pageable).map(a -> a.toDomain());
+    public List<Variable> findVariablesByDeviceID(Long deviceID) {
+        return repository.findAllByDeviceId(deviceID).stream().map(a -> a.toDomain()).collect(Collectors.toList());
     }
 
     @Override
-    public Variable findVariableById(long id) {
-        return repository.findVariableById(id).toDomain();
+    public List<Variable> findAll() {
+        return repository.findAll().stream().map(a -> a.toDomain()).collect(Collectors.toList());
     }
 
     @Override
-    public void deleteVariableById(long id) {
+    public void deleteVariableById(String id) {
         repository.deleteVariableById(id);
-
     }
 
     @Override
     public void deleteVariablesByDeviceId(long id) {
         repository.deleteVariablesByDeviceId(id);
-
     }
 
     @Override
-    public Variable findOneOrThrow(long id) {
+    public Variable findOneOrThrow(String id) {
         Variable v = repository.findVariableById(id).toDomain();
         if (v == null)
             throw new VariableNotFoundException(id);
         return v;
+    }
+
+    @Override
+    public Variable update(Variable variable) {
+        VariableEntity entity = repository.getById(variable.getId());
+        entity.setName(variable.getName());
+        entity.setUnit(variable.getUnit());
+        entity = repository.save(entity);
+        return entity.toDomain();
     }
 }

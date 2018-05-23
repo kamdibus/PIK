@@ -57,7 +57,7 @@ public class ValueControllerTest {
     @Test
     public void whenAddedStatusIsOk() throws Exception {
 
-        ValueDto value = new ValueDto(123123, Timestamp.valueOf(LocalDateTime.of(2018, 10, 3, 12, 45)), 1251.32);
+        ValueDto value = new ValueDto("123123", Timestamp.valueOf(LocalDateTime.of(2018, 10, 3, 12, 45)), 1251.32);
         String json = mapper.writeValueAsString(value);
 
         when(valueProducerMock.put(any())).thenAnswer(i -> i.getArguments()[0]);
@@ -71,7 +71,7 @@ public class ValueControllerTest {
     @Test
     public void whenRequestedVariableValuesAreShown() throws Exception {
 
-        int varid = 112313;
+        String varid = "112313";
         ValueDto value1 = new ValueDto(varid, Timestamp.valueOf(LocalDateTime.of(2018, 10, 3, 12, 45)), 1251.32);
         ValueDto value2 = new ValueDto(varid, Timestamp.valueOf(LocalDateTime.of(2017, 12, 3, 12, 45)), 1123);
 

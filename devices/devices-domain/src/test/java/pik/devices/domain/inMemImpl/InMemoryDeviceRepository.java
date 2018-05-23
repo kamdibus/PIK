@@ -1,13 +1,11 @@
 package pik.devices.domain.inMemImpl;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import pik.devices.domain.Device;
 import pik.devices.domain.DeviceRepository;
 import pik.devices.domain.dto.DeviceNotFoundException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static java.util.Objects.requireNonNull;
@@ -23,13 +21,8 @@ public class InMemoryDeviceRepository implements DeviceRepository {
     }
 
     @Override
-    public Page<Device> findAll(Pageable pageable) {
-        return new PageImpl<>(new ArrayList<>(map.values()), pageable, map.size());
-    }
-
-    @Override
-    public Device findDeviceById(long id) {
-        return map.get(id);
+    public List<Device> findAll() {
+        return new ArrayList<>(map.values());
     }
 
     @Override
@@ -43,5 +36,12 @@ public class InMemoryDeviceRepository implements DeviceRepository {
         if (d == null)
             throw new DeviceNotFoundException(id);
         return d;
+    }
+
+    @Override
+    public Device update(Device device){
+        Device dev = map.get(device.getId());
+        dev.setName(device.getName());
+        return dev;
     }
 }

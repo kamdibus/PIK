@@ -16,8 +16,8 @@ public class ValueProducerUnitTest {
     @Test()
     public void whenValueIsPutSuccessfullyItIsReturned() {
 
-        ValueDto value = new ValueDto(1, Timestamp.valueOf(LocalDateTime.now()), 32);
-        ValueDto value2 = new ValueDto(2, Timestamp.valueOf(LocalDateTime.now()), 52);
+        ValueDto value = new ValueDto("1", Timestamp.valueOf(LocalDateTime.now()), 32);
+        ValueDto value2 = new ValueDto("2", Timestamp.valueOf(LocalDateTime.now()), 52);
 
 
         ValueDto valueReturned = valueProducerFacade.put(value);

@@ -22,7 +22,7 @@ public class ValueController {
     }
 
     @GetMapping("/{variableId}")
-    public ResponseEntity<List<ValueDto>> getVariableValues(@PathVariable long variableId) {
+    public ResponseEntity<List<ValueDto>> getVariableValues(@PathVariable String variableId) {
         return new ResponseEntity<>(valueFacade.getByVariable(variableId), HttpStatus.OK);
     }
 

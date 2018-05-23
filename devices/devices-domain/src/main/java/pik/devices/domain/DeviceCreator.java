@@ -20,6 +20,7 @@ class DeviceCreator {
                 .id(variableDTO.getId())
                 .name(variableDTO.getName())
                 .device(from(variableDTO.getDeviceDTO()))
+                .unit(variableDTO.getUnit())
                 .build();
     }
 }
