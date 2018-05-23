@@ -63,22 +63,22 @@ public class DeviceController {
         return new ResponseEntity<>(deviceFacade.addVariable(variableDTO), HttpStatus.OK);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void deleteDevice(@PathVariable final Long id) {
         deviceFacade.deleteDevice(id);
     }
 
-    @DeleteMapping("/variable")
+    @DeleteMapping("/variable/{id}")
     public void deleteVariable(@PathVariable final String id) {
         deviceFacade.deleteVariable(id);
     }
 
-    @PostMapping("/variable/add")
+    @PutMapping("/variable")
     public ResponseEntity<?> updateVariable(@RequestBody final VariableDTO variableDTO, @RequestBody final String name) {
         return new ResponseEntity<>(deviceFacade.updateVariable(variableDTO), HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+    @PutMapping
     public ResponseEntity<?> updateDevice(@RequestBody final DeviceDTO deviceDTO) {
         return new ResponseEntity<>(deviceFacade.updateDevice(deviceDTO), HttpStatus.OK);
     }
