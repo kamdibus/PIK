@@ -44,6 +44,7 @@ public class DeviceRepositoryImpl implements DeviceRepository {
     public Device update(Device device) {
         DeviceEntity entity = repository.getById(device.getId());
         entity.setName(device.getName());
+        repository.save(entity);
         return entity.toDomain();
     }
 }
