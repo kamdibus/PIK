@@ -6,17 +6,17 @@ import java.sql.Timestamp;
 public class ValueDto {
 
     private long id;
-    private long variableId;
+    private String variableId;
     private Timestamp timestamp;
     private double value;
 
-    public ValueDto(long variableId, Timestamp timestamp, double value) {
+    public ValueDto(String variableId, Timestamp timestamp, double value) {
         this.variableId = variableId;
         this.timestamp = timestamp;
         this.value = value;
     }
 
-    public ValueDto(long id, long variableId, Timestamp timestamp, double value) {
+    public ValueDto(long id, String variableId, Timestamp timestamp, double value) {
         this.id = id;
         this.variableId = variableId;
         this.timestamp = timestamp;
@@ -31,7 +31,7 @@ public class ValueDto {
         return id;
     }
 
-    public long getVariableId() {
+    public String getVariableId() {
         return variableId;
     }
 
@@ -47,7 +47,7 @@ public class ValueDto {
         this.id = id;
     }
 
-    public void setVariableId(long variableId) {
+    public void setVariableId(String variableId) {
         this.variableId = variableId;
     }
 

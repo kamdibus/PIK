@@ -13,11 +13,11 @@ public class ValueEntity {
     @GeneratedValue
     @Id
     private long id;
-    private long variableId;
+    private String variableId;
     private Timestamp timestamp;
     private double value;
 
-    public ValueEntity(long id, long variableId, Timestamp timestamp, double value) {
+    public ValueEntity(long id, String variableId, Timestamp timestamp, double value) {
         this.id = id;
         this.variableId = variableId;
         this.timestamp = timestamp;

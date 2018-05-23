@@ -31,12 +31,12 @@ public class ValueRepositoryImpl implements ValueRepository {
     }
 
     @Override
-    public List<Value> findAllByVariableId(long id) {
+    public List<Value> findAllByVariableId(String id) {
         return repository.findAllByVariableId(id).stream().map(v -> v.toDomain()).collect(Collectors.toList());
     }
 
     @Override
-    public void deleteByVariableId(long variableId) {
+    public void deleteByVariableId(String variableId) {
         repository.deleteByVariableId(variableId);
     }
 

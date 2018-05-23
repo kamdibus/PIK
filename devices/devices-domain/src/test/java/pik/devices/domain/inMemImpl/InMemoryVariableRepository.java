@@ -1,19 +1,17 @@
 package pik.devices.domain.inMemImpl;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import pik.devices.domain.Variable;
 import pik.devices.domain.VariableRepository;
 import pik.devices.domain.dto.VariableNotFoundException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static java.util.Objects.requireNonNull;
 
 public class InMemoryVariableRepository implements VariableRepository {
-    private ConcurrentHashMap<Long, Variable> map = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, Variable> map = new ConcurrentHashMap<>();
 
     @Override
     public Variable save(Variable variable) {
@@ -23,35 +21,45 @@ public class InMemoryVariableRepository implements VariableRepository {
     }
 
     @Override
-    public Page<Variable> findAll(Pageable pageable) {
-        return new PageImpl<>(new ArrayList<>(map.values()), pageable, map.size());
+    public List<Variable> findAll() {
+        return new ArrayList<>(map.values());
     }
 
     @Override
     public void deleteVariablesByDeviceId(long id) {
         requireNonNull(id);
-        for (Variable variable: map.values()){
-            if (variable.getDevice().getId() == id){
+        for (Variable variable: map.values())
+            if (variable.getDevice().getId() == id)
                 map.remove(variable.getId());
-            }
-        }
     }
 
     @Override
-    public void deleteVariableById(long id) {
+    public void deleteVariableById(String id) {
         map.remove(id);
     }
 
     @Override
-    public Variable findVariableById(long id) {
-        return map.get(id);
+    public List<Variable> findVariablesByDeviceID(Long id) {
+        List<Variable> variableList = new ArrayList<>();
+        for(Variable var: map.values())
+            if (var.getDevice().getId() == id)
+                variableList.add(var);
+        return variableList;
     }
 
     @Override
-    public Variable findOneOrThrow(long id) {
+    public Variable findOneOrThrow(String id) {
         Variable v = map.get(id);
         if (v == null)
             throw new VariableNotFoundException(id);
         return v;
+    }
+
+    @Override
+    public Variable update(Variable variable){
+        Variable var = map.get(variable.getId());
+        var.setName(variable.getName());
+        var.setUnit(variable.getUnit());
+        return var;
     }
 }

@@ -33,12 +33,12 @@ public class InMemoryValueRepository implements ValueRepository {
     }
 
     @Override
-    public List<Value> findAllByVariableId(long id) {
+    public List<Value> findAllByVariableId(String id) {
         return map.values().stream().filter(a -> a.getVariableId() == id).collect(Collectors.toList());
     }
 
     @Override
-    public void deleteByVariableId(long variableId) {
+    public void deleteByVariableId(String variableId) {
         List<Value> list = findAllByVariableId(variableId);
         for (Value v : list)
             map.remove(v.getId());
