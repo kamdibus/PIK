@@ -2,6 +2,7 @@ package pik.devices.domain;
 
 import pik.devices.domain.dto.DeviceDTO;
 import pik.devices.domain.dto.VariableDTO;
+import pik.values.domain.variableModulePort.ValueVariableFacade;
 
 import java.security.MessageDigest;
 import java.util.List;
@@ -16,13 +17,16 @@ class DeviceFacadeImpl implements DeviceFacade {
     private VariableRepository variableRepository;
     private DeviceRepository deviceRepository;
     private DeviceCreator deviceCreator;
+    private ValueVariableFacade valueVariableFacade;
 
     public DeviceFacadeImpl(VariableRepository variableRepository,
                             DeviceRepository deviceRepository,
-                            DeviceCreator deviceCreator) {
+                            DeviceCreator deviceCreator,
+                            ValueVariableFacade valueVariableFacade) {
         this.variableRepository = variableRepository;
         this.deviceRepository = deviceRepository;
         this.deviceCreator = deviceCreator;
+        this.valueVariableFacade = valueVariableFacade;
     }
 
     @Override
@@ -71,6 +75,8 @@ class DeviceFacadeImpl implements DeviceFacade {
     @Override
     public void deleteDevice(long id) {
         requireNonNull(id);
+        for(String variableId: variableRepository.findVariablesByDeviceID(id).stream().map(a -> a.getId()).collect(Collectors.toList()))
+            valueVariableFacade.deleteByVariable(variableId);
         variableRepository.deleteVariablesByDeviceId(id);
         deviceRepository.deleteDeviceById(id);
     }
@@ -78,6 +84,7 @@ class DeviceFacadeImpl implements DeviceFacade {
     @Override
     public void deleteVariable(String id) {
         requireNonNull(id);
+        valueVariableFacade.deleteByVariable(id);
         variableRepository.deleteVariableById(id);
     }
 

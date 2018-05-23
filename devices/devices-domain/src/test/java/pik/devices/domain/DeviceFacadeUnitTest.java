@@ -2,21 +2,27 @@ package pik.devices.domain;
 
 import org.junit.After;
 import org.junit.Test;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import pik.devices.domain.dto.DeviceDTO;
 import pik.devices.domain.dto.DeviceNotFoundException;
 import pik.devices.domain.dto.VariableDTO;
 import pik.devices.domain.dto.VariableNotFoundException;
 import pik.devices.domain.inMemImpl.InMemoryDeviceRepository;
 import pik.devices.domain.inMemImpl.InMemoryVariableRepository;
+import pik.values.domain.variableModulePort.ValueVariableFacade;
 
 import java.util.List;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static pik.devices.domain.SampleDevices.*;
 
 public class DeviceFacadeUnitTest {
 
-    private DeviceFacade deviceFacade = new DeviceConfiguration().deviceFacade(new InMemoryDeviceRepository(), new InMemoryVariableRepository());
+    @MockBean
+    private ValueVariableFacade valueVariableFacade = mock(ValueVariableFacade.class);
+
+    private DeviceFacade deviceFacade = new DeviceConfiguration().deviceFacade(new InMemoryDeviceRepository(), new InMemoryVariableRepository(), valueVariableFacade);
 
     @After
     public void removeDevices(){
