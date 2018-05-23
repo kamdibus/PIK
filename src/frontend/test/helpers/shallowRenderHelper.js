@@ -6,7 +6,7 @@
  * @author somonsmith
  */
 import React from 'react';
-import TestUtils from 'react-addons-rest-utils';
+import TestUtils from 'react-addons-test-utils';
 
 /**
  * Get the shallow rendered component

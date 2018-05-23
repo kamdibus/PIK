@@ -8,7 +8,7 @@ module.exports = function(config) {
     basePath: '',
     browsers: [ 'PhantomJS' ],
     files: [
-      'rest/loadtests.js'
+      'test/loadtests.js'
     ],
     port: 8000,
     captureTimeout: 60000,
