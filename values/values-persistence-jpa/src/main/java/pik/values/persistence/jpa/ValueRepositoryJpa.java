@@ -11,7 +11,7 @@ public interface ValueRepositoryJpa extends Repository<ValueEntity, Long> {
 
     ValueEntity findById(long id);
 
-    List<ValueEntity> findAllByVariableId(long id);
+    List<ValueEntity> findAllByVariableId(String id);
 
-    void deleteByVariableId(long variableId);
+    void deleteByVariableId(String variableId);
 }

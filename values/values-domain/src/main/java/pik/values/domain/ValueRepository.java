@@ -8,8 +8,8 @@ public interface ValueRepository {
 
     Value findById(long id);
 
-    List<Value> findAllByVariableId(long id);
+    List<Value> findAllByVariableId(String id);
 
-    void deleteByVariableId(long variableId);
+    void deleteByVariableId(String variableId);
 
 }

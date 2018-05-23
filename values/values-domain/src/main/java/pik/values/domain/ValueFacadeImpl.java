@@ -21,11 +21,8 @@ public class ValueFacadeImpl implements ValueFacade {
         return valueRepository.findById(id).getDto();
     }
 
-    public List<ValueDto> getByVariable(long id) {
+    public List<ValueDto> getByVariable(String id) {
         return valueRepository.findAllByVariableId(id).stream().map(a -> a.getDto()).collect(Collectors.toList());
     }
 
-    public void dropValues(long variableId) {
-        valueRepository.deleteByVariableId(variableId);
-    }
 }

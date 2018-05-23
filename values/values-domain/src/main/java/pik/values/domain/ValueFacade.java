@@ -10,7 +10,5 @@ public interface ValueFacade {
 
     ValueDto get(Long id);
 
-    List<ValueDto> getByVariable(long id);
-
-    void dropValues(long variableId);
+    List<ValueDto> getByVariable(String id);
 }
