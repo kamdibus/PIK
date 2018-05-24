@@ -4,6 +4,9 @@ import org.junit.After;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import pik.devices.domain.dto.DeviceDTO;
 import pik.devices.domain.dto.DeviceNotFoundException;
 import pik.devices.domain.dto.VariableDTO;
@@ -23,6 +26,7 @@ public class DeviceFacadeUnitTest {
 
     @MockBean
     private ValueVariableFacade valueVariableFacadeMock = mock(ValueVariableFacade.class);
+
 
     private DeviceFacade deviceFacade = new DeviceConfiguration().deviceFacade(new InMemoryDeviceRepository(), new InMemoryVariableRepository(), valueVariableFacadeMock);
 
@@ -54,7 +58,7 @@ public class DeviceFacadeUnitTest {
         //then
         assertThat(deviceFacade.getVariable(id).getName()).isEqualTo(temperature.getName());
         assertThat(deviceFacade.getVariable(id).getUnit()).isEqualTo(temperature.getUnit());
-        assertThat(deviceFacade.getVariable(id).getDeviceDTO()).isEqualTo(kettle);
+        assertThat(deviceFacade.getVariable(id).getDeviceId()).isEqualTo(kettle.getId());
     }
 
     @Test
@@ -80,7 +84,7 @@ public class DeviceFacadeUnitTest {
         VariableDTO temp = deviceFacade.getVariable(dto.getId());
 
         //then
-        assertThat(temp.getDeviceDTO()).isEqualTo(kettle);
+        assertThat(temp.getDeviceId()).isEqualTo(kettle.getId());
     }
 
     @Test(expected = DeviceNotFoundException.class)
@@ -191,5 +195,20 @@ public class DeviceFacadeUnitTest {
         //then
         assertThat(newKettle.getName()).isEqualTo(kettle.getName());
     }
+
+    @Test(expected = DeviceNotFoundException.class)
+    public void whenAddingVariableToNonExistenceDeviceExceptionIsThrown() {
+        //given
+        deviceFacade.addDevice(kettle);
+
+        temperature.setDeviceId(washer.getId());
+
+        //when
+        String id = deviceFacade.addVariable(temperature).getId();
+
+        //then
+        //catch exception
+    }
+
 
 }

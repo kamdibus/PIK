@@ -102,7 +102,7 @@ public class DeviceControllerTest {
 
         //given
         DeviceDTO device1 = new DeviceDTO((long) 12, "Pralka");
-        VariableDTO var1 = new VariableDTO("sskskjfhs7268745914", "moc", device1, "jednostka");
+        VariableDTO var1 = new VariableDTO("sskskjfhs7268745914", "moc", device1.getId(), "jednostka");
         String json = mapper.writeValueAsString(var1);
 
         when(deviceFacadeMock.addVariable(var1)).thenAnswer(i -> i.getArguments()[0]);
@@ -113,7 +113,9 @@ public class DeviceControllerTest {
                 .content(json))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(var1.getId()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(var1.getName()));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(var1.getName()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.unit").value(var1.getUnit()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.deviceId").value(device1.getId()));
     }
 
 }

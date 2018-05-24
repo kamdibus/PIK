@@ -21,7 +21,7 @@ public interface SampleDevices {
         return VariableDTO.builder()
                 .id(id)
                 .name(name)
-                .deviceDTO(deviceDTO)
+                .deviceId(deviceDTO.getId())
                 .unit(unit)
                 .build();
     }

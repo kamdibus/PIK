@@ -10,7 +10,7 @@ class DeviceConfiguration {
 
     @Bean
     DeviceFacadeImpl deviceFacade(DeviceRepository deviceRepository, VariableRepository variableRepository, ValueVariableFacade valueVariableFacade) {
-        DeviceCreator deviceCreator = new DeviceCreator();
+        DeviceCreator deviceCreator = new DeviceCreator(deviceRepository);
         return new DeviceFacadeImpl(variableRepository, deviceRepository, deviceCreator, valueVariableFacade);
     }
 }
