@@ -33,10 +33,6 @@ public class ValueIntegrationTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    @Before
-    public void clear() {
-
-    }
 
     @Test
     public void whenAddedStatusIsOk() throws Exception {
