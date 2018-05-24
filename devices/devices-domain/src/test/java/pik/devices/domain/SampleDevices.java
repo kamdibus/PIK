@@ -5,10 +5,10 @@ import pik.devices.domain.dto.DeviceDTO;
 import pik.devices.domain.dto.VariableDTO;
 
 public interface SampleDevices {
-    DeviceDTO kettle = createDeviceDTO((long) 1,"Czajnik");
-    DeviceDTO washer = createDeviceDTO((long) 2, "Pralka");
-    VariableDTO temperature = createVariableDTO(null, "Temperatura", kettle, "oC");
-    VariableDTO current = createVariableDTO( null, "Prąd", kettle, "A");
+    DeviceDTO kettle = createDeviceDTO((long) 100, "Czajnik");
+    DeviceDTO washer = createDeviceDTO((long) 101, "Pralka");
+    VariableDTO temperature = createVariableDTO(null, "Temperatura", kettle.getId(), "oC");
+    VariableDTO current = createVariableDTO(null, "Prąd", kettle.getId(), "A");
 
     static DeviceDTO createDeviceDTO(Long id, String name){
         return DeviceDTO.builder()
@@ -17,11 +17,11 @@ public interface SampleDevices {
                 .build();
     }
 
-    static VariableDTO createVariableDTO(String id, String name, DeviceDTO deviceDTO, String unit){
+    static VariableDTO createVariableDTO(String id, String name, long devId, String unit) {
         return VariableDTO.builder()
                 .id(id)
                 .name(name)
-                .deviceId(deviceDTO.getId())
+                .deviceId(devId)
                 .unit(unit)
                 .build();
     }

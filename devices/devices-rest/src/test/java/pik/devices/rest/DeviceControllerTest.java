@@ -14,9 +14,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import pik.devices.domain.DeviceFacade;
 import pik.devices.domain.dto.DeviceDTO;
+import pik.devices.domain.dto.DeviceNotFoundException;
 import pik.devices.domain.dto.VariableDTO;
 import pik.values.domain.dto.ValueDto;
 
@@ -40,6 +42,7 @@ public class DeviceControllerTest {
 
     @Autowired
     MockMvc mockMvc;
+
 
     @Test
     public void whenDeviceIsAddedStatusIsOk() throws Exception {
