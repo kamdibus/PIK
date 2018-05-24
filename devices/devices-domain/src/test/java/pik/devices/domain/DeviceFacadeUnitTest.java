@@ -2,6 +2,7 @@ package pik.devices.domain;
 
 import org.junit.After;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import pik.devices.domain.dto.DeviceDTO;
 import pik.devices.domain.dto.DeviceNotFoundException;
@@ -15,14 +16,15 @@ import java.util.List;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static pik.devices.domain.SampleDevices.*;
 
 public class DeviceFacadeUnitTest {
 
     @MockBean
-    private ValueVariableFacade valueVariableFacade = mock(ValueVariableFacade.class);
+    private ValueVariableFacade valueVariableFacadeMock = mock(ValueVariableFacade.class);
 
-    private DeviceFacade deviceFacade = new DeviceConfiguration().deviceFacade(new InMemoryDeviceRepository(), new InMemoryVariableRepository(), valueVariableFacade);
+    private DeviceFacade deviceFacade = new DeviceConfiguration().deviceFacade(new InMemoryDeviceRepository(), new InMemoryVariableRepository(), valueVariableFacadeMock);
 
     @After
     public void removeDevices(){
@@ -85,13 +87,17 @@ public class DeviceFacadeUnitTest {
     public void deleteDevice() {
         //given
         deviceFacade.addDevice(kettle);
-        deviceFacade.addVariable(temperature);
-        deviceFacade.addVariable(current);
+        VariableDTO new_temp = deviceFacade.addVariable(temperature);
+        VariableDTO new_curr = deviceFacade.addVariable(current);
+
+        System.out.println(kettle.getId());
 
         //when
         deviceFacade.deleteDevice(kettle.getId());
 
         //then
+        Mockito.verify(valueVariableFacadeMock).deleteByVariable(new_temp.getId());
+        Mockito.verify(valueVariableFacadeMock).deleteByVariable(new_curr.getId());
         deviceFacade.getDevice(kettle.getId());
     }
 
@@ -107,6 +113,7 @@ public class DeviceFacadeUnitTest {
 
         //then
         assertThat(temp2.getName()).isEqualTo(current.getName());
+        Mockito.verify(valueVariableFacadeMock).deleteByVariable(temp1.getId());
         deviceFacade.getVariable(temp1.getId());
     }
 
