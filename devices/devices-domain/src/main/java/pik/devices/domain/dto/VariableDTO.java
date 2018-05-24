@@ -7,6 +7,7 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode
 @AllArgsConstructor
+@NoArgsConstructor
 public class VariableDTO {
     private String id;
     private String name;
