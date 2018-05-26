@@ -16,11 +16,12 @@ public interface VariableRepositoryJpa extends Repository<VariableEntity, String
 
     VariableEntity getById(String id);
 
-    VariableEntity findVariableById(String id);
+    VariableEntity findById(String id);
 
-    void deleteVariableById(String id);
+    void deleteById(String id);
 
-    void deleteVariablesByDeviceId(Long id);
+    void deleteByDeviceId(Long id);
+
 
 
 }

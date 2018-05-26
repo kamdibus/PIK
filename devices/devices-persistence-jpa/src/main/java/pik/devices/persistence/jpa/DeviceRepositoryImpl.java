@@ -29,12 +29,12 @@ public class DeviceRepositoryImpl implements DeviceRepository {
 
     @Override
     public void deleteDeviceById(long id) {
-        repository.deleteDeviceById(id);
+        repository.deleteById(id);
     }
 
     @Override
     public Device findOneOrThrow(long id) {
-        Device d = repository.findDeviceById(id).toDomain();
+        Device d = repository.findById(id).toDomain();
         if (d == null)
             throw new DeviceNotFoundException(id);
         return d;
