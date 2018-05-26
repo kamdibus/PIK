@@ -17,7 +17,7 @@ public class Variable {
     private String unit;
 
     VariableDTO dto(){
-        return VariableDTO.builder().id(id).name(name).deviceDTO(device.dto()).unit(unit).build();
+        return VariableDTO.builder().id(id).name(name).deviceId(device.getId()).unit(unit).build();
     }
 
 }
