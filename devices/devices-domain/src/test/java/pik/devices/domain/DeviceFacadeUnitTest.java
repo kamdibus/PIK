@@ -2,21 +2,34 @@ package pik.devices.domain;
 
 import org.junit.After;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import pik.devices.domain.dto.DeviceDTO;
 import pik.devices.domain.dto.DeviceNotFoundException;
 import pik.devices.domain.dto.VariableDTO;
 import pik.devices.domain.dto.VariableNotFoundException;
 import pik.devices.domain.inMemImpl.InMemoryDeviceRepository;
 import pik.devices.domain.inMemImpl.InMemoryVariableRepository;
+import pik.values.domain.variableModulePort.ValueVariableFacade;
 
 import java.util.List;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static pik.devices.domain.SampleDevices.*;
 
 public class DeviceFacadeUnitTest {
 
-    private DeviceFacade deviceFacade = new DeviceConfiguration().deviceFacade(new InMemoryDeviceRepository(), new InMemoryVariableRepository());
+    @MockBean
+    private ValueVariableFacade valueVariableFacadeMock = mock(ValueVariableFacade.class);
+
+
+    private DeviceFacade deviceFacade = new DeviceConfiguration().deviceFacade(new InMemoryDeviceRepository(), new InMemoryVariableRepository(), valueVariableFacadeMock);
+
 
     @After
     public void removeDevices(){
@@ -46,7 +59,7 @@ public class DeviceFacadeUnitTest {
         //then
         assertThat(deviceFacade.getVariable(id).getName()).isEqualTo(temperature.getName());
         assertThat(deviceFacade.getVariable(id).getUnit()).isEqualTo(temperature.getUnit());
-        assertThat(deviceFacade.getVariable(id).getDeviceDTO()).isEqualTo(kettle);
+        assertThat(deviceFacade.getVariable(id).getDeviceId()).isEqualTo(kettle.getId());
     }
 
     @Test
@@ -72,20 +85,23 @@ public class DeviceFacadeUnitTest {
         VariableDTO temp = deviceFacade.getVariable(dto.getId());
 
         //then
-        assertThat(temp.getDeviceDTO()).isEqualTo(kettle);
+        assertThat(temp.getDeviceId()).isEqualTo(kettle.getId());
     }
 
     @Test(expected = DeviceNotFoundException.class)
     public void deleteDevice() {
         //given
         deviceFacade.addDevice(kettle);
-        deviceFacade.addVariable(temperature);
-        deviceFacade.addVariable(current);
+        VariableDTO new_temp = deviceFacade.addVariable(temperature);
+        VariableDTO new_curr = deviceFacade.addVariable(current);
+
 
         //when
         deviceFacade.deleteDevice(kettle.getId());
 
         //then
+        Mockito.verify(valueVariableFacadeMock).deleteByVariable(new_temp.getId());
+        Mockito.verify(valueVariableFacadeMock).deleteByVariable(new_curr.getId());
         deviceFacade.getDevice(kettle.getId());
     }
 
@@ -101,6 +117,7 @@ public class DeviceFacadeUnitTest {
 
         //then
         assertThat(temp2.getName()).isEqualTo(current.getName());
+        Mockito.verify(valueVariableFacadeMock).deleteByVariable(temp1.getId());
         deviceFacade.getVariable(temp1.getId());
     }
 
@@ -178,5 +195,20 @@ public class DeviceFacadeUnitTest {
         //then
         assertThat(newKettle.getName()).isEqualTo(kettle.getName());
     }
+
+    @Test(expected = DeviceNotFoundException.class)
+    public void whenAddingVariableToNonExistenceDeviceExceptionIsThrown() {
+        //given
+        deviceFacade.addDevice(kettle);
+
+        VariableDTO fake_variable = new VariableDTO(null, "ddddd", 100987, "asa");
+
+        //when
+        deviceFacade.addVariable(fake_variable);
+
+        //then
+        //catch exception
+    }
+
 
 }

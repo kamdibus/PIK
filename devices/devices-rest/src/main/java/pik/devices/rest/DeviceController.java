@@ -74,7 +74,7 @@ public class DeviceController {
     }
 
     @PutMapping("/variable")
-    public ResponseEntity<?> updateVariable(@RequestBody final VariableDTO variableDTO, @RequestBody final String name) {
+    public ResponseEntity<?> updateVariable(@RequestBody final VariableDTO variableDTO) {
         return new ResponseEntity<>(deviceFacade.updateVariable(variableDTO), HttpStatus.OK);
     }
 

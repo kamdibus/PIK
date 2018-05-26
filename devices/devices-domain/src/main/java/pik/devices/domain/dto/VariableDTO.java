@@ -7,9 +7,10 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode
 @AllArgsConstructor
+@NoArgsConstructor
 public class VariableDTO {
     private String id;
     private String name;
-    private DeviceDTO deviceDTO;
+    private long deviceId;
     private String unit;
 }
