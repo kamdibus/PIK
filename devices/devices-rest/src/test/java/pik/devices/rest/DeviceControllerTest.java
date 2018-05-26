@@ -109,7 +109,43 @@ public class DeviceControllerTest {
         String json = mapper.writeValueAsString(var1);
 
         when(deviceFacadeMock.addVariable(var1)).thenAnswer(i -> i.getArguments()[0]);
-        ;
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/device/variable")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(var1.getId()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(var1.getName()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.unit").value(var1.getUnit()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.deviceId").value(device1.getId()));
+    }
+
+    @Test
+    public void whenDeviceIsUpdatedStatusIsOk() throws Exception {
+
+        //given
+        DeviceDTO device = new DeviceDTO((long) 15, "Czajnik");
+        String json = mapper.writeValueAsString(device);
+
+        when(deviceFacadeMock.addDevice(any())).thenAnswer(i -> i.getArguments()[0]);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/device")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(device.getName()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(device.getId()));
+    }
+
+    @Test
+    public void whenVariableIsUpdatedStatusIsOk() throws Exception {
+
+        //given
+        DeviceDTO device1 = new DeviceDTO((long) 12, "Pralka");
+        VariableDTO var1 = new VariableDTO("11212dd", "moc", device1.getId(), "jednostka");
+        String json = mapper.writeValueAsString(var1);
+
+        when(deviceFacadeMock.addVariable(var1)).thenAnswer(i -> i.getArguments()[0]);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/device/variable")
                 .contentType(MediaType.APPLICATION_JSON)
