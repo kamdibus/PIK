@@ -30,13 +30,13 @@ public class DeviceFacadeUnitTest {
 
     private DeviceFacade deviceFacade = new DeviceConfiguration().deviceFacade(new InMemoryDeviceRepository(), new InMemoryVariableRepository(), valueVariableFacadeMock);
 
-    /*
+
     @After
     public void removeDevices(){
         deviceFacade.deleteDevice(kettle.getId());
         deviceFacade.deleteDevice(washer.getId());
     }
-    */
+
     @Test
     public void addDevice() {
         //when
@@ -95,7 +95,6 @@ public class DeviceFacadeUnitTest {
         VariableDTO new_temp = deviceFacade.addVariable(temperature);
         VariableDTO new_curr = deviceFacade.addVariable(current);
 
-        System.out.println(kettle.getId());
 
         //when
         deviceFacade.deleteDevice(kettle.getId());
