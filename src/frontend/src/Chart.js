@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 var LineChart = require("react-chartjs").Line;
 
-let labels = ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"];
-
 let chartData = {
         labels: [],
         datasets: [{
@@ -49,7 +47,7 @@ class Chart extends Component {
             return <div></div>
         }
 
-       let valuesCount = 40;
+       const valuesCount = 40;
        let j = this.props.values.length-valuesCount;
        for (var i = 0; i < valuesCount ; i++){
             chartData.datasets[0].data[i] = this.props.values[j].value;
