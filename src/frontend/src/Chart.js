@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 
 var LineChart = require("react-chartjs").Line;
 
-var     chartData = {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+let data = [12, 20, 1, 0, 0, 0];
+let labels = ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"];
+
+let chartData = {
+        labels: labels,
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: data,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -26,7 +29,6 @@ var     chartData = {
             borderWidth: 1
         }]
     };
-
     
     var chartOptions = {
         scales: {
@@ -45,7 +47,9 @@ class Chart extends Component {
         }
 
     return (
+    <div>
         <LineChart data={chartData} options={chartOptions} width="600" height="250"/>
+    </div>
     );
   } 
 }

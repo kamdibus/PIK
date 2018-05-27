@@ -56,7 +56,7 @@ class VariableList extends React.Component {
 
     //Szukam zmiennych przypisanych do danego urządzenia
     var variables = this.props.variables.filter(function (variable) {
-      return variable.deviceDTO.id == deviceId;
+      return variable.deviceDTO.id === deviceId;
     });
 
     const variableList = variables.map((variable) =>
@@ -112,6 +112,7 @@ class Variable extends React.Component{
         <td><button onClick={this.handleDelete}>Delete</button></td>
 
         <Modal show={this.state.show} handleClose={this.hideModal} >
+         <h1>Variable {this.props.id}: {this.props.name}</h1>
         <Chart show={this.state.show} />
         </Modal>
 
