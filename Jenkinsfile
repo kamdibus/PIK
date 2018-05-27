@@ -5,9 +5,14 @@ pipeline {
         jdk 'jdk8'
 
     }
+
+    environment {
+            HEROKU_API_KEY = credentials('heroku_api_key')
+    }
+
     stages {
 
-        stage('Build') {
+         stage('Build') {
             steps {
                 sh 'mvn clean compile'
             }
@@ -26,12 +31,11 @@ pipeline {
              }
          }
 
-         stage('Deploy') {
-            when { anyOf { branch 'master' ; branch 'development' } }
-            steps {
-                sh 'mvn -Dmaven.test.skip=true deploy'
+         stage('Package') {
+             steps {
+                sh 'mvn -Pheroku package'
              }
-          }
+         }
     }
 /*
     post {
