@@ -113,18 +113,18 @@ class Device extends React.Component{
 
 	render() {
 		return (
-			<tr>
-				<td>{this.props.id}</td>
-				<td>{this.props.name}</td>
-				<td><button onClick={this.showModal}>Show variables</button></td>
-				<td><button onClick={this.handleDelete}>Delete</button></td>
+		<tr>
+		    <td>{this.props.id}</td>
+		    <td>{this.props.name}</td>
+		    <td><button onClick={this.showModal}>Show variables</button></td>
+		    <td><button onClick={this.handleDelete}>Delete</button></td>
 
-        <Modal show={this.state.show} handleClose={this.hideModal} >
-        <h1>Device {this.props.id}: {this.props.name}</h1>
-        <VariableList variables={this.state.variables} deviceId={this.props.id} deviceName={this.props.name}
-        loadContent =  {this.loadContent}/>
-        </Modal>
-			</tr>
+            <Modal show={this.state.show} handleClose={this.hideModal} >
+                <h1>Device {this.props.id}: {this.props.name}</h1>
+                <VariableList variables={this.state.variables} deviceId={this.props.id} deviceName={this.props.name}
+                loadContent =  {this.loadContent}/>
+            </Modal>
+        </tr>
 		)
 	}
 }

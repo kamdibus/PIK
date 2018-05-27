@@ -88,7 +88,7 @@ class VariableList extends React.Component {
 class Variable extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {show: false};
+    this.state = {values: [], show: false};
   }
 
   handleDelete = () => {
@@ -97,6 +97,7 @@ class Variable extends React.Component{
 
     showModal = () => {
         this.setState({ show: true });
+        this.loadContent();
     }
 
     hideModal = () => {
@@ -104,14 +105,17 @@ class Variable extends React.Component{
     }
 
     loadContent = () => {
-        fetch('http://localhost:8080/devices')
+        fetch('https://api.myjson.com/bins/iiez2')
+        //fetch('http://localhost:8080/values/'+this.props.id)
         .then(resp => resp.json())
         .then(resp => {
-        	this.setState({devices: resp.content});
+            this.setState({values: resp.content});
+            alert(this.state.values.length);
         })
       }
 
   render() {
+
     return (
       <tr>
         <td>{this.props.id}</td>
