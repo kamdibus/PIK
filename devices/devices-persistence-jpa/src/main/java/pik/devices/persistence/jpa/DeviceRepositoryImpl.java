@@ -33,11 +33,12 @@ public class DeviceRepositoryImpl implements DeviceRepository {
     }
 
     @Override
-    public Device findOneOrThrow(long id) {
-        Device d = repository.findById(id).toDomain();
+    public Device findOneOrThrow(long id) throws DeviceNotFoundException {
+
+        DeviceEntity d = repository.findById(id);
         if (d == null)
             throw new DeviceNotFoundException(id);
-        return d;
+        return d.toDomain();
     }
 
     @Override

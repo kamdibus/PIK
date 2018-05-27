@@ -44,10 +44,10 @@ public class VariableRepositoryImpl implements VariableRepository {
 
     @Override
     public Variable findOneOrThrow(String id) {
-        Variable v = repository.findById(id).toDomain();
+        VariableEntity v = repository.findById(id);
         if (v == null)
             throw new VariableNotFoundException(id);
-        return v;
+        return v.toDomain();
     }
 
     @Override

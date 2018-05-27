@@ -146,7 +146,6 @@ public class ValueIntegrationTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$").isArray())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(3)));
 
-
     }
 
 }

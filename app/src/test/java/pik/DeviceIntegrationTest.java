@@ -2,7 +2,6 @@ package pik;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +37,6 @@ public class DeviceIntegrationTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    @Before
-    public void clear() {
-
-    }
 
     @Test
     public void whenDeviceIsAddedStatusIsOk() throws Exception {
@@ -296,9 +291,8 @@ public class DeviceIntegrationTest {
 
         //get all variables for device 1
         mockMvc.perform(MockMvcRequestBuilders.get("/device/" + resultDevice1.getId() + "/variable"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$").isArray())
-                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+
 
 
         //get all variables for device 2

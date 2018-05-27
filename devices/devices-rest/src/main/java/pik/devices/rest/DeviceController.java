@@ -23,12 +23,7 @@ public class DeviceController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getDevice(@PathVariable final Long id) {
-        DeviceDTO dto;
-        try{
-            dto = deviceFacade.getDevice(id);
-        } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        DeviceDTO dto = deviceFacade.getDevice(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
@@ -44,12 +39,7 @@ public class DeviceController {
 
     @GetMapping("/variable/{id}")
     public ResponseEntity<?> getVariable(@PathVariable final String id) {
-        VariableDTO dto;
-        try{
-            dto = deviceFacade.getVariable(id);
-        } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        VariableDTO dto = deviceFacade.getVariable(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 

@@ -2,7 +2,6 @@ package pik;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,9 +108,7 @@ public class ValueVariableIntegrationTest {
 
         //get all values for variable 1 and expect 0
         mockMvc.perform(MockMvcRequestBuilders.get("/values/" + resultVariable1.getId()))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$").isArray())
-                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
 
     }
 
