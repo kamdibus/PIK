@@ -311,6 +311,55 @@ public class DeviceIntegrationTest {
     }
 
     @Test
+    public void whenVariableIsDeletedItIsNotListedInDevice() throws Exception {
+
+        //add first device
+        DeviceDTO device1 = new DeviceDTO((long) 0, "DeviceWithSomeName1");
+        String json = mapper.writeValueAsString(device1);
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/device")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        DeviceDTO resultDevice1 = mapper.readValue(result.getResponse().getContentAsString(), DeviceDTO.class);
+
+        //add 2 variables
+        VariableDTO variable1 = new VariableDTO("", "VariableNo1", resultDevice1.getId(), "unit1");
+        VariableDTO variable2 = new VariableDTO("", "VariableNo2", resultDevice1.getId(), "unit2");
+
+        json = mapper.writeValueAsString(variable1);
+
+        result = mockMvc.perform(MockMvcRequestBuilders.post("/device/variable")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        VariableDTO resultVariable1 = mapper.readValue(result.getResponse().getContentAsString(), VariableDTO.class);
+
+        json = mapper.writeValueAsString(variable2);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/device/variable")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+
+        //remove variable 1
+        mockMvc.perform(MockMvcRequestBuilders.delete("/device/variable/" + resultVariable1.getId()))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        //get all variables for device 1
+        mockMvc.perform(MockMvcRequestBuilders.get("/device/" + resultDevice1.getId() + "/variable"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$").isArray())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(1)));
+
+    }
+
+    @Test
     public void deviceIsUpdatedAfterUpdate() throws Exception {
 
         //given device as json
