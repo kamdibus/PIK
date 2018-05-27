@@ -96,7 +96,6 @@ class Variable extends React.Component{
   }
 
     showModal = () => {
-        this.setState({ show: true });
         this.loadContent();
     }
 
@@ -105,12 +104,12 @@ class Variable extends React.Component{
     }
 
     loadContent = () => {
-        fetch('https://api.myjson.com/bins/iiez2')
+        fetch('https://api.myjson.com/bins/jvpny')
         //fetch('http://localhost:8080/values/'+this.props.id)
         .then(resp => resp.json())
         .then(resp => {
-            this.setState({values: resp.content});
-            alert(this.state.values.length);
+            this.setState({values: resp});
+            this.setState({ show: true });
         })
       }
 
@@ -125,7 +124,7 @@ class Variable extends React.Component{
 
         <Modal show={this.state.show} handleClose={this.hideModal} >
             <h1>Variable {this.props.id}: {this.props.name}</h1>
-            <Chart show={this.state.show} />
+            <Chart show={this.state.show} values={this.state.values} />
         </Modal>
 
       </tr>

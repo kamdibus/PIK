@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 
 var LineChart = require("react-chartjs").Line;
 
-let data = [12, 20, 1, 0, 0, 0];
 let labels = ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"];
 
 let chartData = {
-        labels: labels,
+        labels: [],
         datasets: [{
             label: '',
-            data: data,
+            data: [],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -29,7 +28,7 @@ let chartData = {
             borderWidth: 1
         }]
     };
-    
+
     var chartOptions = {
         scales: {
             yAxes: [{
@@ -41,8 +40,8 @@ let chartData = {
     };
 
 class Chart extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   render() {
@@ -50,10 +49,18 @@ class Chart extends Component {
             return <div></div>
         }
 
-    return (
-    <div>
-        <LineChart data={chartData} options={chartOptions} width="600" height="250"/>
-    </div>
+       let valuesCount = 40;
+       let j = this.props.values.length-valuesCount;
+       for (var i = 0; i < valuesCount ; i++){
+            chartData.datasets[0].data[i] = this.props.values[j].value;
+            chartData.labels.push(this.props.values[j].timestamp);
+            j++;
+       }
+
+        return (
+        <div>
+            <LineChart data={chartData} options={chartOptions} width="600" height="250"/>
+        </div>
     );
   } 
 }
