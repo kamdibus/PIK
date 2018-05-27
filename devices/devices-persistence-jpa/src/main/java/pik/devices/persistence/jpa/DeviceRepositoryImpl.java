@@ -29,15 +29,16 @@ public class DeviceRepositoryImpl implements DeviceRepository {
 
     @Override
     public void deleteDeviceById(long id) {
-        repository.deleteDeviceById(id);
+        repository.deleteById(id);
     }
 
     @Override
-    public Device findOneOrThrow(long id) {
-        Device d = repository.findDeviceById(id).toDomain();
+    public Device findOneOrThrow(long id) throws DeviceNotFoundException {
+
+        DeviceEntity d = repository.findById(id);
         if (d == null)
             throw new DeviceNotFoundException(id);
-        return d;
+        return d.toDomain();
     }
 
     @Override

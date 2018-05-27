@@ -13,7 +13,6 @@ import pik.devices.domain.dto.DeviceDTO;
 public class Device {
 
     private long id;
-
     private String name;
 
     DeviceDTO dto(){

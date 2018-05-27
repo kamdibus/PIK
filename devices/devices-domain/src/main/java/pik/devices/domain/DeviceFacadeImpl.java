@@ -1,7 +1,9 @@
 package pik.devices.domain;
 
 import pik.devices.domain.dto.DeviceDTO;
+import pik.devices.domain.dto.DeviceNotFoundException;
 import pik.devices.domain.dto.VariableDTO;
+import pik.devices.domain.dto.VariableNotFoundException;
 import pik.values.domain.variableModulePort.ValueVariableFacade;
 
 import java.security.MessageDigest;
@@ -55,6 +57,8 @@ class DeviceFacadeImpl implements DeviceFacade {
     public DeviceDTO getDevice(long id) {
         requireNonNull(id);
         Device device = deviceRepository.findOneOrThrow(id);
+        if (device == null)
+            throw new DeviceNotFoundException(id);
         return device.dto();
     }
 
@@ -62,6 +66,8 @@ class DeviceFacadeImpl implements DeviceFacade {
     public VariableDTO getVariable(String id) {
         requireNonNull(id);
         Variable variable = variableRepository.findOneOrThrow(id);
+        if (variable == null)
+            throw new VariableNotFoundException(id);
         return variable.dto();
     }
 
@@ -75,6 +81,7 @@ class DeviceFacadeImpl implements DeviceFacade {
     @Override
     public void deleteDevice(long id) {
         requireNonNull(id);
+        deviceRepository.findOneOrThrow(id);
         for(String variableId: variableRepository.findVariablesByDeviceID(id).stream().map(a -> a.getId()).collect(Collectors.toList()))
             valueVariableFacade.deleteByVariable(variableId);
         variableRepository.deleteVariablesByDeviceId(id);
@@ -84,6 +91,7 @@ class DeviceFacadeImpl implements DeviceFacade {
     @Override
     public void deleteVariable(String id) {
         requireNonNull(id);
+        variableRepository.findOneOrThrow(id);
         valueVariableFacade.deleteByVariable(id);
         variableRepository.deleteVariableById(id);
     }
@@ -98,6 +106,8 @@ class DeviceFacadeImpl implements DeviceFacade {
 
     @Override
     public List<VariableDTO> getVariablesByDeviceID(Long deviceID){
+        deviceRepository.findOneOrThrow(deviceID);
+
         return variableRepository
                 .findVariablesByDeviceID(deviceID)
                 .stream().map(a -> a.dto()).collect(Collectors.toList());
@@ -105,6 +115,7 @@ class DeviceFacadeImpl implements DeviceFacade {
 
     @Override
     public VariableDTO updateVariable(VariableDTO variableDTO) {
+        variableRepository.findOneOrThrow(variableDTO.getId());
         Variable variable = deviceCreator.from(variableDTO);
         variable = variableRepository.update(variable);
         return variable.dto();
@@ -112,6 +123,7 @@ class DeviceFacadeImpl implements DeviceFacade {
 
     @Override
     public DeviceDTO updateDevice(DeviceDTO deviceDTO) {
+        deviceRepository.findOneOrThrow(deviceDTO.getId());
         Device device = deviceCreator.from(deviceDTO);
         device = deviceRepository.update(device);
         return device.dto();

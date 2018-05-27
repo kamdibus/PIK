@@ -1,5 +1,6 @@
 package pik.values.domain;
 
+import pik.values.domain.dto.NoValuesForVariableException;
 import pik.values.domain.dto.ValueDto;
 
 import java.util.List;
@@ -22,7 +23,10 @@ public class ValueFacadeImpl implements ValueFacade {
     }
 
     public List<ValueDto> getByVariable(String id) {
-        return valueRepository.findAllByVariableId(id).stream().map(a -> a.getDto()).collect(Collectors.toList());
+        List list = valueRepository.findAllByVariableId(id).stream().map(a -> a.getDto()).collect(Collectors.toList());
+        if (list.isEmpty())
+            throw new NoValuesForVariableException(id, null);
+        return list;
     }
 
 }

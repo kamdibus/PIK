@@ -34,20 +34,20 @@ public class VariableRepositoryImpl implements VariableRepository {
 
     @Override
     public void deleteVariableById(String id) {
-        repository.deleteVariableById(id);
+        repository.deleteById(id);
     }
 
     @Override
     public void deleteVariablesByDeviceId(long id) {
-        repository.deleteVariablesByDeviceId(id);
+        repository.deleteByDeviceId(id);
     }
 
     @Override
     public Variable findOneOrThrow(String id) {
-        Variable v = repository.findVariableById(id).toDomain();
+        VariableEntity v = repository.findById(id);
         if (v == null)
             throw new VariableNotFoundException(id);
-        return v;
+        return v.toDomain();
     }
 
     @Override

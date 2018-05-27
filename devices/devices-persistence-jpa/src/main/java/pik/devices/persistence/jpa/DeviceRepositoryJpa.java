@@ -2,6 +2,7 @@ package pik.devices.persistence.jpa;
 
 import org.springframework.data.repository.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -13,8 +14,9 @@ public interface DeviceRepositoryJpa extends Repository<DeviceEntity, Long> {
 
     List<DeviceEntity> findAll();
 
-    DeviceEntity findDeviceById(long id);
+    DeviceEntity findById(long id);
 
-    void deleteDeviceById(long id);
+    @Transactional
+    void deleteById(Long id);
 
 }

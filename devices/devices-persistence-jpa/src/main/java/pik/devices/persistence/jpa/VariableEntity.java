@@ -1,6 +1,8 @@
 package pik.devices.persistence.jpa;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pik.devices.domain.Variable;
 
@@ -9,7 +11,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "VARIABLES")
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class VariableEntity {
 
     @Id
