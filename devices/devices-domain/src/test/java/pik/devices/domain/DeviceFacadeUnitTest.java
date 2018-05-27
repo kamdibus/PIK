@@ -33,8 +33,13 @@ public class DeviceFacadeUnitTest {
 
     @After
     public void removeDevices(){
-        deviceFacade.deleteDevice(kettle.getId());
-        deviceFacade.deleteDevice(washer.getId());
+
+        try {
+            deviceFacade.deleteDevice(kettle.getId());
+            deviceFacade.deleteDevice(washer.getId());
+        } catch (DeviceNotFoundException ex) {
+            //ok
+        }
     }
 
     @Test
