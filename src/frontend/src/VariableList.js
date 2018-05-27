@@ -2,6 +2,7 @@ import React from 'react';
 
 import AddVariableForm from './AddVariableForm';
 import Modal from './Modal';
+import Chart from './Chart';
 
 class VariableList extends React.Component {
   constructor(props) {
@@ -87,19 +88,33 @@ class VariableList extends React.Component {
 class Variable extends React.Component{
   constructor(props) {
     super(props);
+    this.state = {show: false};
   }
 
   handleDelete = () => {
       this.props.onDelete(this.props.id);
   }
 
+    showModal = () => {
+        this.setState({ show: true });
+    }
+
+    hideModal = () => {
+      this.setState({ show: false });
+    }
+
   render() {
     return (
       <tr>
         <td>{this.props.id}</td>
         <td>{this.props.name}</td>
-        <td><button>Show chart</button></td>
+        <td><button onClick={this.showModal}>Show chart</button></td>
         <td><button onClick={this.handleDelete}>Delete</button></td>
+
+        <Modal show={this.state.show} handleClose={this.hideModal} >
+        <Chart show={this.state.show} />
+        </Modal>
+
       </tr>
     )
   }
