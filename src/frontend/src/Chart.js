@@ -8,7 +8,7 @@ let labels = ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"];
 let chartData = {
         labels: labels,
         datasets: [{
-            label: '# of Votes',
+            label: '',
             data: data,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -41,6 +41,10 @@ let chartData = {
     };
 
 class Chart extends Component {
+  constructor() {
+    super();
+  }
+
   render() {
         if (!this.props.show) {
             return <div></div>
