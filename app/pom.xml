@@ -77,7 +77,6 @@
     <build>
         <plugins>
 
-
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -112,7 +111,9 @@
                 <!--<releaseProfiles>releases</releaseProfiles>-->
                 <!--</configuration>-->
             </plugin>
+
         </plugins>
     </build>
+
 
 </project>
