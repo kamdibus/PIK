@@ -47,6 +47,9 @@ class Chart extends Component {
             return <div></div>
         }
 
+        chartData.labels = [];
+        chartData.datasets[0].data = [];
+
        const valuesCount = 40;
        let j = this.props.values.length-valuesCount;
        for (var i = 0; i < valuesCount ; i++){
@@ -57,7 +60,7 @@ class Chart extends Component {
 
         return (
         <div>
-            <LineChart data={chartData} options={chartOptions} width="600" height="250"/>
+            <LineChart data={chartData} options={chartOptions} width="800" height="400"/>
         </div>
     );
   } 
