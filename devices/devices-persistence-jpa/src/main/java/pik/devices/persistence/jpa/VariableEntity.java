@@ -1,24 +1,25 @@
 package pik.devices.persistence.jpa;
 
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import pik.devices.domain.Device;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pik.devices.domain.Variable;
-import pik.devices.domain.dto.VariableDTO;
 
 import javax.persistence.*;
 
 
 @Entity
 @Table(name = "VARIABLES")
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class VariableEntity {
 
     @Id
-    @GeneratedValue
     @Column(name = "VARIABLE_ID", unique = true)
-    private Long id;
+    private String id;
 
+    @Setter
     @Column(name = "VARIABLE_NAME", nullable = false)
     private String name;
 
@@ -26,18 +27,18 @@ public class VariableEntity {
     @JoinColumn(name = "DEVICE_ID")
     private DeviceEntity device;
 
-    public VariableEntity(String name, DeviceEntity deviceEntity) {
-        this.name = name;
-        this.device = deviceEntity;
-    }
+    @Setter
+    @Column(name = "VARIABLE_UNIT")
+    private String unit;
 
     public VariableEntity(Variable variable) {
         this.name = variable.getName();
         this.id = variable.getId();
         this.device = new DeviceEntity(variable.getDevice());
+        this.unit = variable.getUnit();
     }
 
     Variable toDomain() {
-        return new Variable(id, name, device.toDomain());
+        return new Variable(id, name, device.toDomain(), unit);
     }
 }

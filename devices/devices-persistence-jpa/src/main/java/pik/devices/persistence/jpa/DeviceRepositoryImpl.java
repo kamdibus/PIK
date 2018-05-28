@@ -1,11 +1,12 @@
 package pik.devices.persistence.jpa;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import pik.devices.domain.Device;
 import pik.devices.domain.DeviceRepository;
 import pik.devices.domain.dto.DeviceNotFoundException;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class DeviceRepositoryImpl implements DeviceRepository {
@@ -22,26 +23,29 @@ public class DeviceRepositoryImpl implements DeviceRepository {
     }
 
     @Override
-    public Page<Device> findAll(Pageable pageable) {
-        return repository.findAll(pageable).map(a -> a.toDomain());
-    }
-
-    @Override
-    public Device findDeviceById(long id) {
-        return repository.findDeviceById(id).toDomain();
+    public List<Device> findAll() {
+        return repository.findAll().stream().map(a -> a.toDomain()).collect(Collectors.toList());
     }
 
     @Override
     public void deleteDeviceById(long id) {
-        repository.deleteDeviceById(id);
+        repository.deleteById(id);
     }
 
     @Override
-    public Device findOneOrThrow(long id) {
+    public Device findOneOrThrow(long id) throws DeviceNotFoundException {
 
-        Device d = repository.findDeviceById(id).toDomain();
+        DeviceEntity d = repository.findById(id);
         if (d == null)
             throw new DeviceNotFoundException(id);
-        return d;
+        return d.toDomain();
+    }
+
+    @Override
+    public Device update(Device device) {
+        DeviceEntity entity = repository.getById(device.getId());
+        entity.setName(device.getName());
+        entity = repository.save(entity);
+        return entity.toDomain();
     }
 }

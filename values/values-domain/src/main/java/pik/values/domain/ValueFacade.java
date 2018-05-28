@@ -1,6 +1,6 @@
 package pik.values.domain;
 
-import pik.values.dto.ValueDto;
+import pik.values.domain.dto.ValueDto;
 
 import java.util.List;
 
@@ -10,7 +10,5 @@ public interface ValueFacade {
 
     ValueDto get(Long id);
 
-    List<ValueDto> getByVariable(long id);
-
-    void dropValues(long variableId);
+    List<ValueDto> getByVariable(String id);
 }

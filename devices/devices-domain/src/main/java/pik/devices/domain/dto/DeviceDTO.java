@@ -1,14 +1,13 @@
 package pik.devices.domain.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.*;
 
 @Builder
 @Getter
+@Setter
 @EqualsAndHashCode
 @AllArgsConstructor
+@NoArgsConstructor
 public class DeviceDTO {
     private Long id;
     private String name;

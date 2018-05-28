@@ -11,13 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import org.springframework.http.MediaType;
 
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
@@ -28,7 +27,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import pik.values.domain.ValueFacade;
 
-import pik.values.dto.ValueDto;
+
+import pik.values.domain.ValueProducerFacade;
+import pik.values.domain.dto.ValueDto;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -37,6 +38,7 @@ import java.util.Arrays;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
+@ActiveProfiles("prod")
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ValueController.class)
 @EnableWebMvc
@@ -48,16 +50,19 @@ public class ValueControllerTest {
     @MockBean
     ValueFacade valueFacadeMock;
 
+    @MockBean
+    ValueProducerFacade valueProducerMock;
+
     @Autowired
     MockMvc mockMvc;
 
     @Test
     public void whenAddedStatusIsOk() throws Exception {
 
-        ValueDto value = new ValueDto(123123, Timestamp.valueOf(LocalDateTime.of(2018, 10, 3, 12, 45)), 1251.32);
+        ValueDto value = new ValueDto("123123", Timestamp.valueOf(LocalDateTime.of(2018, 10, 3, 12, 45)), 1251.32);
         String json = mapper.writeValueAsString(value);
 
-        when(valueFacadeMock.add(any())).thenAnswer(i -> i.getArguments()[0]);
+        when(valueProducerMock.put(any())).thenAnswer(i -> i.getArguments()[0]);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/values")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -68,7 +73,7 @@ public class ValueControllerTest {
     @Test
     public void whenRequestedVariableValuesAreShown() throws Exception {
 
-        int varid = 112313;
+        String varid = "112313";
         ValueDto value1 = new ValueDto(varid, Timestamp.valueOf(LocalDateTime.of(2018, 10, 3, 12, 45)), 1251.32);
         ValueDto value2 = new ValueDto(varid, Timestamp.valueOf(LocalDateTime.of(2017, 12, 3, 12, 45)), 1123);
 
@@ -83,6 +88,7 @@ public class ValueControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[1].variableId").value(value2.getVariableId()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[1].value").value(value2.getValue()));
     }
+
 
     /*
     @Test
@@ -99,3 +105,4 @@ public class ValueControllerTest {
     }
     */
 }
+

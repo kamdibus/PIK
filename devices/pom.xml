@@ -11,6 +11,7 @@
 
     <artifactId>devices</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>devices-domain</module>
         <module>devices-rest</module>
