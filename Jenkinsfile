@@ -31,11 +31,17 @@ pipeline {
 
          stage('Package') {
              steps {
-                sh 'mvn -Pheroku package'
+                sh 'mvn -Pheroku -Dmaven.test.skip=true package'
              }
          }
 
-         stage('Deploy Backend') {
+          stage('Deploy') {
+              steps {
+                 sh 'mvn -Pheroku -Dmaven.test.skip=true deploy'
+              }
+          }
+
+         stage('Deploy Backend Heroku') {
             when { anyOf { branch 'master' ; branch 'development' } }
             steps {
                 sh 'chmod u+x dplbcnd.sh'
@@ -43,7 +49,7 @@ pipeline {
              }
           }
 
-          stage('Deploy Frontend') {
+          stage('Deploy Frontend Heroku') {
                       when { anyOf { branch 'master' ; branch 'development' } }
                       steps {
                         sh 'chmod u+x dplfrnt.sh'
