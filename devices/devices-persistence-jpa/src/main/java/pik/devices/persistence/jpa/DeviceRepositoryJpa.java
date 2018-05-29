@@ -1,20 +1,22 @@
 package pik.devices.persistence.jpa;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.Repository;
-import pik.devices.domain.Device;
-import pik.devices.domain.dto.DeviceNotFoundException;
+
+import javax.transaction.Transactional;
+import java.util.List;
 
 
 public interface DeviceRepositoryJpa extends Repository<DeviceEntity, Long> {
 
     DeviceEntity save(DeviceEntity deviceEntity);
 
-    Page<DeviceEntity> findAll(Pageable pageable);
+    DeviceEntity getById(Long id);
 
-    DeviceEntity findDeviceById(long id);
+    List<DeviceEntity> findAll();
 
-    void deleteDeviceById(long id);
+    DeviceEntity findById(long id);
+
+    @Transactional
+    void deleteById(Long id);
 
 }

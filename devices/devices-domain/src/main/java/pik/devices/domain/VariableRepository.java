@@ -1,21 +1,22 @@
 package pik.devices.domain;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import pik.devices.domain.dto.VariableNotFoundException;
+import java.util.List;
 
 
 public interface VariableRepository {
 
     Variable save(Variable variable);
-    Page<Variable> findAll(Pageable pageable);
 
-    Variable findVariableById(long id);
+    List<Variable> findVariablesByDeviceID(Long deviceID);
 
-    void deleteVariableById(long id);
+    List<Variable> findAll();
+
+    void deleteVariableById(String id);
 
     void deleteVariablesByDeviceId(long id);
 
-    Variable findOneOrThrow(long id);
+    Variable findOneOrThrow(String id);
+
+    Variable update(Variable variable);
 
 }

@@ -1,17 +1,17 @@
 package pik.values.domain;
 
-import pik.values.dto.ValueDto;
+import pik.values.domain.dto.ValueDto;
 
 import java.sql.Timestamp;
 
 public class Value {
 
     private long id;
-    private long variableId;
+    private String variableId;
     private Timestamp timestamp;
     private double value;
 
-    public Value(long id, long variableId, Timestamp timestamp, double value) {
+    public Value(long id, String variableId, Timestamp timestamp, double value) {
         this.id = id;
         this.variableId = variableId;
         this.timestamp = timestamp;
@@ -35,11 +35,11 @@ public class Value {
         this.id = id;
     }
 
-    public long getVariableId() {
+    public String getVariableId() {
         return variableId;
     }
 
-    public void setVariableId(long variableId) {
+    public void setVariableId(String variableId) {
         this.variableId = variableId;
     }
 

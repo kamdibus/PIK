@@ -10,7 +10,18 @@
         <module>app</module>
         <module>values</module>
         <module>devices</module>
+
     </modules>
+
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <modules>
+                <module>producer</module>
+                <module>consumer</module>
+            </modules>
+        </profile>
+    </profiles>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -24,7 +35,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
 
     </dependencies>
 
@@ -45,8 +55,8 @@
     </distributionManagement>
 
     <build>
-        <plugins>
 
+        <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
@@ -60,9 +70,7 @@
                     <check/>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
-
 
 </project>

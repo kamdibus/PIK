@@ -1,6 +1,7 @@
 package pik.values.domain;
 
-import pik.values.dto.ValueDto;
+import pik.values.domain.dto.NoValuesForVariableException;
+import pik.values.domain.dto.ValueDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,11 +22,11 @@ public class ValueFacadeImpl implements ValueFacade {
         return valueRepository.findById(id).getDto();
     }
 
-    public List<ValueDto> getByVariable(long id) {
-        return valueRepository.findAllByVariableId(id).stream().map(a -> a.getDto()).collect(Collectors.toList());
+    public List<ValueDto> getByVariable(String id) {
+        List list = valueRepository.findAllByVariableId(id).stream().map(a -> a.getDto()).collect(Collectors.toList());
+        if (list.isEmpty())
+            throw new NoValuesForVariableException(id, null);
+        return list;
     }
 
-    public void dropValues(long variableId) {
-        valueRepository.deleteByVariableId(variableId);
-    }
 }
