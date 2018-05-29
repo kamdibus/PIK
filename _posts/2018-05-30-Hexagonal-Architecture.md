@@ -14,7 +14,7 @@ Z  założenia zastosowanie architektury heksagonalnej pozwala na modularność 
 Główna idea polega na utworzeniu różnych modułów aplikacji (heksagonów) będących corem logicznym aplikacji, tzn zawierających logikę biznesową niezależną od zewnętrzych frameworków, warstwy persystencji itp. 
 Pojedynczy moduł posiada porty i adaptery (api i jego różne implementacje). Pojedynczy moduł może posiadać wiele portów do różnych celów, na przykład do komunikacji z użytkownikiem, bazą danych, innymi modułami i aplikacjami. Dodatkowo każdy port może mieć wiele adapterów, czyli implementacji danego api jak na przykład implementacje warstwy persystencji dla różnych baz
 
-![alt text](../img/hex.png "Struktura modułu")
+![Schemat modułu](https://github.com/kamdibus/PIK/blob/gh-pages/img/hex.png?raw=true "Struktura modułu")
 
 #### Case study
 W wykonywanym projekcie wydzielono 2 moduły devices i values. Kaźdy z modułów posiada port do warstwy persystencji (Repository), oraz port do komunikacji z użytkownikiem (Facade). Z portem Repository mogą łączyć się 2 Adaptery zawierające implementację pozwalającą na łączenie się z relacyjną bazą danych lub też testową implementacją InMemory. Za komunikację z użytkownikiem odpowada RESTowa końcówka. 
@@ -22,6 +22,8 @@ Dodatkowo w module Values znajduje się port do komunikacji pomiędzy modułami 
 
 //TODO: diagram
 ###### Źródła:
-[alistair cockburn webpage](http://alistair.cockburn.us/Hexagonal+architecture)\
-[dossier-andreas.net webpage](http://www.dossier-andreas.net/software_architecture/ports_and_adapters.html)\
+[alistair cockburn webpage](http://alistair.cockburn.us/Hexagonal+architecture)
+
+[dossier-andreas.net webpage](http://www.dossier-andreas.net/software_architecture/ports_and_adapters.html)
+
 [image source](http://geekswithblogs.net/cyoung/archive/2014/12/20/hexagonal-architecturendashthe-great-reconciler.aspx)
