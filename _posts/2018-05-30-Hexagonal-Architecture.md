@@ -1,3 +1,8 @@
+---
+layout: post
+title: "Sample post"
+---
+
 ### Architektura heksagonalna
 ###### Przemysław WIlczyński
 #### Wstęp
@@ -16,7 +21,7 @@ W wykonywanym projekcie wydzielono 2 moduły devices i values. Kaźdy z modułó
 Dodatkowo w module Values znajduje się port do komunikacji pomiędzy modułami oraz jego implementacja dla modułu Devices. 
 
 //TODO: diagram
-##### Źródła:
-http://alistair.cockburn.us/Hexagonal+architecture
-http://www.dossier-andreas.net/software_architecture/ports_and_adapters.html
-http://geekswithblogs.net/cyoung/archive/2014/12/20/hexagonal-architecturendashthe-great-reconciler.aspx
+###### Źródła:
+[alistair cockburn webpage](http://alistair.cockburn.us/Hexagonal+architecture)\
+[dossier-andreas.net webpage](http://www.dossier-andreas.net/software_architecture/ports_and_adapters.html)\
+[image source](http://geekswithblogs.net/cyoung/archive/2014/12/20/hexagonal-architecturendashthe-great-reconciler.aspx)
