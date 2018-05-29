@@ -12,6 +12,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin
 @RequestMapping("/device")
 public class DeviceController {
     private DeviceFacade deviceFacade;

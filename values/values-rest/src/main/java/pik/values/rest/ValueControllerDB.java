@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @Profile("default")
+@CrossOrigin
 @RequestMapping("/values")
 public class ValueControllerDB {
 
