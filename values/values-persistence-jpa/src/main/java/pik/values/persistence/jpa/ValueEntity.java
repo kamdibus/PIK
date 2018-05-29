@@ -5,9 +5,11 @@ import pik.values.domain.Value;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.sql.Timestamp;
 
 @Entity
+@Table(name = "VAL")
 public class ValueEntity {
 
     @GeneratedValue
