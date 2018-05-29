@@ -55,13 +55,15 @@ public class DeviceController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteDevice(@PathVariable final Long id) {
+    public ResponseEntity<?> deleteDevice(@PathVariable final Long id) {
         deviceFacade.deleteDevice(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/variable/{id}")
-    public void deleteVariable(@PathVariable final String id) {
+    public ResponseEntity<?> deleteVariable(@PathVariable final String id) {
         deviceFacade.deleteVariable(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/variable")
