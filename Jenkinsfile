@@ -42,7 +42,7 @@ pipeline {
           }
 
          stage('Deploy Backend Heroku') {
-            when { anyOf { branch 'master' ; branch 'development' } }
+            when { branch 'master' }
             steps {
                 sh 'chmod u+x dplbcnd.sh'
                 sh 'sh dplbcnd.sh'
@@ -50,7 +50,7 @@ pipeline {
           }
 
           stage('Deploy Frontend Heroku') {
-                      when { anyOf { branch 'master' ; branch 'development' } }
+                      when { branch 'master'}
                       steps {
                         sh 'chmod u+x dplfrnt.sh'
                         sh 'sh dplfrnt.sh'
