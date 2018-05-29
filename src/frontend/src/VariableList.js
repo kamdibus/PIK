@@ -3,6 +3,7 @@ import React from 'react';
 import AddVariableForm from './AddVariableForm';
 import Modal from './Modal';
 import Chart from './Chart';
+import url from './url'
 
 class VariableList extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class VariableList extends React.Component {
   }
 
   onDelete = (variableId) => {
-      fetch('http://localhost:8080/device/variable/' + variableId, {
+      fetch(url+'/device/variable/' + variableId, {
     method: 'delete'
     })
          .then(() => {
@@ -23,7 +24,7 @@ class VariableList extends React.Component {
   }
 
   onCreate = (variableName) => {
-      fetch('http://localhost:8080/device/variable', {
+      fetch(url+'/device/variable', {
               method: 'post',
               headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -104,7 +105,7 @@ class Variable extends React.Component{
 
     loadContent = () => {
         fetch('https://api.myjson.com/bins/jvpny')
-        //fetch('http://localhost:8080/values/'+this.props.id)
+        //fetch(url+'/values/'+this.props.id)
         .then(resp => resp.json())
         .then(resp => {
             this.setState({values: resp});

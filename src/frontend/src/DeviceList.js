@@ -3,6 +3,7 @@ import React from 'react';
 import VariableList from './VariableList';
 import AddDeviceForm from './AddDeviceForm';
 import Modal from './Modal';
+import url from './url'
 
 class DeviceList extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class DeviceList extends React.Component {
   }
 
   loadContent() {
-      fetch('http://localhost:8080/device')
+      fetch(url+'/device')
     .then(resp => resp.json())
     .then(resp => {
         this.setState({devices: resp});
@@ -34,7 +35,7 @@ class DeviceList extends React.Component {
   }
 
   onDelete = (deviceId) => {
-      fetch('http://localhost:8080/device/' + deviceId, {
+      fetch(url+'/device/' + deviceId, {
         method: 'delete'
       })
       .then(() => {
@@ -43,7 +44,7 @@ class DeviceList extends React.Component {
   }
 
   onCreate = (deviceName) => {
-      fetch('http://localhost:8080/device', {
+      fetch(url+'/device', {
     method: 'post',
     headers: {
     'Accept': 'application/json, text/plain, */*',
@@ -94,7 +95,7 @@ class Device extends React.Component{
   }
 
   loadContent = () => {
-      fetch('http://localhost:8080/device/variable')
+      fetch(url+'/device/variable')
           		.then(resp => resp.json())
           		.then(resp => {
                     this.setState({variables: resp});
