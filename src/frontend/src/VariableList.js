@@ -17,7 +17,6 @@ class VariableList extends React.Component {
       fetch('http://localhost:8080/device/variable/' + variableId, {
     method: 'delete'
     })
-    .then(response => response.json())
          .then(() => {
           this.loadContent();
           });
