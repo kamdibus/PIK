@@ -104,8 +104,8 @@ class Variable extends React.Component{
     }
 
     loadContent = () => {
-        fetch('https://api.myjson.com/bins/jvpny')
-        //fetch(url+'/values/'+this.props.id)
+        //fetch('https://api.myjson.com/bins/jvpny')
+        fetch(url+'/values/'+this.props.id)
         .then(resp => resp.json())
         .then(resp => {
             this.setState({values: resp});
