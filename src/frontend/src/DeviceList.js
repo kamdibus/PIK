@@ -14,10 +14,10 @@ class DeviceList extends React.Component {
   }
 
   loadContent() {
-    fetch('http://localhost:8080/devices')
+      fetch('http://localhost:8080/device')
     .then(resp => resp.json())
     .then(resp => {
-    	this.setState({devices: resp.content});
+        this.setState({devices: resp});
     })
   }
 
@@ -34,7 +34,7 @@ class DeviceList extends React.Component {
   }
 
   onDelete = (deviceId) => {
-   fetch('http://localhost:8080/devices/' + deviceId, {
+      fetch('http://localhost:8080/device/' + deviceId, {
         method: 'delete'
       })
       .then(response => response.json())
@@ -44,7 +44,7 @@ class DeviceList extends React.Component {
   }
 
   onCreate = (deviceName) => {
-    fetch('http://localhost:8080/devices', {
+      fetch('http://localhost:8080/device', {
     method: 'post',
     headers: {
     'Accept': 'application/json, text/plain, */*',
@@ -95,10 +95,10 @@ class Device extends React.Component{
   }
 
   loadContent = () => {
-          		 fetch('http://localhost:8080/variables')
+      fetch('http://localhost:8080/device/variable')
           		.then(resp => resp.json())
           		.then(resp => {
-          			this.setState({variables: resp.content});
+                    this.setState({variables: resp});
           		})
   }
 

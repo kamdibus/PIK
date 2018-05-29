@@ -14,7 +14,7 @@ class VariableList extends React.Component {
   }
 
   onDelete = (variableId) => {
-    fetch('http://localhost:8080/variables/' + variableId, {
+      fetch('http://localhost:8080/device/variable/' + variableId, {
     method: 'delete'
     })
     .then(response => response.json())
@@ -24,14 +24,14 @@ class VariableList extends React.Component {
   }
 
   onCreate = (variableName) => {
-    	  fetch('http://localhost:8080/variables', {
+      fetch('http://localhost:8080/device/variable', {
               method: 'post',
               headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:8080'
               },
-              body: JSON.stringify({id: 1, name: `${variableName}`, deviceDTO: {id: `${this.props.deviceId}`, name: `${this.props.deviceName}`}})
+          body: JSON.stringify({id: 1, name: `${variableName}`, deviceId: `${this.props.deviceId}`})
             }).then(res=>res.json())
               .then(() => {
               this.hideModal();
@@ -56,7 +56,7 @@ class VariableList extends React.Component {
 
     //Szukam zmiennych przypisanych do danego urządzenia
     var variables = this.props.variables.filter(function (variable) {
-      return variable.deviceDTO.id === deviceId;
+        return variable.deviceId === deviceId;
     });
 
     const variableList = variables.map((variable) =>
