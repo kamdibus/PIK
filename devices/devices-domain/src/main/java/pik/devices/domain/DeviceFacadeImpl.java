@@ -13,6 +13,8 @@ import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
 
+import javax.transaction.Transactional;
+
 
 class DeviceFacadeImpl implements DeviceFacade {
 
@@ -79,6 +81,7 @@ class DeviceFacadeImpl implements DeviceFacade {
     }
 
     @Override
+    @Transactional
     public void deleteDevice(long id) {
         requireNonNull(id);
         deviceRepository.findOneOrThrow(id);
@@ -89,6 +92,7 @@ class DeviceFacadeImpl implements DeviceFacade {
     }
 
     @Override
+    @Transactional
     public void deleteVariable(String id) {
         requireNonNull(id);
         variableRepository.findOneOrThrow(id);

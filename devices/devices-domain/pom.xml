@@ -47,6 +47,11 @@
             <artifactId>values-domain</artifactId>
             <version>0.1.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>javax.transaction-api</artifactId>
+            <version>1.2</version>
+        </dependency>
 
 
     </dependencies>
