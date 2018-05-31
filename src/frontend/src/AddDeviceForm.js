@@ -10,12 +10,12 @@ class AddDeviceForm extends React.Component {
 	}
 
 	handleChange = (event) => {
-    this.setState({value: event.target.value});
-  }
+        this.setState({value: event.target.value});
+    }
 
 	handleSubmit = (event) => {
-    this.props.onCreate(this.state.value);
-    event.preventDefault();
+        this.props.onCreate(this.state.value);
+        event.preventDefault();
 	}
 
 	render() {

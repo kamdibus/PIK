@@ -53,6 +53,19 @@ function timeConverter(UNIX_timestamp){
 class Chart extends Component {
   constructor(props) {
     super(props);
+    this.state = {value: '40', valuesCount: 40};
+
+ 	this.handleChange = this.handleChange.bind(this);
+ 	this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange = (event) => {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit = (event) => {
+    this.setState({valuesCount: this.state.value});
+    event.preventDefault();
   }
 
   render() {
@@ -63,9 +76,8 @@ class Chart extends Component {
         chartData.labels = [];
         chartData.datasets[0].data = [];
 
-       const valuesCount = 40;
-       let j = this.props.values.length-valuesCount;
-       for (var i = 0; i < valuesCount ; i++){
+       let j = this.props.values.length - this.state.valuesCount;
+       for (var i = 0; i < this.state.valuesCount ; i++){
             chartData.datasets[0].data[i] = this.props.values[j].value;
             const time = timeConverter(this.props.values[j].timestamp);
             chartData.labels.push(time);
@@ -75,11 +87,17 @@ class Chart extends Component {
         return (
         <div>
             <LineChart data={chartData} options={chartOptions} width="800" height="400"/>
+            <form onSubmit={this.handleSubmit}>
+            <label>
+            Amount of values:
+            <input type="text" value={this.state.value} onChange={this.handleChange} />
+            </label>
+            <input type="submit" value="Change" />
+            </form>
         </div>
     );
   } 
 }
-
 
 export default Chart;
 
