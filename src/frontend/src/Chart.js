@@ -50,6 +50,10 @@ function timeConverter(UNIX_timestamp){
   return time;
 }
 
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
 class Chart extends Component {
   constructor(props) {
     super(props);
@@ -64,8 +68,13 @@ class Chart extends Component {
   }
 
   handleSubmit = (event) => {
-    this.setState({valuesCount: this.state.value});
-    event.preventDefault();
+    if (isNumeric(this.state.value) && this.state.value > 0) {
+        this.setState({valuesCount: this.state.value});
+        event.preventDefault();
+    } else {
+        alert("The amount of values should be positive integer");
+        event.preventDefault();
+    }
   }
 
   render() {

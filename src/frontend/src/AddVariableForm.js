@@ -9,13 +9,18 @@ class AddVariableForm extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleChange = (event) => {
+  handleChange = (event) => {
     this.setState({value: event.target.value});
   }
 
 	handleSubmit = (event) => {
-	  this.props.onCreate(this.state.value);
-	  event.preventDefault();
+	    if (this.state.value) {
+            this.props.onCreate(this.state.value);
+            event.preventDefault();
+        } else {
+            alert("TextBox cannot be empty.");
+            event.preventDefault();
+        }
 	}
 
 	render() {
