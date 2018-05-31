@@ -44,11 +44,11 @@ class VariableList extends React.Component {
     };
 
     showModal = () => {
-        this.setState({show: true});
+        this.setState({show1: true});
     };
 
     hideModal = () => {
-        this.setState({show: false});
+        this.setState({show1: false});
     };
 
     render() {
@@ -100,7 +100,7 @@ class Variable extends React.Component {
     };
 
     hideModal = () => {
-        this.setState({show: false});
+        this.setState({show1: false});
     };
 
     loadContent = () => {
@@ -108,7 +108,7 @@ class Variable extends React.Component {
             .then(resp => resp.json())
             .then(resp => {
                 this.setState({values: resp});
-                this.setState({show: true});
+                this.setState({show1: true});
             }).catch(() => alert('Error, cannot display chart.'));
     };
 

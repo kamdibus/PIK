@@ -26,11 +26,11 @@ class DeviceList extends React.Component {
     }
 
     showModal = () => {
-        this.setState({show: true});
+        this.setState({show1: true});
     };
 
     hideModal = () => {
-        this.setState({show: false});
+        this.setState({show1: false});
     };
 
     onDelete = (deviceId) => {
@@ -46,8 +46,7 @@ class DeviceList extends React.Component {
             method: 'post',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:8080'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({id: 10000, name: `${deviceName}`})
         }).then(res => res.json())
@@ -57,9 +56,24 @@ class DeviceList extends React.Component {
             }).catch(() => alert('Error, cannot add device.'));
     };
 
+    onUpdate = (deviceId, deviceName) => {
+        fetch(url + '/device', {
+            method: 'put',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({id: `${deviceId}`, name: `${deviceName}`})
+        }).then(res => res.json())
+            .then(() => {
+                this.hideModal();
+                this.loadContent();
+            }).catch(() => alert('Error, cannot update device.'));
+    };
+
     render() {
         const deviceList = this.state.devices.map((device) =>
-            <Device id={device.id} name={device.name} onDelete={this.onDelete}/>
+            <Device id={device.id} name={device.name} onDelete={this.onDelete} onUpdate={this.onUpdate}/>
         );
         return (
             <div>
@@ -74,8 +88,8 @@ class DeviceList extends React.Component {
                         </tbody>
                     </table>
                 </ul>
-                <Modal show={this.state.show} handleClose={this.hideModal}>
-                    <AddDeviceForm onCreate={this.onCreate}/>
+                <Modal show={this.state.show1} handleClose={this.hideModal}>
+                    <AddDeviceForm onCreate={this.onCreate} text='Add'/>
                 </Modal>
                 <button type='button' onClick={this.showModal}>Add device</button>
             </div>
@@ -86,11 +100,16 @@ class DeviceList extends React.Component {
 class Device extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {variables: [], show: false};
+        this.state = {variables: [], show1: false, show2: false};
     }
 
     handleDelete = () => {
         this.props.onDelete(this.props.id);
+    };
+
+    handleUpdate = (newDeviceName) => {
+        this.props.onUpdate(this.props.id, newDeviceName);
+        this.hideModal();
     };
 
     loadContent = () => {
@@ -100,13 +119,17 @@ class Device extends React.Component {
             .catch(() => alert('Error, cannot display list of variables.'));
     };
 
-    showModal = () => {
-        this.setState({show: true});
+    showVariables = () => {
+        this.setState({show1: true});
         this.loadContent();
     };
 
+    showUpdateModal = () => {
+        this.setState({show2: true});
+    };
+
     hideModal = () => {
-        this.setState({show: false});
+        this.setState({show1: false, show2: false});
     };
 
     render() {
@@ -115,16 +138,23 @@ class Device extends React.Component {
                 <td>{this.props.id}</td>
                 <td>{this.props.name}</td>
                 <td>
-                    <button onClick={this.showModal}>Show variables</button>
+                    <button onClick={this.showVariables}>Show variables</button>
                 </td>
                 <td>
                     <button onClick={this.handleDelete}>Delete</button>
                 </td>
+                <td>
+                    <button onClick={this.showUpdateModal}>Update</button>
+                </td>
 
-                <Modal show={this.state.show} handleClose={this.hideModal}>
+                <Modal show={this.state.show1} handleClose={this.hideModal}>
                     <h1>Device {this.props.id}: {this.props.name}</h1>
                     <VariableList variables={this.state.variables} deviceId={this.props.id} deviceName={this.props.name}
                                   loadContent={this.loadContent}/>
+                </Modal>
+
+                <Modal show={this.state.show2} handleClose={this.hideModal}>
+                    <AddDeviceForm onCreate={this.handleUpdate} text='Update'/>
                 </Modal>
             </tr>
         )

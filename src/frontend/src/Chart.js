@@ -77,7 +77,7 @@ class Chart extends Component {
     };
 
     render() {
-        if (!this.props.show) {
+        if (!this.props.show1) {
             return <div></div>
         }
 
