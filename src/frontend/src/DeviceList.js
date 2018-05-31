@@ -15,11 +15,10 @@ class DeviceList extends React.Component {
   }
 
   loadContent() {
-      fetch(url+'/device')
+    fetch(url+'/device')
     .then(resp => resp.json())
-    .then(resp => {
-        this.setState({devices: resp});
-    })
+    .then(resp => this.setState({devices: resp}))
+    .catch(() => alert('Error, cannot display list of devices.') );
   }
 
   componentDidMount() {
@@ -35,27 +34,27 @@ class DeviceList extends React.Component {
   }
 
   onDelete = (deviceId) => {
-      fetch(url+'/device/' + deviceId, {
+    fetch(url+'/device/' + deviceId, {
         method: 'delete'
-      })
-      .then(() => {
-      this.loadContent();
-      });
+    })
+    .then(() => this.loadContent())
+    .catch(() => alert('Error, cannot delete device.'));
   }
 
   onCreate = (deviceName) => {
-      fetch(url+'/device', {
+    fetch(url+'/device', {
     method: 'post',
     headers: {
-    'Accept': 'application/json, text/plain, */*',
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'http://localhost:8080'
-     },
-     body: JSON.stringify({id: 10000, name: `${deviceName}`})
-     }).then(res=>res.json())
-     .then(() => {this.hideModal();
-     this.loadContent();
-     });
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:8080'
+    },
+    body: JSON.stringify({id: 10000, name: `${deviceName}`})
+    }).then(res=>res.json())
+    .then(() => {
+        this.hideModal();
+        this.loadContent();
+    }).catch(() => alert('Error, cannot add device.'));
   }
 
   render() {
@@ -96,10 +95,9 @@ class Device extends React.Component{
 
   loadContent = () => {
       fetch(url+'/device/variable')
-          		.then(resp => resp.json())
-          		.then(resp => {
-                    this.setState({variables: resp});
-          		})
+      .then(resp => resp.json())
+      .then(resp => this.setState({variables: resp}))
+      .catch(() => alert('Error, cannot display list of variables.'));
   }
 
   showModal = () => {

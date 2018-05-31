@@ -16,27 +16,27 @@ class VariableList extends React.Component {
 
   onDelete = (variableId) => {
       fetch(url+'/device/variable/' + variableId, {
-    method: 'delete'
-    })
-         .then(() => {
-          this.loadContent();
-          });
+        method: 'delete'
+      })
+      .then(() => this.loadContent())
+      .catch(() => alert('Error, cannot delete variable.'));
   }
 
   onCreate = (variableName) => {
       fetch(url+'/device/variable', {
-              method: 'post',
-              headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:8080'
-              },
-          body: JSON.stringify({id: 1, name: `${variableName}`, deviceId: `${this.props.deviceId}`})
-            }).then(res=>res.json())
-              .then(() => {
-              this.hideModal();
-              this.loadContent();
-              });
+      method: 'post',
+      headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'http://localhost:8080'
+      },
+      body: JSON.stringify({id: 1, name: `${variableName}`, deviceId: `${this.props.deviceId}`})
+      }).then(res=>res.json())
+      .then(() => {
+           this.hideModal();
+           this.loadContent();
+       })
+       .catch(() => alert('Error, cannot add variable.'));
   }
 
   loadContent = () => {
@@ -104,13 +104,12 @@ class Variable extends React.Component{
     }
 
     loadContent = () => {
-        //fetch('https://api.myjson.com/bins/jvpny')
         fetch(url+'/values/'+this.props.id)
         .then(resp => resp.json())
         .then(resp => {
             this.setState({values: resp});
             this.setState({ show: true });
-        })
+        }).catch(() => alert('Error, cannot display chart.'));
       }
 
   render() {
