@@ -27,8 +27,7 @@ class VariableList extends React.Component {
             method: 'post',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:8080'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({id: 1, name: `${variableName}`, deviceId: `${this.props.deviceId}`})
         }).then(res => res.json())
@@ -39,16 +38,31 @@ class VariableList extends React.Component {
             .catch(() => alert('Error, cannot add variable.'));
     };
 
+    onUpdate = (variableId, variableName) => {
+        fetch(url + '/device/variable', {
+            method: 'put',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({id: `${variableId}`, name: `${variableName}`, deviceId: `${this.props.deviceId}`})
+        }).then(res => res.json())
+            .then(() => {
+                this.loadContent();
+            })
+            .catch(() => alert('Error, cannot add variable.'));
+    };
+
     loadContent = () => {
         this.props.loadContent();
     };
 
     showModal = () => {
-        this.setState({show1: true});
+        this.setState({show: true});
     };
 
     hideModal = () => {
-        this.setState({show1: false});
+        this.setState({show: false});
     };
 
     render() {
@@ -60,7 +74,7 @@ class VariableList extends React.Component {
         });
 
         const variableList = variables.map((variable) =>
-            <Variable id={variable.id} name={variable.name} onDelete={this.onDelete}/>
+            <Variable id={variable.id} name={variable.name} onDelete={this.onDelete} onUpdate={this.onUpdate}/>
         );
 
         return (
@@ -76,7 +90,7 @@ class VariableList extends React.Component {
                 </table>
 
                 <Modal show={this.state.show} handleClose={this.hideModal}>
-                    <AddVariableForm onCreate={this.onCreate}/>
+                    <AddVariableForm onCreate={this.onCreate} text='Add'/>
                 </Modal>
                 <button type='button' onClick={this.showModal}>Add variable</button>
 
@@ -88,19 +102,28 @@ class VariableList extends React.Component {
 class Variable extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {values: [], show: false};
+        this.state = {values: [], show1: false, show2: false };
     }
 
     handleDelete = () => {
         this.props.onDelete(this.props.id);
     };
 
-    showModal = () => {
+    handleUpdate = (newVariableName) => {
+        this.props.onUpdate(this.props.id, newVariableName);
+        this.hideModal();
+    };
+
+    showChart = () => {
         this.loadContent();
     };
 
+    showUpdateModal = () => {
+        this.setState({show2: true});
+    };
+
     hideModal = () => {
-        this.setState({show1: false});
+        this.setState({show1: false, show2: false});
     };
 
     loadContent = () => {
@@ -119,17 +142,23 @@ class Variable extends React.Component {
                 <td>{this.props.id}</td>
                 <td>{this.props.name}</td>
                 <td>
-                    <button onClick={this.showModal}>Show chart</button>
+                    <button onClick={this.showChart}>Show chart</button>
                 </td>
                 <td>
                     <button onClick={this.handleDelete}>Delete</button>
                 </td>
+                <td>
+                    <button onClick={this.showUpdateModal}>Update</button>
+                </td>
 
-                <Modal show={this.state.show} handleClose={this.hideModal}>
+                <Modal show={this.state.show1} handleClose={this.hideModal}>
                     <h1>Variable {this.props.id}: {this.props.name}</h1>
-                    <Chart show={this.state.show} values={this.state.values}/>
+                    <Chart show={this.state.show1} values={this.state.values}/>
                 </Modal>
 
+                <Modal show={this.state.show2} handleClose={this.hideModal}>
+                    <AddVariableForm onCreate={this.handleUpdate} text='Update'/>
+                </Modal>
             </tr>
         )
     }

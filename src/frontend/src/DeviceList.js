@@ -66,7 +66,6 @@ class DeviceList extends React.Component {
             body: JSON.stringify({id: `${deviceId}`, name: `${deviceName}`})
         }).then(res => res.json())
             .then(() => {
-                this.hideModal();
                 this.loadContent();
             }).catch(() => alert('Error, cannot update device.'));
     };
