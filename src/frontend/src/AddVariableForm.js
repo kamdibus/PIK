@@ -3,19 +3,24 @@ import React from 'react';
 class AddVariableForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: this.props.value};
+        this.state = {name: this.props.name, unit: this.props.unit};
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleUnitChange = this.handleUnitChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange = (event) => {
-        this.setState({value: event.target.value});
+    handleNameChange = (event) => {
+        this.setState({name: event.target.value});
+    };
+
+    handleUnitChange = (event) => {
+        this.setState({unit: event.target.value});
     };
 
     handleSubmit = (event) => {
-        if (this.state.value) {
-            this.props.onCreate(this.state.value);
+        if (this.state.name && this.state.unit) {
+            this.props.onCreate(this.state.name, this.state.unit);
             event.preventDefault();
         } else {
             alert("TextBox cannot be empty.");
@@ -28,7 +33,11 @@ class AddVariableForm extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <label>
                     Variable:
-                    <input type="text" value={this.state.value} onChange={this.handleChange}/>
+                    <input type="text" value={this.state.name} onChange={this.handleNameChange}/>
+                </label>
+                <label>
+                    Unit:
+                    <input type="text" value={this.state.unit} onChange={this.handleUnitChange}/>
                 </label>
                 <input type="submit" value={this.props.text}/>
             </form>

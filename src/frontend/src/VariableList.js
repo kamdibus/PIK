@@ -22,14 +22,14 @@ class VariableList extends React.Component {
             .catch(() => alert('Error, cannot delete variable.'));
     };
 
-    onCreate = (variableName) => {
+    onCreate = (variableName, unit) => {
         fetch(url + '/device/variable', {
             method: 'post',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({id: 1, name: `${variableName}`, deviceId: `${this.props.deviceId}`})
+            body: JSON.stringify({id: 1, name: `${variableName}`, deviceId: `${this.props.deviceId}`, unit:`${unit}`})
         }).then(res => res.json())
             .then(() => {
                 this.hideModal();
@@ -38,14 +38,14 @@ class VariableList extends React.Component {
             .catch(() => alert('Error, cannot add variable.'));
     };
 
-    onUpdate = (variableId, variableName) => {
+    onUpdate = (variableId, variableName, unit) => {
         fetch(url + '/device/variable', {
             method: 'put',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({id: `${variableId}`, name: `${variableName}`, deviceId: `${this.props.deviceId}`})
+            body: JSON.stringify({id: `${variableId}`, name: `${variableName}`, deviceId: `${this.props.deviceId}`, unit:`${unit}`})
         }).then(res => res.json())
             .then(() => {
                 this.loadContent();
@@ -74,7 +74,7 @@ class VariableList extends React.Component {
         });
 
         const variableList = variables.map((variable) =>
-            <Variable id={variable.id} name={variable.name} onDelete={this.onDelete} onUpdate={this.onUpdate}/>
+            <Variable id={variable.id} name={variable.name} unit={variable.unit} onDelete={this.onDelete} onUpdate={this.onUpdate}/>
         );
 
         return (
@@ -84,6 +84,7 @@ class VariableList extends React.Component {
                     <tr>
                         <th>Id</th>
                         <th>Variable name</th>
+                        <th>Unit</th>
                     </tr>
                     {variableList}
                     </tbody>
@@ -109,8 +110,8 @@ class Variable extends React.Component {
         this.props.onDelete(this.props.id);
     };
 
-    handleUpdate = (newVariableName) => {
-        this.props.onUpdate(this.props.id, newVariableName);
+    handleUpdate = (newVariableName, newUnit) => {
+        this.props.onUpdate(this.props.id, newVariableName, newUnit);
         this.hideModal();
     };
 
@@ -141,6 +142,7 @@ class Variable extends React.Component {
             <tr>
                 <td>{this.props.id}</td>
                 <td>{this.props.name}</td>
+                <td>{this.props.unit}</td>
                 <td>
                     <button onClick={this.showChart}>Show chart</button>
                 </td>
@@ -157,7 +159,7 @@ class Variable extends React.Component {
                 </Modal>
 
                 <Modal show={this.state.show2} handleClose={this.hideModal}>
-                    <AddVariableForm value={this.props.name} onCreate={this.handleUpdate} text='Update'/>
+                    <AddVariableForm name={this.props.name} unit={this.props.unit} onCreate={this.handleUpdate} text='Update'/>
                 </Modal>
             </tr>
         )
