@@ -157,7 +157,7 @@ class Variable extends React.Component {
                 </Modal>
 
                 <Modal show={this.state.show2} handleClose={this.hideModal}>
-                    <AddVariableForm onCreate={this.handleUpdate} text='Update'/>
+                    <AddVariableForm value={this.props.name} onCreate={this.handleUpdate} text='Update'/>
                 </Modal>
             </tr>
         )

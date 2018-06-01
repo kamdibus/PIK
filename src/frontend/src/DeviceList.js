@@ -153,7 +153,7 @@ class Device extends React.Component {
                 </Modal>
 
                 <Modal show={this.state.show2} handleClose={this.hideModal}>
-                    <AddDeviceForm onCreate={this.handleUpdate} text='Update'/>
+                    <AddDeviceForm value={this.props.name} onCreate={this.handleUpdate} text='Update'/>
                 </Modal>
             </tr>
         )
