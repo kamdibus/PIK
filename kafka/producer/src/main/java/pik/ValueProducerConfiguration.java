@@ -9,11 +9,11 @@ import java.io.IOException;
 public class ValueProducerConfiguration {
 
     @Bean
-    ValueProducerImpl valueProducer() {
+    ValueProducer valueProducer() {
 
-        ValueProducerImpl producer = null;
+        ValueProducer producer = null;
         try {
-            producer = new ValueProducerImpl();
+            producer = new ValueProducer();
         } catch (IOException e) {
             System.err.println("Error with creating BEAN producer");
         }
