@@ -90,19 +90,6 @@
     <orderEntry type="library" name="Maven: javax.transaction:javax.transaction-api:1.2" level="project" />
     <orderEntry type="module" module-name="devices-rest" />
     <orderEntry type="module" module-name="devices-persistence-jpa" />
-    <orderEntry type="module" module-name="producer" />
-    <orderEntry type="library" name="Maven: org.apache.kafka:kafka_2.12:1.1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.kafka:kafka-clients:1.1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.lz4:lz4-java:1.4" level="project" />
-    <orderEntry type="library" name="Maven: org.xerial.snappy:snappy-java:1.1.7.1" level="project" />
-    <orderEntry type="library" name="Maven: net.sf.jopt-simple:jopt-simple:5.0.4" level="project" />
-    <orderEntry type="library" name="Maven: com.yammer.metrics:metrics-core:2.2.0" level="project" />
-    <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.12.4" level="project" />
-    <orderEntry type="library" name="Maven: org.scala-lang:scala-reflect:2.12.4" level="project" />
-    <orderEntry type="library" name="Maven: com.typesafe.scala-logging:scala-logging_2.12:3.7.2" level="project" />
-    <orderEntry type="library" name="Maven: com.101tec:zkclient:0.10" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.zookeeper:zookeeper:3.4.10" level="project" />
-    <orderEntry type="library" name="Maven: com.google.guava:guava:r05" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:1.5.10.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:1.5.10.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.3.14.RELEASE" level="project" />

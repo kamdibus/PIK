@@ -40,7 +40,6 @@ public class Consumer {
 
         records.forEach(record -> {
             valueFacade.add(record.value());
-//            System.out.println(record.value().getVariableId());
         });
         return records;
     }
