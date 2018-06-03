@@ -54,6 +54,20 @@
 
     </dependencies>
 
+
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <dependencies>
+                <dependency>
+                    <groupId>pl.edu.pw.ii</groupId>
+                    <artifactId>producer</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
     <scm>
         <connection>scm:git:https://github.com/kamdibus/PIK.git</connection>
         <url>http://github.com/kamdibus/PIK</url>

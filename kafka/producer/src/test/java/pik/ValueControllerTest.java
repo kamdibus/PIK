@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 
 @ActiveProfiles("prod")
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ValueController.class)
+@SpringBootTest(classes = ValueInController.class)
 @EnableWebMvc
 @AutoConfigureMockMvc
 public class ValueControllerTest {
