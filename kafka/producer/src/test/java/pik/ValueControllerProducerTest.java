@@ -45,7 +45,7 @@ public class ValueControllerProducerTest {
 
         when(valueProducerMock.put(any())).thenAnswer(i -> i.getArguments()[0]);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/values")
+        mockMvc.perform(MockMvcRequestBuilders.post("/valuespost")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
                 .andExpect(MockMvcResultMatchers.status().isOk());
