@@ -2,17 +2,14 @@ package pik.values.persistence.jpa;
 
 import pik.values.domain.Value;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "VAL")
 public class ValueEntity {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private long id;
     private String variableId;
