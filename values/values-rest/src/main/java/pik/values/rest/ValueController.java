@@ -10,10 +10,10 @@ import pik.values.domain.dto.ValueDto;
 import java.util.List;
 
 
-@RestController
+@RestController("ValueController")
 @Profile("prod")
 @CrossOrigin
-@RequestMapping("/values")
+@RequestMapping(value = "/values", method = RequestMethod.GET)
 public class ValueController {
 
     private ValueFacade valueFacade;

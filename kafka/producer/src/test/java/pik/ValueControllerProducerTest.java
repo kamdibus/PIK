@@ -24,10 +24,10 @@ import static org.mockito.Mockito.when;
 
 @ActiveProfiles("prod")
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ValueController.class)
+@SpringBootTest(classes = ValueControllerProducer.class)
 @EnableWebMvc
 @AutoConfigureMockMvc
-public class ValueControllerTest {
+public class ValueControllerProducerTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 

@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.*;
 import pik.values.domain.dto.ValueDto;
 
 
-@RestController
+@RestController("ValueControllerProducer")
 @Profile("prod")
 @CrossOrigin
-@RequestMapping("/values")
-public class ValueController {
+@RequestMapping(value = "/valuespost", method = RequestMethod.POST)
+public class ValueControllerProducer {
 
     private ValueProducer valueProducer;
 
-    public ValueController(ValueProducer valueProducer) {
+    public ValueControllerProducer(ValueProducer valueProducer) {
         this.valueProducer = valueProducer;
     }
 
