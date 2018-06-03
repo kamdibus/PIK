@@ -107,7 +107,6 @@ class Chart extends Component {
             }
 
             j++;
-            console.log(j);
         }
 
         return (
