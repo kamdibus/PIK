@@ -94,10 +94,18 @@ class Chart extends Component {
             maxIter = this.state.valuesCount;
         }
 
+        let gaps = Math.ceil(maxIter/50);
+
         for (let i = 0; i < maxIter; i++) {
             chartData.datasets[0].data[i] = this.props.values[j].value;
             const time = timeConverter(this.props.values[j].timestamp);
-            chartData.labels.push(time);
+
+            if (i % gaps === 0) {
+                chartData.labels.push(time);
+            } else {
+                chartData.labels.push('');
+            }
+
             j++;
             console.log(j);
         }
