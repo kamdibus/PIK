@@ -2,7 +2,6 @@
 layout: post
 title: "Apache Kafka jako Message Queue"
 excerpt: "Kafka będąca systemem typu _publish-subscribe_ dobrze nadaje się do zastosowania jako kolejka wiadomości. Dzięki niezawodnemu działaniu w klasterach i mechanizmom replikacji danych..."
-
 ---
 ###### Kamil Biduś
 ### Podstawy

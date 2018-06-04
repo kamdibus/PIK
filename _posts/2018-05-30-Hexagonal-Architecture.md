@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Architektura Hexagonalna"
+excerpt: "Celem niniejszego artykułu jest pokazanie głównej idei budowania aplikacji z wykorzystaniem architektury heksagonalnej (zwanej również architekturą portów i adapterów), przedstawieniem..."
 ---
-Celem niniejszego artykułu jest pokazanie głównej idei budowania aplikacji z wykorzystaniem 
-architektury heksagonalnej (zwanej również architekturą portów i adapterów), przedstawieniem...
+
 ###### Przemysław WIlczyński
 #### Wstęp
 Celem niniejszego artykułu jest pokazanie głównej idei budowania aplikacji z wykorzystaniem 
