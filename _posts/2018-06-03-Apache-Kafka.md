@@ -3,7 +3,7 @@ layout: post
 title: "Apache Kafka"
 ---
 ##### Kamil Biduś
-# Kafka podstawy 
+## Kafka podstawy 
 
 ### Kafka to rozproszona platforma do strumieniowania, o trzech głównych funkcjach:
 * 	Publikowanie i subskrypcja do strumieni danych (kolejek wiadomości)
@@ -27,13 +27,13 @@ title: "Apache Kafka"
 *	Streams API
 *	Connector API
 
-### Kafka jako Message Queue
+## Kafka jako Message Queue
 Kafka będąca systemem typu _publish-subscribe_ dobrze nadaje się do zastosowania jako kolejka wiadomości. Dzięki niezawodnemu działaniu w klasterach i mechanizmom replikacji danych jest pod tym względem pewniejszym rozwiązaniem niż standardowe MQ jak RabbitMQ czy ActiveMq.
 
-### W projekcie
+## W projekcie
 Z założeń niefunkcjonalnych projektu wynika, że ilość danych dostarczanych do systemu może się znacznie zwiększać po podłączeniu nowych urządzeń. Aby zapewnić skalowalność systemu, dane najpierw wrzucane są do bufora Kafki, a następnie konsumenci zajmują się przekazywaniem ich do bazy danych. Takie podejście pozwala w razie potrzeby zredukować obłożenie bazy.
 
-#### Architektura
+### Architektura
 Aby zapewnić możliwość korzystania z Kafki z aplikacji zdeployowanej na heroku, bez używania dedykowanego, płatnego rozwiązania, Kafka została postawiona na zewnętrznym serwerze.
 Na potrzeby projektu skonfigurawaliśmy jednego brokera z jedną partycją i jednym tematem _values_ z którego korzystają producent i konsument (javowe implementacje Producer i Consumer API).
 
@@ -53,7 +53,7 @@ Dane wrzucane do kafki to obiekty ValueDto. Przed wrzuceniem są serializowane, 
 
 ![Schemat kafki](https://github.com/kamdibus/PIK/blob/gh-pages/img/kafkaserialization.png?raw=true "Serializacja kafki"){: .center-image }
 
-###### Źródła
+##### Źródła
 [heroku kafka](https://www.heroku.com/kafka)
 
 [apache kafka](https://kafka.apache.org/)
