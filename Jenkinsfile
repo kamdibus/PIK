@@ -58,6 +58,14 @@ pipeline {
                        }
            }
 
+           stage('Deploy Consumer Heroku') {
+                                 when { branch 'master'}
+                                 steps {
+                                   sh 'chmod u+x dplcnsm.sh'
+                                   sh 'sh dplcnsm.sh'
+                                  }
+                      }
+
     }
     post {
         success {
