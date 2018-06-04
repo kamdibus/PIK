@@ -84,11 +84,28 @@ class Chart extends Component {
         chartData.labels = [];
         chartData.datasets[0].data = [];
 
-        let j = this.props.values.length - this.state.valuesCount;
-        for (let i = 0; i < this.state.valuesCount; i++) {
+        let j;
+        let maxIter;
+        if (this.props.values.length < this.state.valuesCount) {
+            j = 0;
+            maxIter = this.props.values.length;
+        } else {
+            j = this.props.values.length - this.state.valuesCount;
+            maxIter = this.state.valuesCount;
+        }
+
+        let gaps = Math.ceil(maxIter/50);
+
+        for (let i = 0; i < maxIter; i++) {
             chartData.datasets[0].data[i] = this.props.values[j].value;
             const time = timeConverter(this.props.values[j].timestamp);
-            chartData.labels.push(time);
+
+            if (i % gaps === 0) {
+                chartData.labels.push(time);
+            } else {
+                chartData.labels.push('');
+            }
+
             j++;
         }
 
