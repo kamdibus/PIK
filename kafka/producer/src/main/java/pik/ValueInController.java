@@ -11,11 +11,11 @@ import pik.values.domain.dto.ValueDto;
 @Profile("prod")
 @CrossOrigin
 @RequestMapping("/values")
-public class ValueController {
+public class ValueInController {
 
     private ValueProducer valueProducer;
 
-    public ValueController(ValueProducer valueProducer) {
+    public ValueInController(ValueProducer valueProducer) {
         this.valueProducer = valueProducer;
     }
 

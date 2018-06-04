@@ -27,7 +27,7 @@ import static org.mockito.Mockito.when;
 @SpringBootTest(classes = ValueInController.class)
 @EnableWebMvc
 @AutoConfigureMockMvc
-public class ValueControllerTest {
+public class ValueInControllerTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
