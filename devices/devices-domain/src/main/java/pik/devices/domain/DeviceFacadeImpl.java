@@ -139,6 +139,6 @@ class DeviceFacadeImpl implements DeviceFacade {
         for (final byte b : raw) {
             hex.append(HEXES.charAt((b & 0xF0) >> 4)).append(HEXES.charAt((b & 0x0F)));
         }
-        return hex.toString();
+        return hex.toString().substring(0, 19);
     }
 }
