@@ -3,7 +3,6 @@ layout: post
 title: "Apache Kafka"
 ---
 ##### Kamil Biduś
-<div style="text-align: justify">
 # Kafka podstawy 
 #### Kafka to rozproszona platforma do strumieniowania, o trzech głównych funkcjach:
 * 	Publikowanie i subskrypcja do strumieni danych (kolejek wiadomości)
@@ -26,5 +25,5 @@ title: "Apache Kafka"
 *	Connector API
 
 ### W projekcie
-Z założeń niefunkcjonalnych projektu wynika, że ilość danych dostarczanych do systemu może się znacznie zwiększać po podłączeniu nowych urządzeń. Aby zapewnić skalowalność systemu, dane najpierw wrzucane są do bufora Kafki, a następnie konsumenci zajmują się przekazywaniem ich do bazy danych. Takie podejście pozwala w razie potrzeby zredukować obłożenie bazy.
+<div style="text-align: justify">Z założeń niefunkcjonalnych projektu wynika, że ilość danych dostarczanych do systemu może się znacznie zwiększać po podłączeniu nowych urządzeń. Aby zapewnić skalowalność systemu, dane najpierw wrzucane są do bufora Kafki, a następnie konsumenci zajmują się przekazywaniem ich do bazy danych. Takie podejście pozwala w razie potrzeby zredukować obłożenie bazy.
 </div>
