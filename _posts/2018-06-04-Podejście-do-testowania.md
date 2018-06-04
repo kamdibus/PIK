@@ -3,16 +3,16 @@ layout: post
 title: "Podejście do testowania"
 ---
 
-### Podejście do testowania
 ###### Rafał Koguciuk
 #### Wstęp
+
 Coraz częściej w kontekście tworzenia oprogramowania mówi się między innymi o 
 testwowaniu. Świadomość twórców o tym, że testowanie staje się jednym z najważniejszych
-aspektów wytwarzania oprogramowania, nieustannie się zwiększa.
+aspektów wytwarzania oprogramowania, stale się zwiększa.
 
 Każdy programista nieustannie styka się z błędami tworzonego przez siebie oprogramowania 
 i dobrze wie, że nawet najprostrzy błąd może przyprawiać o bóle głowy. Jednak zdarzają się 
-gorsze rzeczy, błędy mogą prowadzić do bardziej katastrofalnych skutków. W latach 80, w skutek 
+gorsze rzeczy, błędy mogą prowadzić do bardziej katastrofalnych skutków. W latach 80, wskutek 
 błędu w maszynie do radioterapii Therac-25 zmarło 5 osób, gdyż dostali oni zbyt dużą dawkę 
 promieniowania. W roku 1991 podczas wojny w Zatoce Perskiej iracka rakieta zabiła 28 
 amerykańskich żołnierzy, zawiódł system obronny Patriot. W wyniku błędów oprogramowania, 
@@ -29,7 +29,9 @@ rzeczywiste powody, dla których piszemy oprogramowanie? Między innymi dlatego,
 - otrzymać szybką informację, że coś poszło nie tak
 - zapewnić lepszą architekturę systemu
 - sprawdzać, czy kolejne zmiany w kodzie nie popsuły kodu, który już został napisany.
+
 #### Rodzaje testów
+
 Aplikację możemy testować na różnym poziomie jej integracji, dlatego wyróżniamy 3 
 główne rodzaje testów:
 - jednostkowe (tzw. testy unitowe) - łatwe do pisania i modyfikacji, 
@@ -53,8 +55,8 @@ Jest to jedna z technika tworzenia oprogramowania, której głównym zamysłem j
 żeby tworzenie oprogramowania zaczynać od pisania testów funkcjonalności, którą chcemy 
 zaimplementować, by później napisać kod wystarczający by testy przechodziły, a na 
 końcu poddać ten kod refaktoryzacji. Trzy główne prawa TDD brzmią następująco:
-1. Nie wolno Ci napisaćżadnego doku produkcyjnego dopóki nie masz nieprzechodzącego testu.
-2. Nie wolno Ci napisaćw teście nic ponad to, co starcza żeby nie przechodził.
+1. Nie wolno Ci napisać żadnego kodu produkcyjnego dopóki nie masz nieprzechodzącego testu.
+2. Nie wolno Ci napisać w teście nic ponad to, co starcza żeby nie przechodził.
 3. Nie wolno Ci napisać żadnego kodu poza tym, który jest wystarczający by aktualny 
 nieprzechodzący test przechodził.
 
@@ -77,6 +79,7 @@ napisanie wystarczającego kodu, by test przechodził, wymagało bardzo dużo pr
 niedoświadczony zespół mógł przy okazji tego projektu bardzo dużo się nauczyć.
 
 #### Wykorzystane techniki
+
 Oprócz wykorzystania biblioteki JUnit, podstawowej i najbardziej powszechnej 
 biblioteki do testów jednostkowych, do pracy nad projektem wykorzystaliśmy jeszcze 
 parę innych ciekawych technik, które wspomagały nasz proces testowania aplikacji. 
@@ -97,7 +100,7 @@ dostarczając mu udawane zależności. Testując jednostkowo funkcjonalności je
 który posiada zależności do innego modułu, nie chcemy testować obu na raz. Mockowanie pozwala 
 nam zmieniać zachowanie udawanych mocków pomiędzy testami, co sprawia, że są one bardzo 
 elastycznym i przydatnym narzędziem do testów. 
-Chcą przetestować funkcjonalność modułu odpwowiedzialnego za obsługę urządzeń i zmiennych 
+Chcąc przetestować funkcjonalność modułu odpwowiedzialnego za obsługę urządzeń i zmiennych 
 przypisanych do nich mogliśmy zamockować zależności do modułu wartości tych zmiennych. Przy 
 usuwaniu urządzenia czy zmiennej, naturalnym było, że należy usunąć także wartości zmiennych, 
 lecz odpowiedzialny za to był inny moduł aplikacji. Dlatego testując moduł urządzeń mogliśmy 
@@ -116,6 +119,7 @@ które nie. Poniżej przedstawiono, jak zmieniało się procentowe pokrycie w cz
 ![Codecov_picture](https://github.com/kamdibus/PIK/blob/gh-pages/img/pokrycie.png?raw=true "Pokrycie kodu"){: .center-image }
 
 ###### Źródła:
+
 [chlebik_webpage](https://chlebik.wordpress.com/)
 
 [kodolamacz_webpage](https://kodolamacz.pl/blog/)
