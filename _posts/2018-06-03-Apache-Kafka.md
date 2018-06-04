@@ -3,18 +3,18 @@ layout: post
 title: "Apache Kafka"
 ---
 ##### Kamil Biduś
-## Kafka podstawy 
+## Podstawy
 
-### Kafka to rozproszona platforma do strumieniowania, o trzech głównych funkcjach:
+#### Kafka to rozproszona platforma do strumieniowania, o trzech głównych funkcjach:
 * 	Publikowanie i subskrypcja do strumieni danych (kolejek wiadomości)
 *	Odporne na awarie przechowywanie danych
 *	Przetwarzanie danych
 
-### Rozróżnia się dwie podstawowe klasy zastosowań dla Kafki
+#### Rozróżnia się dwie podstawowe klasy zastosowań dla Kafki
 *	Tworzenie strumieni danych w czasie rzeczywistym, które niezawodnie pobierają dane między systemami lub aplikacjami.
 *	Tworzenie aplikacji do strumieniowego przesyłania w czasie rzeczywistym, które reagują na strumienie danych.
 
-### Podstawowe pojęcia to
+#### Podstawowe pojęcia
 *	_Klastery_ w których może działać Kafka to co najmniej jeden serwer.
 *	Klastery przechowują strumienie _rekordów_ w kategoriach zwanych _tematami_.
 *	Każdy rekord składa się z klucza, wartości i znacznika czasu.
