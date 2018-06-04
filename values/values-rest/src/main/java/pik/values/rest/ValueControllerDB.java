@@ -11,7 +11,7 @@ import pik.values.domain.dto.ValueDto;
 import java.util.List;
 
 @RestController
-@Profile({"default", "dev", "heroku"})
+@Profile({"default", "dev", "heroku", "test"})
 @CrossOrigin
 @RequestMapping("/values")
 public class ValueControllerDB {

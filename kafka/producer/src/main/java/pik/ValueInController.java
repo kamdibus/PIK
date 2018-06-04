@@ -8,7 +8,7 @@ import pik.values.domain.dto.ValueDto;
 
 
 @RestController
-@Profile("prod")
+@Profile({"prod"})
 @CrossOrigin
 @RequestMapping("/values")
 public class ValueInController {

@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@Profile("prod")
+@Profile({"prod"})
 @CrossOrigin
 @RequestMapping("/values")
 public class ValueController {

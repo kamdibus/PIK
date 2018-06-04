@@ -10,6 +10,7 @@
         <module>app</module>
         <module>values</module>
         <module>devices</module>
+        <module>kafka</module>
     </modules>
 
     <profiles>
