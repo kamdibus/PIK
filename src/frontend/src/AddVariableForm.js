@@ -20,8 +20,17 @@ class AddVariableForm extends React.Component {
 
     handleSubmit = (event) => {
         if (this.state.name && this.state.unit) {
-            this.props.onCreate(this.state.name, this.state.unit);
-            event.preventDefault();
+            if (this.state.name.length > 20) {
+                alert("Variable name cannot be longer than 20 charts.");
+                event.preventDefault();
+            } else if (this.state.unit.length > 10) {
+                alert("Unit cannot be longer than 10 charts.");
+                event.preventDefault();
+            }
+            else {
+                this.props.onCreate(this.state.name, this.state.unit);
+                event.preventDefault();
+            }
         } else {
             alert("TextBox cannot be empty.");
             event.preventDefault();

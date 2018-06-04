@@ -15,8 +15,13 @@ class AddDeviceForm extends React.Component {
 
     handleSubmit = (event) => {
         if (this.state.value) {
-            this.props.onCreate(this.state.value);
-            event.preventDefault();
+            if (this.state.value.length > 20) {
+                alert("Device name cannot be longer than 20 charts.");
+                event.preventDefault();
+            } else {
+                this.props.onCreate(this.state.value);
+                event.preventDefault();
+            }
         } else {
             alert("TextBox cannot be empty.");
             event.preventDefault();
