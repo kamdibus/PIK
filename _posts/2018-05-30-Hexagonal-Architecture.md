@@ -2,8 +2,6 @@
 layout: post
 title: "Architektura Hexagonalna"
 ---
-
-### Architektura heksagonalna
 ###### Przemysław WIlczyński
 #### Wstęp
 Celem niniejszego artykułu jest pokazanie głównej idei budowania aplikacji z wykorzystaniem 
