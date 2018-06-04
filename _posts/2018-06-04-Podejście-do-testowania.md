@@ -2,7 +2,8 @@
 layout: post
 title: "Podejście do testowania"
 ---
-
+Coraz częściej w kontekście tworzenia oprogramowania mówi się między innymi o 
+testwowaniu. Świadomość twórców o tym, że testowanie staje się jednym z najważniejszych...
 ###### Rafał Koguciuk
 #### Wstęp
 
