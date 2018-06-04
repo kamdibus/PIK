@@ -5,20 +5,18 @@
     <groupId>pl.edu.pw.ii</groupId>
     <artifactId>pik07</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <modules>
         <module>app</module>
         <module>values</module>
         <module>devices</module>
-
     </modules>
 
     <profiles>
         <profile>
             <id>prod</id>
             <modules>
-                <module>producer</module>
-                <module>consumer</module>
+                <module>kafka</module>
             </modules>
         </profile>
     </profiles>

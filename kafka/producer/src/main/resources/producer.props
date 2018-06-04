@@ -1,0 +1,9 @@
+bootstrap.servers=159.89.105.82:9092
+acks=all
+retries=0
+batch.size=16384
+auto.commit.interval.ms=1000
+linger.ms=0
+key.serializer=org.apache.kafka.common.serialization.LongSerializer
+value.serializer=pik.ValueDtoSerializer
+block.on.buffer.full=true

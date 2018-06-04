@@ -12,32 +12,33 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean compile'
+                sh 'mvn -Pprod clean compile'
             }
         }
 
         stage('Test') {
             steps {
 
-                sh 'mvn clean test'
+                sh 'mvn -Pprod clean test'
              }
          }
 
         stage('Test Coverage') {
             steps {
-                sh 'mvn cobertura:cobertura'
+                sh 'mvn -Pprod cobertura:cobertura'
              }
          }
 
          stage('Package') {
              steps {
-                sh 'mvn -Pheroku -Dmaven.test.skip=true package'
+                sh 'mvn -Pprod -Dmaven.test.skip=true clean package'
              }
          }
 
           stage('Deploy') {
+              when { branch 'master'}
               steps {
-                 sh 'mvn -Pheroku -Dmaven.test.skip=true deploy'
+                 sh 'mvn -Pprod -Dmaven.test.skip=true deploy'
               }
           }
 
@@ -56,6 +57,14 @@ pipeline {
                         sh 'sh dplfrnt.sh'
                        }
            }
+
+           stage('Deploy Consumer Heroku') {
+                                 when { branch 'master'}
+                                 steps {
+                                   sh 'chmod u+x dplcnsm.sh'
+                                   sh 'sh dplcnsm.sh'
+                                  }
+                      }
 
     }
     post {

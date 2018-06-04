@@ -5,7 +5,7 @@
     <parent>
         <artifactId>pik07</artifactId>
         <groupId>pl.edu.pw.ii</groupId>
-        <version>0.1.1-SNAPSHOT</version>
+        <version>1.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
