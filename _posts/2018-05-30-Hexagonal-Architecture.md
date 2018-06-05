@@ -4,7 +4,7 @@ title: "Architektura Hexagonalna"
 excerpt: "Celem niniejszego artykułu jest pokazanie głównej idei budowania aplikacji z wykorzystaniem architektury heksagonalnej (zwanej również architekturą portów i adapterów), przedstawieniem..."
 ---
 
-###### Przemysław WIlczyński
+###### Przemysław Wilczyński
 #### Wstęp
 Celem niniejszego artykułu jest pokazanie głównej idei budowania aplikacji z wykorzystaniem 
 architektury heksagonalnej (zwanej również architekturą portów i adapterów), przedstawieniem 
@@ -20,7 +20,7 @@ jak na przykład interface RESTowy, konsolowy lub zamiana istniejących zewnętr
 aby móc w pełni przetestować aplikację.
 #### Struktura
 Główna idea polega na utworzeniu różnych modułów aplikacji (heksagonów) będących corem logicznym 
-aplikacji, tzn zawierających logikę biznesową niezależną od zewnętrzych frameworków, warstwy 
+aplikacji, tzn. zawierających logikę biznesową niezależną od zewnętrznych frameworków, warstwy 
 persystencji itp. 
 Pojedynczy moduł posiada porty i adaptery (api i jego różne implementacje). Pojedynczy moduł może 
 posiadać wiele portów do różnych celów, na przykład do komunikacji z użytkownikiem, bazą danych, innymi 
@@ -30,14 +30,14 @@ jak na przykład implementacje warstwy persystencji dla różnych baz.
 ![Schemat modułu](https://github.com/kamdibus/PIK/blob/gh-pages/img/hex.png?raw=true "Struktura modułu")
 
 #### Case study
-W wykonywanym projekcie wydzielono 3 moduły devices, values oraz modul producera. Kaźdy z modułów devices i values posiada port do 
+W wykonywanym projekcie wydzielono 3 moduły devices, values oraz moduł producera. Każdy z modułów devices i values posiada port do 
 warstwy persystencji, oraz port do komunikacji z użytkownikiem. Z portem 
 do bazy danych mogą łączyć się 2 Adaptery zawierające implementację pozwalającą na łączenie się z 
-relacyjną bazą danych lub też testową implementacją InMemory. Za komunikację z użytkownikiem odpowada 
+relacyjną bazą danych lub też testową implementacją InMemory. Za komunikację z użytkownikiem odpowiada 
 RESTowy Adapter. 
 Dodatkowo w module Values znajduje się port do komunikacji pomiędzy modułami oraz jego implementacja 
 dla modułu Devices. 
-Moduł producera posiada port do komunikacji z urządzeniami zewnętrzymi oraz adapter Restowy pozwalający się komunikować
+Moduł producera posiada port do komunikacji z urządzeniami zewnętrznymi oraz adapter Restowy pozwalający się komunikować
 z nimi przez protokół HTTP. Z drugiej strony posiada on port i Adapter do zapisu danych do bufora Kafki.
 
 
