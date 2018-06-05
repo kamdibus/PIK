@@ -1,17 +1,17 @@
 ---
 layout: post
 title: "Podejście do testowania"
-excerpt: "Coraz częściej w kontekście tworzenia oprogramowania mówi się między innymi o testwowaniu. Świadomość twórców o tym, że testowanie staje się jednym z najważniejszych..."
+excerpt: "Coraz częściej w kontekście tworzenia oprogramowania mówi się między innymi o testowaniu. Świadomość twórców o tym, że testowanie staje się jednym z najważniejszych..."
 ---
 ###### Rafał Koguciuk
 #### Wstęp
 
 Coraz częściej w kontekście tworzenia oprogramowania mówi się między innymi o 
-testwowaniu. Świadomość twórców o tym, że testowanie staje się jednym z najważniejszych
+testowaniu. Świadomość twórców o tym, że testowanie staje się jednym z najważniejszych
 aspektów wytwarzania oprogramowania, stale się zwiększa.
 
 Każdy programista nieustannie styka się z błędami tworzonego przez siebie oprogramowania 
-i dobrze wie, że nawet najprostrzy błąd może przyprawiać o bóle głowy. Jednak zdarzają się 
+i dobrze wie, że nawet najprostszy błąd może przyprawiać o bóle głowy. Jednak zdarzają się 
 gorsze rzeczy, błędy mogą prowadzić do bardziej katastrofalnych skutków. W latach 80, wskutek 
 błędu w maszynie do radioterapii Therac-25 zmarło 5 osób, gdyż dostali oni zbyt dużą dawkę 
 promieniowania. W roku 1991 podczas wojny w Zatoce Perskiej iracka rakieta zabiła 28 
@@ -21,7 +21,7 @@ to tym, że czas wyliczany przez system obronny spóźniał się o 0,34 sekundy.
 irackiej rakiety system źle wyliczał jej pozycje i uznał to za fałszywy alarm, wtedy to 
 rakieta uderzyła w amerykańską bazę.
 
-Jak widać, źle przetestowane oprogramownie może prowadzić do prawdziwych katastrof. 
+Jak widać, źle przetestowane oprogramowanie może prowadzić do prawdziwych katastrof. 
 Żeby tego uniknąć coraz częściej w IT mówi się o testowaniu aplikacji. Zatem jakie są 
 rzeczywiste powody, dla których piszemy oprogramowanie? Między innymi dlatego, żeby:
 - zminimalizować prawdopodobieństwo wystąpienia błędów działania systemów
@@ -43,12 +43,12 @@ całościowy, wykonują się najdłużej.
 
 ![Piramida_testow](https://github.com/kamdibus/PIK/blob/gh-pages/img/piramida.png?raw=true "Piramida testów"){: .center-image }
 
-Ze wględu na różnice między testami stworzono coś takiego jak piramida testów i testowy 
-lodzik. Piramida mówi nam, których testów powinno być najwięcej oraz które testy powinny 
-być dominujące w naszym systemie. Lodzik testowy, z drugiej strony, pokazuje jaki powinien 
+Ze względu na różnice między testami stworzono coś takiego jak piramida testów i testowy 
+stożek. Piramida mówi nam, których testów powinno być najwięcej oraz które testy powinny 
+być dominujące w naszym systemie. Stożek testowy, z drugiej strony, pokazuje jaki powinien 
 być czas i koszt wykonywania testów naszego systemu.
 
-![Lodzik_testowy](https://github.com/kamdibus/PIK/blob/gh-pages/img/lodzik.png?raw=true "Testowy lodzik"){: .center-image }
+![Testowy_stożek](https://github.com/kamdibus/PIK/blob/gh-pages/img/stozek.png?raw=true "Testowy stożek"){: .center-image }
 
 #### TDD (Test Driven Development)
 Jest to jedna z technika tworzenia oprogramowania, której głównym zamysłem jest to, 
@@ -69,7 +69,7 @@ Pozwala na dynamiczną pracę i inkrementalne rozwijanie systemu o kolejne małe
 które potem będą tworzyć coraz to większe.
 
 Jak TDD zostało wykorzystane w naszym projekcie? Przy implementacji prostych klas łatwo 
-jest wykorzsytać tę technikę, gdyż nie wymaga ona dużego wkładu początkowego. Stworzona 
+jest wykorzystać tę technikę, gdyż nie wymaga ona dużego wkładu początkowego. Stworzona 
 przez nas aplikacja opiera się na strukturze hexagonalnej, a implementacja fasady dla 
 jednego z modułów wymagała implementacji dużo więcej innych składowych, by móc zadziałać. 
 Przykładowo funkcjonalność dodawania urządzenia przez fasadę DeviceFacade za to odpowiedzialną 
@@ -84,7 +84,7 @@ Oprócz wykorzystania biblioteki JUnit, podstawowej i najbardziej powszechnej
 biblioteki do testów jednostkowych, do pracy nad projektem wykorzystaliśmy jeszcze 
 parę innych ciekawych technik, które wspomagały nasz proces testowania aplikacji. 
 Jedną z nich było wykorzystanie hashMapy by przetestować fasady modułów nie 
-wykorzsytując do tego baz danych tylko operując obiektami w pamięci. HashMapa 
+wykorzystując do tego baz danych tylko operując obiektami w pamięci. HashMapa 
 jest to struktury danych, która pozwala na mapowanie pomiędzy kluczami a obiektami. 
 Zastąpienie wykorzystania baz danych podczas testów poprzez implementacje repozytoriów 
 w pamięci wykorzystując przy tym hashMapę przyniosło nam parę ciekawych korzyści:
@@ -100,7 +100,7 @@ dostarczając mu udawane zależności. Testując jednostkowo funkcjonalności je
 który posiada zależności do innego modułu, nie chcemy testować obu na raz. Mockowanie pozwala 
 nam zmieniać zachowanie udawanych mocków pomiędzy testami, co sprawia, że są one bardzo 
 elastycznym i przydatnym narzędziem do testów. 
-Chcąc przetestować funkcjonalność modułu odpwowiedzialnego za obsługę urządzeń i zmiennych 
+Chcąc przetestować funkcjonalność modułu odpowiedzialnego za obsługę urządzeń i zmiennych 
 przypisanych do nich mogliśmy zamockować zależności do modułu wartości tych zmiennych. Przy 
 usuwaniu urządzenia czy zmiennej, naturalnym było, że należy usunąć także wartości zmiennych, 
 lecz odpowiedzialny za to był inny moduł aplikacji. Dlatego testując moduł urządzeń mogliśmy 
