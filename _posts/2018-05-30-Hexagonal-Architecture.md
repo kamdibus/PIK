@@ -41,7 +41,7 @@ Moduł producera posiada port do komunikacji z urządzeniami zewnętrzymi oraz a
 z nimi przez protokół HTTP. Z drugiej strony posiada on port i Adapter do zapisu danych do bufora Kafki.
 
 
-![Architektura aplikajci](https://github.com/kamdibus/PIK/blob/gh-pages/img/arch2.png?raw=true "Architektura")
+![Architektura aplikajci](https://github.com/kamdibus/PIK/blob/gh-pages/img/arch4.png?raw=true "Architektura")
 
 ###### Źródła:
 [alistair cockburn webpage](http://alistair.cockburn.us/Hexagonal+architecture)
