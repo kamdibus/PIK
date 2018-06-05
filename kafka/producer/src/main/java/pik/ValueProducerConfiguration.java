@@ -8,7 +8,7 @@ import java.io.IOException;
 @Configuration
 public class ValueProducerConfiguration {
 
-    @Bean
+    @Bean(name = "valueProducer")
     ValueProducer valueProducer() {
 
         ValueProducer producer = null;

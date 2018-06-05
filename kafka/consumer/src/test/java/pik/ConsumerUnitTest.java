@@ -1,8 +1,10 @@
 package pik;
 
 import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.junit.ClassRule;
 import org.junit.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.kafka.test.rule.KafkaEmbedded;
 import pik.values.domain.ValueFacade;
 import pik.values.domain.dto.ValueDto;
 
@@ -10,7 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class ConsumerUnitTest {
-
 
     @MockBean
     ValueFacade valueFacadeMock;
