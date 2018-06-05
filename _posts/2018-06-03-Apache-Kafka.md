@@ -36,11 +36,11 @@ Z założeń niefunkcjonalnych projektu wynika, że ilość danych dostarczanych
 
 #### Architektura
 Aby zapewnić możliwość korzystania z Kafki z aplikacji zdeployowanej na heroku, bez używania dedykowanego, płatnego rozwiązania, Kafka została postawiona na zewnętrznym serwerze.
-Na potrzeby projektu skonfigurawaliśmy jednego brokera z jedną partycją i jednym tematem _values_ z którego korzystają producent i konsument (javowe implementacje Producer i Consumer API).
+Na potrzeby projektu skonfigurowaliśmy jednego brokera z jedną partycją i jednym tematem _values_ z którego korzystają producent i konsument (javowe implementacje Producer i Consumer API).
 
 ![Schemat kafki](https://github.com/kamdibus/PIK/blob/gh-pages/img/kafka2.png?raw=true "Architektura kafki"){: .center-image }
 
-Deployment jest dokonywany w odpowieniej fazie pipeline Jenkinsa poprzez skrypt
+Deployment jest dokonywany w odpowiedniej fazie pipeline Jenkinsa poprzez skrypt
 ```
 #! /bin/bash
 set -e
